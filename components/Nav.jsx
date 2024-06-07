@@ -21,6 +21,10 @@ const links = [
         path: '/work'
     },
     {
+        name: 'certifications', 
+        path: '/certifications'
+    },
+    {
         name: 'contact', 
         path: '/contact'
     }
