@@ -8,7 +8,7 @@ const Photo = () => {
         <div className="w-full h-full relative">
             {/* circle */}
             <motion.svg
-                className="w-[300px] xl:w-[506px] h-[300px] xl:h-[506px] absolute z-0"
+                className="w-[300px] xl:w-[506px] h-[300px] xl:h-[506px] ml-8 absolute z-0"
                 fill="transparent"
                 viewBox="0 0 506 506"
                 xmlns="http://www.w3.org/2000/svg"

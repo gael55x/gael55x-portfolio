@@ -4,6 +4,7 @@ import { FiDownload } from "react-icons/fi";
 // components
 import Socials from "@/components/Socials";
 import Photo from "@/components/Photo";
+import Stats from "@/components/Stats";
 
 export default function Home() {
   return (
@@ -36,6 +37,9 @@ export default function Home() {
             <Photo />
           </div>
         </div>
+      </div>
+    <div className="mt-[55px]">
+        <Stats />
       </div>
     </section>
   );
