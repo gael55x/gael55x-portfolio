@@ -18,19 +18,25 @@ const services = [
     },
     {
         num: '03',
-        title: 'Development Operations',
+        title: 'DevOps',
         description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
         href: '/'
     },
     {
         num: '04',
-        title: 'Bug fixing',
+        title: 'SEO',
         description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
         href: '/'
     },
     {
         num: '05',
         title: 'Cybersecurity',
+        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        href: '/'
+    },
+    {
+        num: '05',
+        title: 'Bug fixing',
         description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
         href: '/'
     },
@@ -53,12 +59,13 @@ const Services = () => {
                             <div className="w-full flex justify-between items-center">
                                 <div className='text-5xl font-extrabold text-outline text-transparent group-hover:text-outline-hover transition-all
                                 duration-500 '>{service.num}</div>
-                                <Link href={service.href}>
-                                    <BsArrowDownRight className='transition duration-300 ease-in-out transform group-hover:scale-110' />
+                                <Link href={service.href} className='w-[70px] h-[70px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center
+                                items-center hover:-rotate-45'>
+                                    <BsArrowDownRight className='text-primary text-3xl' />
                                 </Link>
                             </div>
                             {/* title */}
-                            <h2 className='text-2xl font-semibold'>{service.title}</h2>
+                            <h2 className='text-[42px] font-bold leading-none text-white group-hover '>{service.title}</h2>
                             {/* description */}
                             <p className='text-base'>{service.description}</p>
                             {/* border */}
