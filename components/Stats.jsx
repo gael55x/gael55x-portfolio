@@ -1,6 +1,5 @@
 'use client';
 
-import { staticGenerationAsyncStorage } from 'next/dist/client/components/static-generation-async-storage-instance';
 import CountUp from 'react-countup';
 
 const stats = [
