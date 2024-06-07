@@ -17,7 +17,7 @@ const stairAnimation = {
 const reverseIndex = (index) => {
     const totalSteps = 6; // number of steps
     return totalSteps - index - 1;
-;}
+};
 
 
 export default function Stairs() {
@@ -32,17 +32,21 @@ export default function Stairs() {
             a staggered effect with decreasing delay for each subsequent step.
             
             */}
-            {[...Array(6)].map((_ , index) => {
-                <motion.div key={index} variants={stairAnimation} initial="initial" animate="animate" 
-                exit="exit" transition={{
-                    duration: 0.4, 
-                    ease: 'easeInOut', 
-                    delay: reverseIndex(index) * 0.1,
-                }}
-                className="h-full w-full bg-white relative"
+            {[...Array(6)].map((_, index) => (
+                <motion.div 
+                    key={index} 
+                    variants={stairAnimation} 
+                    initial="initial" 
+                    animate="animate" 
+                    exit="exit" 
+                    transition={{
+                        duration: 0.4, 
+                        ease: 'easeInOut', 
+                        delay: reverseIndex(index) * 0.1,
+                    }}
+                    className="h-full w-full bg-white relative"
                 />
-            })}
-
+            ))}
         </>
     );
 }
