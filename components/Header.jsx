@@ -13,11 +13,11 @@ const Header = () => {
                     </h1>
                 </Link>
 
-                {/* desktop nav && hire me button*/}
+                {/* desktop nav && Call Me button*/}
                 <div className="hidden xl:flex items-center gap-8">
                     <Nav />
                     <Link href="/contact">
-                        <Button>Hire Me</Button>
+                        <Button>Call Me ;))</Button>
                     </Link>
                 </div>
 
