@@ -4,7 +4,7 @@ import {FaGithub, FaLinkedinIn, FaYoutube, FaFacebook, FaBlog } from 'react-icon
 
 const socials = [
     {icon: <FaGithub />, path: 'https://github.com/gael55x'},
-    {icon: <FaLinkedinIn />, path: ''},
+    {icon: <FaLinkedinIn />, path: 'https://www.linkedin.com/in/gaille-amolong-687746312/'},
     {icon: <FaBlog />, path: 'https://gael55x-blog.vercel.app/'},
     {icon: <FaFacebook />, path: 'https://www.facebook.com/profile.php?id=100009310392517'},
 ]
