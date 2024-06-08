@@ -16,7 +16,7 @@ import {
 
 import { FaSquareGitlab } from "react-icons/fa6";
 import { DiDjango } from "react-icons/di";
-import { SiTailwindcss, SiNextdotjs, SiTypescript, SiFlask, SiMongodb, SiSqlite, SiTensorflow, SiNumpy, SiPandas, SiOpencv   } from "react-icons/si";
+import { SiNextdotjs, SiDjango, SiFastapi, SiFlask, SiPandas, SiTensorflow, SiNumpy, SiScikitlearn, SiPytest, SiPytorch, SiMongodb, SiWebpack, SiPostgresql, SiKeras, SiExpress } from 'react-icons/si';
 import { TbBrandCSharp, TbBrandCpp } from "react-icons/tb";
 import { BiLogoPostgresql } from "react-icons/bi";
 
@@ -59,11 +59,255 @@ const about = {
 
 // experience data
 const experience = {
-    icon: ''
+    icon: 'public/assets/resume/bitwork_solutions_logo.jpg',
+    title: 'My experience',
+    description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+    items: [
+        {
+            company: "Bitwork solutions",
+            position: "Software Engineer", 
+            duration: "August 2023 - present"
+        },
+        {
+            company: "TidalStack",
+            position: "Freelancer Full Stack Developer", 
+            duration: "January 2024 - March 2024"
+        },
+        {
+            company: "Minglanilla Science High School",
+            position: "Head Developer", 
+            duration: "March 2023 - March 2024"
+        },
+    ]
 }
 
+// education data
+const education = {
+    icon: 'public/assets/resume/mshs_logo.jpg',
+    title: 'My education',
+    description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+    items: [
+        {
+            institution: "Cebu Institute of Technology",
+            degree: "Bachelor of Science in Computer Science", 
+            duration: "2024-2028"
+        },
+        {
+            institution: "Harvard University",
+            degree: "CS50X", 
+            duration: "2021"
+        },
+        {
+            institution: "Harvard University",
+            degree: "CS50P", 
+            duration: "2022"
+        },
+        {
+            institution: "Harvard University",
+            degree: "CS50Web", 
+            duration: "2023"
+        },
+        {
+            institution: "Harvard University",
+            degree: "CS50AI", 
+            duration: "2023"
+        },
+        {
+            institution: "Harvard University",
+            degree: "CS109x", 
+            duration: "2023"
+        },
+        {
+            institution: "DeepLearning.AI & Stanford",
+            degree: "Neural Networks and Deep Learning", 
+            duration: "2023-2024"
+        },
+        {
+            institution: "DeepLearning.AI & Stanford",
+            degree: "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization", 
+            duration: "2023-2024"
+        },
+        {
+            institution: "DeepLearning.AI & Stanford",
+            degree: "Structuring Machine Learning Projects", 
+            duration: "2023-2024"
+        },
+        {
+            institution: "DeepLearning.AI & Stanford",
+            degree: "Convolutional Neural Networks", 
+            duration: "2023-2024"
+        },
+        {
+            institution: "DeepLearning.AI & Stanford",
+            degree: "Sequence Models", 
+            duration: "2023-2024"
+        },
+        {
+            institution: "Yale University",
+            degree: "Financial Markets Course", 
+            duration: "2024"
+        },
+        {
+            institution: "Udemy",
+            degree: "NextJS 14 & React Course", 
+            duration: "2024"
+        },
+        {
+            institution: "AWS",
+            degree: "AWS Cloud Solutions Architect", 
+            duration: "2024"
+        }
+    ]
+}
+
+// skills data
+const skills = {
+    title: 'My skills',
+    description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+    skillList: [
+        {
+            icon: <FaHtml5 />, 
+            name: 'HTML 5'
+        },
+        {
+            icon: <FaReact />,
+            name: 'ReactJS'
+        },
+        {
+            icon: <SiNextdotjs />,
+            name: 'NextJS'
+        },
+        {
+            icon: <SiDjango />,
+            name: 'Django'
+        },
+        {
+            icon: <SiFastapi />,
+            name: 'FastAPI'
+        },
+        {
+            icon: <SiFlask />,
+            name: 'Flask'
+        },
+        {
+            icon: <SiPandas />,
+            name: 'Pandas'
+        },
+        {
+            icon: <SiTensorflow />,
+            name: 'TensorFlow'
+        },
+        {
+            icon: <FaNodeJs />,
+            name: 'NodeJS'
+        },
+        {
+            icon: <SiNumpy />,
+            name: 'NumPy'
+        },
+        {
+            icon: <SiScikitlearn />,
+            name: 'Scikit-Learn'
+        },
+        {
+            icon: <SiPytest />,
+            name: 'Pytest'
+        },
+        {
+            icon: <SiPytorch />,
+            name: 'PyTorch'
+        },
+        {
+            icon: <SiMongodb />,
+            name: 'MongoDB (node-mongodb-native)'
+        },
+        {
+            icon: <SiPostgresql />,
+            name: 'PostgreSQL (Psycopg)'
+        },
+        {
+            icon: <SiExpress />,
+            name: 'ExpressJS'
+        },
+        {
+            icon: <SiDjango />,
+            name: 'Django REST Framework'
+        },
+        {
+            icon: <SiKeras />,
+            name: 'Keras'
+        },
+        {
+            icon: <SiWebpack />,
+            name: 'Webpack'
+        },
+        {
+            icon: <FaGitSquare />,
+            name: 'Git'
+        },
+        {
+            icon: <FaSquareGitlab />,
+            name: 'GitLab'
+        },
+        {
+            icon: <TbBrandCSharp />,
+            name: 'C#'
+        },
+        {
+            icon: <TbBrandCpp />,
+            name: 'C++'
+        }
+    ]
+}
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { motion } from 'framer-motion';
+
 const Resume = () => {
-    return <div>resume page</div>
+    return (
+        <motion.div
+            initial={{opacity: 0}}
+            animate={{
+                opacity: 1, 
+                transition: {delay: 2.4, duration: 0.4, ease: "easeIn"}
+            }}
+            className='min-h-[80vh] flex items-center justify-center py-12 xl:py-0'
+        >
+            <div className="container mx-auto">
+                <Tabs defaultValue='experience' className='flex flex-col xl:flex-row gap-[60px]'>
+                    <TabsList className="flex flex-col w-full max-w-[380px] mx-auto xl:mx-0 gap-6">
+                        <TabsTrigger value="experience" >Experience</TabsTrigger>
+                        <TabsTrigger value="education" >Education</TabsTrigger>
+                        <TabsTrigger value="skills" >Skills</TabsTrigger>
+                        <TabsTrigger value="about" >About Me</TabsTrigger>
+                    </TabsList>
+
+                    {/* content */}
+                    <div className="min-h-[70vh] w-full">
+                        {/* experience */}
+                        <TabsContent value="experience" className="w-full">
+                            
+                            experience
+                        </TabsContent>
+                        {/* education */}
+                        <TabsContent value="education" className="w-full">
+                        education
+                        </TabsContent>
+                        {/* skills */}
+                        <TabsContent value="skills" className="w-full">
+                        skills
+                        </TabsContent>
+                        {/* about */}
+                        <TabsContent value="about" className="w-full">
+                        about
+                        </TabsContent>
+                    </div>    
+                </Tabs>
+            </div>
+        </motion.div>
+    );
 };
 
 export default Resume;
