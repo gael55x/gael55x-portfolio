@@ -41,13 +41,28 @@ const Contact = () => {
                             <h3 className="text-4xl text-accent">Let's work together</h3>
                             <p className="text-white/60">Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</p>
                             {/* input */}
-                            <div className="">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <Input type="firstname" placeholder="Firstname" />
                                 <Input type="lastname" placeholder="Lastname" />
                                 <Input type="email" placeholder="Email Address" />
                                 <Input type="phone" placeholder="Phone Number" />  
                             </div>
-
+                            {/* select */}
+                            <Select>
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select a service"></SelectValue>
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectLabel>Select a service</SelectLabel>
+                                        <SelectItem value="est">Web Development</SelectItem>
+                                        <SelectItem value="cst">AI Development</SelectItem>
+                                        <SelectItem value="mst">DevOps</SelectItem>
+                                        <SelectItem value="sst">SEO</SelectItem>
+                                        <SelectItem value="lst">Logo Design</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
                         </form>
                     </div>
                 </div>
