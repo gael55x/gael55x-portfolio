@@ -16,31 +16,31 @@ import WorkSliderBtns from "@/components/WorkSliderBtns";
 const projects = [
     {
         num: '01', 
-        category: 'frontend', 
-        title: 'project 1', 
+        category: 'Fullstack', 
+        title: 'The Official MSHS Website', 
         description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
         stack: [
-            {name: 'HTML 5'}, {name: 'Css 3'}, {name: 'JavaScript'}
+            {name: 'Django'}, {name: 'Docker'}, {name: 'Railway'}, {name: 'JavaScript'}, {name: 'NGINX'}, {name: 'HTML'}, {name: 'CSS'}, {name: 'Python'}
         ], 
-        image: '/assets/resume/mshs_logo.jpg',
-        live: '',
-        github: '',
+        image: '/assets/projects/MSHS_Website (1).png',
+        live: 'https://www.officialmingsci.com/',
+        github: 'https://github.com/gael55x/MSHS-Website-For-Production-Heroku',
     },
     {
         num: '02', 
-        category: 'fullstack', 
-        title: 'project 2', 
+        category: 'AI', 
+        title: 'PhEASYCS', 
         description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'NodeJS'}, {name: 'MongoDB'}
+            {name: 'Python'}, {name: 'TensorFlow'}, {name: 'JSON'}, {name: 'NER'}, {name: 'TF-IDF'}, {name: 'Deep Neural Network'}
         ], 
-        image: '/assets/resume/mshs_logo.jpg',
+        image: '/assets/projects/PhEASYCS.png',
         live: '',
         github: '',
     },
     {
         num: '03', 
-        category: 'frontend', 
+        category: 'Fullstack', 
         title: 'project 3', 
         description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
         stack: [
@@ -52,7 +52,7 @@ const projects = [
     },
     {
         num: '03', 
-        category: 'fullstack', 
+        category: 'Fullstack', 
         title: 'project 2', 
         description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
         stack: [
@@ -157,6 +157,18 @@ const projects = [
         image: '/assets/resume/mshs_logo.jpg',
         live: '',
         github: '',
+    },
+    {
+        num: '11', 
+        category: 'frontend', 
+        title: 'project 3', 
+        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        stack: [
+            {name: 'NextJS'}, {name: 'TailwindCSS'}
+        ], 
+        image: '/assets/resume/mshs_logo.jpg',
+        live: '',
+        github: '',
     }
 ]
 
@@ -183,14 +195,16 @@ const Work = () => {
                             </div>
                             {/* project category */}
                             <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all 
-                            duration-500 capitalize">{project.category} project</h2>
+                            duration-500 capitalize">{project.title} </h2>
+                            <h4 className="font-bold leading-none text-white group-hover:text-accent transition-all 
+                            duration-500 capitalize">{project.category} project</h4>
                             {/* project description */}
                             <p className="text-white/60">{project.description}</p>
                             {/* stack */}
                             <ul className="flex gap-4">
                                 {project.stack.map((item, index) => {
                                     return (
-                                        <li key={index} className="text-xl text-accent ">
+                                        <li key={index} className="text-xl text-accent flex ">
                                             {item.name}
                                             {/* remove the last comma */}
                                             {index !== project.stack.length - 1 && ","}
