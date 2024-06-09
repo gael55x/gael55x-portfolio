@@ -40,7 +40,7 @@ const projects = [
     },
     {
         num: '03', 
-        category: 'AI Project', 
+        category: 'AI', 
         title: 'ARTIST AI', 
         description: "A.R.T.I.S.T. is an AI model that creates captivating images by blending the style of one image with the content of another in real-time. Using Neural Style Transfer (NST), it combines elements like a photo of the Basilica del Santo Niño in Cebu with the style of Van Gogh's 'The Starry Night.' Powered by a pre-trained VGG-19 model, A.R.T.I.S.T. leverages a neural network inspired by the human brain, trained on the ImageNet database to recognize various image features.",
         stack: [
@@ -52,7 +52,7 @@ const projects = [
     },
     {
         num: '03', 
-        category: 'AI Project', 
+        category: 'AI', 
         title: 'Car Detection AI Model', 
         description: 'An AI model designed to detect cars using convnet, Yolo algorithm, Non-max suppression, and IOU.',
         stack: [
@@ -64,7 +64,7 @@ const projects = [
     },
     {
         num: '04', 
-        category: 'AI Project', 
+        category: 'AI', 
         title: 'MUSICAI', 
         description: "MUSIC-AI is an Artificial Intelligence model designed to generate music. It's currently in its very early stages, under experimentation. This model employs an LSTM network (RNN) to generate music based on its training data. Initial tests show promise, with the AI model successfully generating 90 unique values (notes - which comprise pitch and duration) from the training data.  ",
         stack: [
