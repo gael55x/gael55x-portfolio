@@ -123,53 +123,63 @@ const projects = [
         github: 'https://github.com/gael55x/MessageMe',
     },
     {
-        num: '09', 
-        category: 'Fullstack', 
-        title: 'project 3', 
-        description: 'A full-stack web application to personalize routines for gym users.',
+        num: "09",
+        category: "Fullstack",
+        title: "Project 3",
+        description: "A full-stack web application that personalizes routines for gym users, helping them track and optimize their workouts.",
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'ExpressJS'}, {name: 'SQLite'}
-        ], 
-        image: '/assets/projects/mygym.png',
-        live: 'https://github.com/gael55x/MyGym',
-        github: 'https://github.com/gael55x/MyGym',
+            {name: "NextJS"},
+            {name: "TailwindCSS"},
+            {name: "ExpressJS"},
+            {name: "SQLite"}
+        ],
+        image: "/assets/projects/mygym.png",
+        live: "https://github.com/gael55x/MyGym",
+        github: "https://github.com/gael55x/MyGym"
     },
     {
-        num: '10', 
-        category: 'Fullstack', 
-        title: 'News Web Application', 
-        description: 'A full-stack application designed to provide news to users.',
+        num: "10",
+        category: "Fullstack",
+        title: "News Web Application",
+        description: "A full-stack application designed to deliver the latest news and updates to users in real-time.",
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'ExpressJS'}, {name: 'SQLite'}
-        ], 
-        image: '/assets/projects/newswebapp.png',
-        live: 'https://github.com/gael55x/News-Web-app',
-        github: 'https://github.com/gael55x/News-Web-app',
+            {name: "NextJS"},
+            {name: "TailwindCSS"},
+            {name: "ExpressJS"},
+            {name: "SQLite"}
+        ],
+        image: "/assets/projects/newswebapp.png",
+        live: "https://github.com/gael55x/News-Web-app",
+        github: "https://github.com/gael55x/News-Web-app"
     },
     {
-        num: '11', 
-        category: 'Fullstack', 
-        title: 'Social Media app', 
-        description: 'A full-stack web application designed for a typical social media.',
+        num: "11",
+        category: "Fullstack",
+        title: "Social Media App",
+        description: "A full-stack web application for social media interactions, allowing users to connect and share content.",
         stack: [
-            {name: 'NextJS'}, {name: 'CSS'}
-        ], 
-        image: '/assets/projects/social-media-app.png',
-        live: 'https://github.com/gael55x/Social-media-app',
-        github: 'https://github.com/gael55x/Social-media-app',
+            {name: "NextJS"},
+            {name: "CSS"}
+        ],
+        image: "/assets/projects/social-media-app.png",
+        live: "https://github.com/gael55x/Social-media-app",
+        github: "https://github.com/gael55x/Social-media-app"
     },
     {
-        num: '11', 
-        category: 'Fullstack', 
-        title: 'Freedom Board', 
-        description: 'A freedom board where users can post what they want.',
+        num: "12",
+        category: "Fullstack",
+        title: "Freedom Board",
+        description: "A freedom board where users can post and share their thoughts freely.",
         stack: [
-            {name: 'ReactJS'}, {name: 'CSS'}, {name: 'ExpressJS'}, 
-        ], 
-        image: '/assets/projects/freedomboard.png',
-        live: 'https://github.com/gael55x/Freedom-Board',
-        github: 'https://github.com/gael55x/Freedom-Board',
+            {name: "ReactJS"},
+            {name: "CSS"},
+            {name: "ExpressJS"}
+        ],
+        image: "/assets/projects/freedomboard.png",
+        live: "https://github.com/gael55x/Freedom-Board",
+        github: "https://github.com/gael55x/Freedom-Board"
     }
+    
 ]
 
 const Work = () => {
