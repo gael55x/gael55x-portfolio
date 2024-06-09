@@ -125,7 +125,7 @@ const projects = [
     {
         num: "09",
         category: "Fullstack",
-        title: "Project 3",
+        title: "MyGym",
         description: "A full-stack web application that personalizes routines for gym users, helping them track and optimize their workouts.",
         stack: [
             {name: "NextJS"},
