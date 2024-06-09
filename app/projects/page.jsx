@@ -18,7 +18,7 @@ const projects = [
         num: '01', 
         category: 'Fullstack', 
         title: 'The Official MSHS Website', 
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        description: 'I volunteered to create the school website to make an impact on my school. It features three apps: a homepage, a news website, and another news platform.',
         stack: [
             {name: 'Django'}, {name: 'Docker'}, {name: 'Railway'}, {name: 'JavaScript'}, {name: 'NGINX'}, {name: 'HTML'}, {name: 'CSS'}, {name: 'Python'}
         ], 
@@ -30,145 +30,145 @@ const projects = [
         num: '02', 
         category: 'AI', 
         title: 'PhEASYCS', 
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        description: 'PhEASYCS is an AI Chatbot designed to teach students about basic Physics. Made from scratch using Deep Neural Networks and Natural Language Processing. PhEASYCS - Physics Excogitation Utilizing Artificial Intelligence System (Deep Neural Network) To Yield Comprehension for students.',
         stack: [
             {name: 'Python'}, {name: 'TensorFlow'}, {name: 'JSON'}, {name: 'NER'}, {name: 'TF-IDF'}, {name: 'Deep Neural Network'}
         ], 
         image: '/assets/projects/PhEASYCS.png',
-        live: '',
-        github: '',
+        live: 'https://github.com/gael55x/PhEASYCS',
+        github: 'https://github.com/gael55x/PhEASYCS',
     },
     {
         num: '03', 
-        category: 'Fullstack', 
-        title: 'project 3', 
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        category: 'AI Project', 
+        title: 'ARTIST AI', 
+        description: "A.R.T.I.S.T. is an AI model that creates captivating images by blending the style of one image with the content of another in real-time. Using Neural Style Transfer (NST), it combines elements like a photo of the Basilica del Santo Niño in Cebu with the style of Van Gogh's 'The Starry Night.' Powered by a pre-trained VGG-19 model, A.R.T.I.S.T. leverages a neural network inspired by the human brain, trained on the ImageNet database to recognize various image features.",
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}
+            {name: 'Python'}, {name: 'TensorFlow'}, {name: 'Neural Style Transfer'}, {name: 'Convolutional Neural Network'}
         ], 
-        image: '/assets/resume/mshs_logo.jpg',
-        live: '',
-        github: '',
+        image: '/assets/projects/ARTIST.jpg',
+        live: 'https://github.com/gael55x/ARTIST',
+        github: 'https://github.com/gael55x/ARTIST',
     },
     {
         num: '03', 
-        category: 'Fullstack', 
-        title: 'project 2', 
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        category: 'AI Project', 
+        title: 'Car Detection AI Model', 
+        description: 'An AI model designed to detect cars using convnet, Yolo algorithm, Non-max suppression, and IOU.',
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'NodeJS'}, {name: 'MongoDB'}
+            {name: 'Python'}, {name: 'TensorFlow'}, {name: 'Yolo algorithm'}, {name: 'Non-max suppression'}, {name: 'IOU'}
         ], 
-        image: '/assets/resume/mshs_logo.jpg',
-        live: '',
-        github: '',
+        image: '/assets/projects/Car-Detection-AI-Model.png',
+        live: 'https://github.com/gael55x/Car-Detection-AI-model-',
+        github: 'https://github.com/gael55x/Car-Detection-AI-model-',
     },
     {
         num: '04', 
-        category: 'frontend', 
-        title: 'project 3', 
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        category: 'AI Project', 
+        title: 'MUSICAI', 
+        description: "MUSIC-AI is an Artificial Intelligence model designed to generate music. It's currently in its very early stages, under experimentation. This model employs an LSTM network (RNN) to generate music based on its training data. Initial tests show promise, with the AI model successfully generating 90 unique values (notes - which comprise pitch and duration) from the training data.  ",
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}
+            {name: 'Python'}, {name: 'TensorFlow'}, {name: 'Convolutional Neural Network'}, {name: 'LSTM'}, {name: 'RNN'}
         ], 
-        image: '/assets/resume/mshs_logo.jpg',
-        live: '',
-        github: '',
+        image: '/assets/projects/MUSICAI.png',
+        live: 'https://github.com/gael55x/MusicAI',
+        github: 'https://github.com/gael55x/MusicAI',
     },
     {
         num: '05', 
-        category: 'fullstack', 
-        title: 'project 2', 
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        category: 'Fullstack', 
+        title: 'Daddy Mikes Kitchenette', 
+        description: "I created a full-stack website for Daddy Mike's Kitchenette as a voluntary project. This website helps promote the business and enhance its online presence.",
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'NodeJS'}, {name: 'MongoDB'}
+            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'SQLite'},
         ], 
-        image: '/assets/resume/mshs_logo.jpg',
-        live: '',
-        github: '',
+        image: '/assets/projects/Daddy_mikes.png',
+        live: 'https://daddy-mike-s-kitchenette.vercel.app/community',
+        github: 'https://github.com/gael55x/Daddy-Mike-s-Kitchenette',
     },
     {
         num: '06', 
-        category: 'frontend', 
-        title: 'project 3', 
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        category: 'Fullstack', 
+        title: 'Gaille Blog Website', 
+        description: "A website introducing Gaille's journey as a software engineer. A blog website.",
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}
+            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'Framer Motion'}, {name: 'MongoDB'}
         ], 
-        image: '/assets/resume/mshs_logo.jpg',
-        live: '',
-        github: '',
+        image: '/assets/projects/gaille_blog.png',
+        live: 'https://gael55x-blog.vercel.app/',
+        github: 'https://gael55x-blog.vercel.app/',
     },
     {
         num: '07', 
-        category: 'fullstack', 
-        title: 'project 2', 
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        category: 'Fullstack', 
+        title: 'GoLearnHub', 
+        description: 'I contributed to a full-stack application designed for users to learn and post courses.',
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'NodeJS'}, {name: 'MongoDB'}
+            {name: 'Django'}, {name: 'HTML'}, {name: 'CSS'}, {name: 'PostgreSQL'}, {name: 'JavaScript'}
         ], 
-        image: '/assets/resume/mshs_logo.jpg',
-        live: '',
-        github: '',
+        image: '/assets/projects/Golearnhub.jpg',
+        live: 'https://github.com/gael55x/golearn-hub',
+        github: 'https://github.com/gael55x/golearn-hub',
     },
     {
         num: '08', 
-        category: 'frontend', 
-        title: 'project 3', 
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        category: 'Fullstack', 
+        title: 'MessageMe', 
+        description: 'A full-stack application designed for users to message each other. And make posts.',
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}
+            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'ExpressJS'}, {name: 'SQLite'}
         ], 
-        image: '/assets/resume/mshs_logo.jpg',
-        live: '',
-        github: '',
+        image: '/assets/projects/messageme.png',
+        live: 'https://github.com/gael55x/MessageMe',
+        github: 'https://github.com/gael55x/MessageMe',
     },
     {
         num: '09', 
-        category: 'frontend', 
+        category: 'Fullstack', 
         title: 'project 3', 
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        description: 'A full-stack web application to personalize routines for gym users.',
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}
+            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'ExpressJS'}, {name: 'SQLite'}
         ], 
-        image: '/assets/resume/mshs_logo.jpg',
-        live: '',
-        github: '',
+        image: '/assets/projects/mygym.png',
+        live: 'https://github.com/gael55x/MyGym',
+        github: 'https://github.com/gael55x/MyGym',
     },
     {
         num: '10', 
-        category: 'frontend', 
-        title: 'project 3', 
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        category: 'Fullstack', 
+        title: 'News Web Application', 
+        description: 'A full-stack application designed to provide news to users.',
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}
+            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'ExpressJS'}, {name: 'SQLite'}
         ], 
-        image: '/assets/resume/mshs_logo.jpg',
-        live: '',
-        github: '',
+        image: '/assets/projects/newswebapp.png',
+        live: 'https://github.com/gael55x/News-Web-app',
+        github: 'https://github.com/gael55x/News-Web-app',
     },
     {
         num: '11', 
-        category: 'frontend', 
-        title: 'project 3', 
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        category: 'Fullstack', 
+        title: 'Social Media app', 
+        description: 'A full-stack web application designed for a typical social media.',
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}
+            {name: 'NextJS'}, {name: 'CSS'}
         ], 
-        image: '/assets/resume/mshs_logo.jpg',
-        live: '',
-        github: '',
+        image: '/assets/projects/social-media-app.png',
+        live: 'https://github.com/gael55x/Social-media-app',
+        github: 'https://github.com/gael55x/Social-media-app',
     },
     {
         num: '11', 
-        category: 'frontend', 
-        title: 'project 3', 
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        category: 'Fullstack', 
+        title: 'Freedom Board', 
+        description: 'A freedom board where users can post what they want.',
         stack: [
-            {name: 'NextJS'}, {name: 'TailwindCSS'}
+            {name: 'ReactJS'}, {name: 'CSS'}, {name: 'ExpressJS'}, 
         ], 
-        image: '/assets/resume/mshs_logo.jpg',
-        live: '',
-        github: '',
+        image: '/assets/projects/freedomboard.png',
+        live: 'https://github.com/gael55x/Freedom-Board',
+        github: 'https://github.com/gael55x/Freedom-Board',
     }
 ]
 
@@ -201,7 +201,7 @@ const Work = () => {
                             {/* project description */}
                             <p className="text-white/60">{project.description}</p>
                             {/* stack */}
-                            <ul className="flex gap-4">
+                            <ul className="flex flex-wrap gap-4">
                                 {project.stack.map((item, index) => {
                                     return (
                                         <li key={index} className="text-xl text-accent flex ">
