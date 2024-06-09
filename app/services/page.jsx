@@ -7,37 +7,37 @@ const services = [
     {
         num: '01',
         title: 'Web Development',
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        description: 'Gaille specializes in creating responsive and dynamic web applications using the latest technologies to ensure a seamless user experience.',
         href: '/'
     },
     {
         num: '02',
         title: 'AI development',
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        description: "Gaille's forte. Gaille harnesses the power of artificial intelligence to build intelligent systems that enhance decision-making and automate processes.",
         href: '/'
     },
     {
         num: '03',
         title: 'DevOps',
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        description: 'Gaille implements robust DevOps practices to streamline development, deployment, and operations for increased efficiency and collaboration using AWS and other cloud platforms.',
         href: '/'
     },
     {
         num: '04',
         title: 'SEO',
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        description: 'Gaille optimizes websites to improve search engine rankings, increase visibility, and drive organic traffic through effective SEO strategies.',
         href: '/'
     },
     {
         num: '05',
         title: 'Cybersecurity',
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        description: 'Gaille provides comprehensive cybersecurity solutions to protect your digital assets from threats and ensure data privacy and integrity.',
         href: '/'
     },
     {
         num: '05',
         title: 'Bug fixing',
-        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        description: 'Gaille identifies and resolves bugs to ensure your software operates smoothly and efficiently, minimizing downtime and user frustration.',
         href: '/'
     },
 ]

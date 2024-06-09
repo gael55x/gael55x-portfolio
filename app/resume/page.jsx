@@ -24,7 +24,7 @@ import { BiLogoPostgresql } from "react-icons/bi";
 // about data 
 const about = {
     title: 'About Me', 
-    description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+    description: 'Gaille Amolong is a passionate, persevering, ambitious, and experienced full-stack developer with over 4 years in the tech industry. Proficient in a wide range of technologies, Gaille is dedicated to building innovative solutions and advancing their expertise in both software development and AI.',
     info: [
         {
             fieldName: "Name", 
@@ -61,7 +61,7 @@ const about = {
 const experience = {
     icon: 'public/assets/resume/bitwork_solutions_logo.jpg',
     title: 'My experience',
-    description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+    description: "This is Gaille's Journey as a software engineer and as a tech visionary",
     items: [
         {
             company: "Bitwork solutions",
@@ -85,7 +85,7 @@ const experience = {
 const education = {
     icon: 'public/assets/resume/mshs_logo.jpg',
     title: 'My education',
-    description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+    description: "This is Gaille's Educational Journey as a software engineer and as a tech visionary. Gaille is always hungry in learning.",
     items: [
         {
             institution: "Cebu Institute of Technology",
@@ -163,7 +163,7 @@ const education = {
 // skills data
 const skills = {
     title: 'My skills',
-    description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+    description: 'Gaille is a highly skilled full-stack developer and AI enthusiast, adept at leveraging a diverse array of technologies to build innovative and efficient solutions.',
     skillList: [
         {
             icon: <FaHtml5 />, 
