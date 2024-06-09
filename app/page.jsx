@@ -16,7 +16,7 @@ export default function Home() {
           <div className="text-center xl:text-left order-2 xl:order-none">
             <span className="text-xl">Software Engineer</span>
             <h1 className="h1">
-              Hello I'm <br/> <span className="text-accent">Gaille Amolong</span>
+              Hello I&apos;m <br/> <span className="text-accent">Gaille Amolong</span>
             </h1>
             <p className="max-w-[500px] mb-9 text-white/80">
             I excel at developing Artificial Intelligence systems and web applications, with proficiency in various programming languages and technologies. I am a tech visionary.
