@@ -20,6 +20,10 @@ const links = [
         path: '/projects'
     },
     {
+        name: 'certifications', 
+        path: '/certifications'
+    },
+    {
         name: 'contact', 
         path: '/contact'
     }
@@ -50,7 +54,7 @@ export default function MobileNav() {
                         </Link>
                     );
                 })}
-            </nav>;
+            </nav>
         </SheetContent>
     </Sheet>
     );
