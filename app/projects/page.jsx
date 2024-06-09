@@ -49,6 +49,114 @@ const projects = [
         image: '/assets/resume/mshs_logo.jpg',
         live: '',
         github: '',
+    },
+    {
+        num: '03', 
+        category: 'fullstack', 
+        title: 'project 2', 
+        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        stack: [
+            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'NodeJS'}, {name: 'MongoDB'}
+        ], 
+        image: '/assets/resume/mshs_logo.jpg',
+        live: '',
+        github: '',
+    },
+    {
+        num: '04', 
+        category: 'frontend', 
+        title: 'project 3', 
+        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        stack: [
+            {name: 'NextJS'}, {name: 'TailwindCSS'}
+        ], 
+        image: '/assets/resume/mshs_logo.jpg',
+        live: '',
+        github: '',
+    },
+    {
+        num: '05', 
+        category: 'fullstack', 
+        title: 'project 2', 
+        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        stack: [
+            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'NodeJS'}, {name: 'MongoDB'}
+        ], 
+        image: '/assets/resume/mshs_logo.jpg',
+        live: '',
+        github: '',
+    },
+    {
+        num: '06', 
+        category: 'frontend', 
+        title: 'project 3', 
+        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        stack: [
+            {name: 'NextJS'}, {name: 'TailwindCSS'}
+        ], 
+        image: '/assets/resume/mshs_logo.jpg',
+        live: '',
+        github: '',
+    },
+    {
+        num: '07', 
+        category: 'fullstack', 
+        title: 'project 2', 
+        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        stack: [
+            {name: 'NextJS'}, {name: 'TailwindCSS'}, {name: 'NodeJS'}, {name: 'MongoDB'}
+        ], 
+        image: '/assets/resume/mshs_logo.jpg',
+        live: '',
+        github: '',
+    },
+    {
+        num: '08', 
+        category: 'frontend', 
+        title: 'project 3', 
+        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        stack: [
+            {name: 'NextJS'}, {name: 'TailwindCSS'}
+        ], 
+        image: '/assets/resume/mshs_logo.jpg',
+        live: '',
+        github: '',
+    },
+    {
+        num: '09', 
+        category: 'frontend', 
+        title: 'project 3', 
+        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        stack: [
+            {name: 'NextJS'}, {name: 'TailwindCSS'}
+        ], 
+        image: '/assets/resume/mshs_logo.jpg',
+        live: '',
+        github: '',
+    },
+    {
+        num: '10', 
+        category: 'frontend', 
+        title: 'project 3', 
+        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        stack: [
+            {name: 'NextJS'}, {name: 'TailwindCSS'}
+        ], 
+        image: '/assets/resume/mshs_logo.jpg',
+        live: '',
+        github: '',
+    },
+    {
+        num: '11', 
+        category: 'frontend', 
+        title: 'project 3', 
+        description: 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
+        stack: [
+            {name: 'NextJS'}, {name: 'TailwindCSS'}
+        ], 
+        image: '/assets/resume/mshs_logo.jpg',
+        live: '',
+        github: '',
     }
 ]
 

@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
-        <link rel="icon" href="app/favicon.ico" />
+        <link rel="icon" href="public/favicon.ico" alt='true' />
       </Head>
       <body className={jetbrainsMono.variable}>
         <Header />
