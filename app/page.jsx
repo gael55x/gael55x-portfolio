@@ -21,7 +21,7 @@ export default function Home() {
               Hello I&apos;m <br/> <span className="text-accent">Gaille Amolong</span>
             </h1>
             <p className="max-w-[500px] mb-9 text-white/80">
-            I develop intelligent systems and innovative applications, specializing in artificial intelligence, finance technology, and full-stack development. I'm passionate about advancing AI applications in finance and sharing knowledge through speaking engagements.
+            I develop intelligent systems and innovative applications, specializing in artificial intelligence, finance technology, and full-stack development. I&apos;m passionate about advancing AI applications in finance and sharing knowledge through speaking engagements.
             </p>
             {/* btns and socials */}
             <div className="flex flex-col xl:flex-row items-center gap-4">

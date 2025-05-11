@@ -10,7 +10,7 @@ import { FaQuoteLeft } from "react-icons/fa";
 const speakingEvents = [
     {
         title: 'Building and Deploying an LSTM Mean Reversion Trading Strategy on AWS ECS and Docker Hub',
-        description: 'Presented an in-depth look at how to build and deploy a machine learning model for financial trading, focusing on LSTM architectures for mean reversion strategies. The talk covered the entire workflow from model development to containerization with Docker and deployment on AWS ECS.',
+        description: 'I presented an in-depth look at how to build and deploy a machine learning model for financial trading, focusing on LSTM architectures for mean reversion strategies. The talk covered the entire workflow from model development to containerization with Docker and deployment on AWS ECS.',
         imageUrl: '/assets/speaker/GailleSpeaker-headline-poster.png',
         link: 'https://www.facebook.com/share/p/1JFYBUJL6y/',
         date: 'February 2025',
