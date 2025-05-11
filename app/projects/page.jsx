@@ -219,46 +219,60 @@ const Work = () => {
     return (
         <motion.div initial={{opacity: 0}} 
         animate={{opacity: 1, transition: {delay: 2.4, duration: 0.4, ease: 'easeIn'}}} className="min-h-[80vh] flex flex-col justify-center py-12 xl:px-0">
-            <div className="container mx-auto">
+            <div className="container mx-auto px-4">
+                {/* Page Header */}
+                <div className="text-center mb-10 md:mb-16">
+                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Featured Projects</h1>
+                    <div className="h-1 w-32 bg-accent mx-auto mb-6 rounded-full"></div>
+                    <p className="text-white/70 max-w-2xl mx-auto text-base md:text-lg">
+                        Browse through my collection of projects spanning mobile apps, AI models, and full-stack applications.
+                    </p>
+                </div>
+                
                 <div className="flex flex-col xl:flex-row xl:gap-[30px]">
-                    <div className="w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none">
-                        <div className="flex flex-col gap-[30px]">
+                    <div className="w-full xl:w-1/2 order-2 xl:order-none mb-8 xl:mb-0">
+                        <div className="flex flex-col gap-6 bg-gradient-to-br from-[#1e1e2a]/80 to-[#2d2d3a]/80 backdrop-blur-sm p-4 md:p-8 rounded-2xl shadow-lg border border-white/5 h-full">
                             {/* outline num */}
-                            <div className="text-8xl leading-none font-extrabold text-transparent text-outline">
-                                {project.num}
+                            <div className="flex items-center gap-4">
+                                <div className="text-5xl md:text-7xl leading-none font-extrabold text-accent opacity-30">
+                                    {project.num}
+                                </div>
+                                <div className="h-[3px] w-8 md:w-12 bg-accent rounded-full"></div>
+                                <span className="text-white/50 uppercase tracking-wider text-xs md:text-sm">{project.category} project</span>
                             </div>
-                            {/* project category */}
-                            <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all 
-                            duration-500 capitalize">{project.title} </h2>
-                            <h4 className="font-bold leading-none text-white group-hover:text-accent transition-all 
-                            duration-500 capitalize">{project.category} project</h4>
+                            
+                            {/* project title */}
+                            <h2 className="text-2xl md:text-[42px] font-bold leading-tight text-white group-hover:text-accent transition-all 
+                            duration-500 capitalize">{project.title}</h2>
+                            
                             {/* project description */}
-                            <p className="text-white/60">{project.description}</p>
+                            <p className="text-white/70 text-sm md:text-lg">{project.description}</p>
+                            
                             {/* stack */}
-                            <ul className="flex flex-wrap gap-4">
-                                {project.stack.map((item, index) => {
-                                    return (
-                                        <li key={index} className="text-xl text-accent flex ">
-                                            {item.name}
-                                            {/* remove the last comma */}
-                                            {index !== project.stack.length - 1 && ","}
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                            {/* border */}
-                            <div className="border border-white/20"></div>
-                             {/* buttons */}
-                             <div className="flex items-center gap-4">
+                            <div className="mb-4">
+                                <h4 className="text-white/50 uppercase tracking-wider text-xs md:text-sm mb-2 md:mb-3">Technologies Used</h4>
+                                <ul className="flex flex-wrap gap-2">
+                                    {project.stack.map((item, index) => {
+                                        return (
+                                            <li key={index} className="bg-white/5 text-accent px-2 py-1 md:px-3 md:py-1 rounded-full text-xs md:text-sm">
+                                                {item.name}
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            </div>
+                            
+                            {/* buttons */}
+                            <div className="flex items-center gap-3 md:gap-4 mt-auto">
                                 {/* live project button */}
                                 <Link href={project.live}>
                                     <TooltipProvider delayDuration={100}>
                                         <Tooltip>
-                                            <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                                                <BsArrowUpRight className="text-white text-3xl group-hover:text-accent"/>
+                                            <TooltipTrigger className="bg-accent hover:bg-accent/80 text-white px-3 py-2 md:px-6 md:py-3 rounded-full flex items-center gap-2 shadow-lg shadow-accent/20 transform hover:-translate-y-1 transition-all text-xs md:text-base">
+                                                <span>Live Demo</span> <BsArrowUpRight className="text-white text-sm md:text-xl"/>
                                             </TooltipTrigger>
                                             <TooltipContent>
-                                                <p>Live project</p>
+                                                <p>View live project</p>
                                             </TooltipContent>
                                         </Tooltip>
                                     </TooltipProvider>
@@ -267,37 +281,82 @@ const Work = () => {
                                 <Link href={project.github}>
                                     <TooltipProvider delayDuration={100}>
                                         <Tooltip>
-                                            <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                                                <BsGithub className="text-white text-3xl group-hover:text-accent"/>
+                                            <TooltipTrigger className="bg-white/5 hover:bg-white/10 text-white px-3 py-2 md:px-6 md:py-3 rounded-full flex items-center gap-2 border border-white/10 transform hover:-translate-y-1 transition-all text-xs md:text-base">
+                                                <span>Source Code</span> <BsGithub className="text-white text-sm md:text-xl"/>
                                             </TooltipTrigger>
                                             <TooltipContent>
-                                                <p>Github repo</p>
+                                                <p>View GitHub repository</p>
                                             </TooltipContent>
                                         </Tooltip>
                                     </TooltipProvider>
                                 </Link>
-                             </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="w-full xl:w-[50%]">
-                        <Swiper spaceBetween={30} slidesPerView={1} className="xl:h-[520px] mb-12" onSlideChange={handleSlideChange}>
+                    <div className="w-full xl:w-1/2 mb-8 xl:mb-0">
+                        <Swiper spaceBetween={30} slidesPerView={1} className="rounded-2xl overflow-hidden shadow-2xl h-[300px] sm:h-[400px] md:h-[450px] xl:h-[520px]" onSlideChange={handleSlideChange}>
                             {projects.map((project, index) => {
-                                return <SwiperSlide key={index} className="w-full">
-                                    <div className="h-[460px] relative group flex justify-center items-center bg-pink-50/20">
+                                return <SwiperSlide key={index} className="w-full h-full">
+                                    <div className="relative group w-full h-full flex justify-center items-center overflow-hidden">
                                         {/* overlay */}
-                                        <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10 "></div>
+                                        <div className="absolute inset-0 bg-black/20 z-10"></div>
                                         {/* image */}
-                                        <div className="relative w-full h-full">
-                                            <Image src={project.image} fill className="object-cover" alt="" />
+                                        <div className="relative w-full h-full transform group-hover:scale-105 transition-transform duration-1000">
+                                            <Image src={project.image} fill className="object-cover" alt={project.title} />
+                                        </div>
+                                        {/* project number indicator */}
+                                        <div className="absolute top-4 right-4 bg-accent/90 text-white px-3 py-1 md:px-4 md:py-2 rounded-full z-20 shadow-lg text-xs md:text-sm">
+                                            Project {project.num}
                                         </div>
                                     </div>
                                 </SwiperSlide>
                             })}
                             {/* buttons */}
-                            <WorkSliderBtns containerStyles="flex gap-2 absolute right-0 bottom-[calc(50%_-_22px)] xl:bottom-0 z-20 
-                            w-full justify-between xl:w-max xl:justify-none" btnStyles="bg-accent hover:bg-accent-hover text-primary
-                            text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all" />
+                            <WorkSliderBtns containerStyles="flex gap-3 absolute right-4 bottom-4 z-20" 
+                            btnStyles="bg-accent hover:bg-accent/80 text-white text-[16px] md:text-[20px] w-[40px] h-[40px] md:w-[50px] md:h-[50px] rounded-full
+                            flex justify-center items-center shadow-lg shadow-black/30 transition-all" />
                         </Swiper>
+                    </div>
+                </div>
+                
+                {/* Project categories section */}
+                <div className="mt-12 md:mt-20">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 flex items-center gap-3">
+                        <span className="h-1 w-6 md:w-8 bg-accent rounded-full"></span>
+                        Browse by Category
+                    </h2>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+                        {['AI', 'Mobile App', 'Fullstack', 'AI & Finance'].map((category, index) => (
+                            <motion.div 
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className="bg-gradient-to-br from-[#1e1e2a] to-[#2d2d3a] p-4 md:p-6 rounded-xl shadow-lg border border-white/5 hover:border-accent/30 transition-all cursor-pointer group"
+                                onClick={() => {
+                                    const projectWithCategory = projects.find(p => p.category === category);
+                                    if (projectWithCategory) {
+                                        setProject(projectWithCategory);
+                                    }
+                                }}
+                            >
+                                <h3 className="text-lg md:text-xl font-semibold text-white mb-1 md:mb-2 group-hover:text-accent transition-colors">{category}</h3>
+                                <p className="text-white/60 text-xs md:text-sm">
+                                    {
+                                        category === 'AI' ? 'Machine learning and neural network projects' :
+                                        category === 'Mobile App' ? 'Native and cross-platform mobile applications' :
+                                        category === 'Fullstack' ? 'Complete web applications with frontend and backend' :
+                                        'Financial technology applications using AI'
+                                    }
+                                </p>
+                                <div className="mt-3 md:mt-4 flex justify-end">
+                                    <div className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                                        <BsArrowUpRight className="text-accent text-sm md:text-base" />
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </div>
