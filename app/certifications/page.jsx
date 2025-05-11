@@ -7,6 +7,12 @@ import { GrLinkBottom } from "react-icons/gr";
 
 const certifications = [
     {
+        category: 'Cloud & Infrastructure',
+        title: 'AWS Specialization Certificate',
+        imageUrl: '/assets/certifications/aws/aws-gaille.png',  
+        href: 'https://www.coursera.org/account/accomplishments/specialization/certificate/BVUU6YN41ENJ'
+    },
+    {
         category: 'Tech Certificates',
         title: 'CS50x',
         imageUrl: '/assets/certifications/harvard/CS50x.png',  

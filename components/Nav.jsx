@@ -21,6 +21,10 @@ const links = [
         path: '/certifications'
     },
     {
+        name: 'speaking', 
+        path: '/speaking'
+    },
+    {
         name: 'contact', 
         path: '/contact'
     }

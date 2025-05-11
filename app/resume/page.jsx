@@ -24,7 +24,7 @@ import { BiLogoPostgresql } from "react-icons/bi";
 // about data 
 const about = {
     title: 'About Me', 
-    description: 'Gaille Amolong is a passionate, persevering, ambitious, and experienced full-stack developer with over 4 years in the tech industry. Proficient in a wide range of technologies, Gaille is dedicated to building innovative solutions and advancing their expertise in both software development and AI.',
+    description: 'Gaille Amolong is a passionate, persevering, ambitious, and experienced full-stack developer and AI advocate with over 4 years in the tech industry. Proficient in a wide range of technologies, Gaille is dedicated to building innovative solutions, particularly in AI and finance technology, and sharing knowledge through speaking engagements.',
     info: [
         {
             fieldName: "Name", 
@@ -61,12 +61,22 @@ const about = {
 const experience = {
     icon: 'public/assets/resume/bitwork_solutions_logo.jpg',
     title: 'My experience',
-    description: "This is Gaille's Journey as a software engineer and as a tech visionary",
+    description: "This is Gaille's Journey as a software engineer and AI advocate",
     items: [
         {
+            company: "AI Pilipinas",
+            position: "AI in Finance Advocate", 
+            duration: "January 2025 - present"
+        },
+        {
             company: "Bitwork solutions",
-            position: "Software Engineer", 
+            position: "Senior Software Engineer", 
             duration: "September 2023 - present"
+        },
+        {
+            company: "LSTM Trading Systems",
+            position: "AI Research & Development", 
+            duration: "June 2024 - December 2024"
         },
         {
             company: "TidalStack",
@@ -87,6 +97,11 @@ const education = {
     title: 'My education',
     description: "This is Gaille's Educational Journey as a software engineer and as a tech visionary. Gaille is always hungry in learning.",
     items: [
+        {
+            institution: "AWS",
+            degree: "AWS Specialization Certificate", 
+            duration: "2025"
+        },
         {
             institution: "Cebu Institute of Technology",
             degree: "Bachelor of Science in Computer Science", 
@@ -163,8 +178,16 @@ const education = {
 // skills data
 const skills = {
     title: 'My skills',
-    description: 'Gaille is a highly skilled full-stack developer and AI enthusiast, adept at leveraging a diverse array of technologies to build innovative and efficient solutions.',
+    description: 'Gaille is a highly skilled full-stack developer and AI specialist, adept at leveraging a diverse array of technologies to build innovative and efficient solutions in both software development and financial technology.',
     skillList: [
+        {
+            icon: <FaAws />, 
+            name: 'AWS'
+        },
+        {
+            icon: <FaDocker />, 
+            name: 'Docker'
+        },
         {
             icon: <FaHtml5 />, 
             name: 'HTML 5'

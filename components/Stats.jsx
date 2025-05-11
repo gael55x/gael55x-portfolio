@@ -12,16 +12,16 @@ const stats = [
         text: "% Developer from CodersRank"
     }, 
     {
-        num: 63, 
+        num: 64, 
         text: "Projects Completed"
     }, 
     {
-        num: 9, 
+        num: 13, 
         text: "Technologies Mastered"
     }, 
     {
-        num: 1990, 
-        text: "Code commits (2023)"
+        num: 200, 
+        text: "Code commits (2025)"
     }, 
 ]
 

@@ -6,6 +6,7 @@ import Link from "next/link";
 import Socials from "@/components/Socials";
 import Photo from "@/components/Photo";
 import Stats from "@/components/Stats";
+import LeetCode from "@/components/LeetCode";
 
 export default function Home() {
   return (
@@ -14,12 +15,12 @@ export default function Home() {
         <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-4">
           {/* text */}
           <div className="text-center xl:text-left order-2 xl:order-none">
-            <span className="text-xl">Software Engineer</span>
+            <span className="text-xl">Software Engineer & AI Advocate</span>
             <h1 className="h1">
               Hello I&apos;m <br/> <span className="text-accent">Gaille Amolong</span>
             </h1>
             <p className="max-w-[500px] mb-9 text-white/80">
-            I excel at developing Artificial Intelligence systems and web applications, with proficiency in various programming languages and technologies. I am a tech visionary.
+            I develop intelligent systems and innovative applications, specializing in artificial intelligence, finance technology, and full-stack development. I'm passionate about advancing AI applications in finance and sharing knowledge through speaking engagements.
             </p>
             {/* btns and socials */}
             <div className="flex flex-col xl:flex-row items-center gap-8">
@@ -43,6 +44,9 @@ export default function Home() {
       </div>
     <div className="mt-[55px]">
         <Stats />
+      </div>
+    <div className="mt-[80px]">
+        <LeetCode />
       </div>
     </section>
   );
