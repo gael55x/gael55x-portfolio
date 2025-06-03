@@ -119,8 +119,8 @@ const certifications = [
         category: 'Tech Certificates',
         title: 'React Native Mobile Development',
         description: 'Cross-platform mobile app development using React Native framework',
-        imageUrl: '/assets/certifications/react-native/react-native-cert.png',  
-        href: '#',
+        imageUrl: '/assets/certifications/react-native/react_native.png',  
+        href: '#https://www.coursera.org/account/accomplishments/certificate/MS3HAMBGQUJ8',
         issuer: 'React Native Certification Program',
         date: 'Sep 2024'
     },
