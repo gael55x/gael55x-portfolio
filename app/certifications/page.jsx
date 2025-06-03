@@ -116,6 +116,15 @@ const certifications = [
         date: 'Feb 2024'
     },
     {
+        category: 'Tech Certificates',
+        title: 'React Native Mobile Development',
+        description: 'Cross-platform mobile app development using React Native framework',
+        imageUrl: '/assets/certifications/react-native/react-native-cert.png',  
+        href: '#',
+        issuer: 'React Native Certification Program',
+        date: 'Sep 2024'
+    },
+    {
         category: 'Finance Certificates',
         title: 'Financial Markets',
         description: 'Understanding financial markets, instruments, and investment strategies',

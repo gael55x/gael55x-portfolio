@@ -70,8 +70,13 @@ const experience = {
         },
         {
             company: "Bitwork solutions",
+            position: "Lead Software Engineer", 
+            duration: "May 2025 - present"
+        },
+        {
+            company: "Bitwork solutions",
             position: "Software Engineer & DevOps Engineer", 
-            duration: "September 2023 - present"
+            duration: "September 2023 - May 2025"
         },
         {
             company: "LSTM Trading Systems",
