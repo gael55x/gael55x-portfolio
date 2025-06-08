@@ -41,7 +41,7 @@ const LeetCode = () => {
                             
                             <div className="grid grid-cols-3 gap-4 mb-10">
                                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 transform hover:-translate-y-1 transition-all">
-                                    <span className="text-3xl font-bold text-accent block text-center">540+</span>
+                                    <span className="text-3xl font-bold text-accent block text-center">600+</span>
                                     <span className="text-white/70 text-center block text-sm">Problems Solved</span>
                                 </div>
                                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 transform hover:-translate-y-1 transition-all">

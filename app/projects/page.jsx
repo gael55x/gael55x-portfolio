@@ -16,6 +16,18 @@ import WorkSliderBtns from "@/components/WorkSliderBtns";
 const projects = [
     {
         num: '01', 
+        category: 'Fullstack', 
+        title: 'DSA Visualizer', 
+        description: 'An interactive web application that visualizes various data structures and algorithms to help students and developers understand complex concepts through animations and real-time demonstrations. Features sorting algorithms, graph traversals, tree operations, and more.',
+        stack: [
+            {name: 'NextJS'}, {name: 'React'}, {name: 'JavaScript'}, {name: 'TailwindCSS'}, {name: 'Framer Motion'}, {name: 'Data Structures'}, {name: 'Algorithms'}
+        ], 
+        image: '/assets/projects/DSAVisualizer.png',
+        live: 'https://dsa-visualizer-nine.vercel.app/',
+        github: 'https://github.com/gael55x/DSA-Visualizer',
+    },
+    {
+        num: '02', 
         category: 'Mobile App', 
         title: 'Ren - AI Emotional Support', 
         description: 'Ren is a mobile application designed to deliver personalized motivational quotes, affirmations, and advice tailored to a user\'s emotional state. By utilizing artificial intelligence, Ren generates custom motivational content that adapts to how the user feels at any given moment. Whether someone is feeling burdened, excited, or unsure, Ren provides encouragement suited to their situation.',
@@ -27,7 +39,7 @@ const projects = [
         github: 'https://github.com/gael55x/Ren',
     },
     {
-        num: '02', 
+        num: '03', 
         category: 'AI & Finance', 
         title: 'LSTM Mean Reversion Trading Strategy', 
         description: 'An LSTM model for mean reversion trading, exposed via a FastAPI application and containerized using Docker. This project demonstrates the application of deep learning techniques to financial markets, specifically for mean reversion trading strategies.',
@@ -39,7 +51,7 @@ const projects = [
         github: 'https://github.com/gael55x/LSTM-Mean-Rev-Trading-Strat',
     },
     {
-        num: '03', 
+        num: '04', 
         category: 'Fullstack', 
         title: 'The Official MSHS Website', 
         description: 'I volunteered to create the school website to make an impact on my school. It features three apps: a homepage, a news website, and another news platform.',
@@ -51,7 +63,7 @@ const projects = [
         github: 'https://github.com/gael55x/MSHS-Website-For-Production-Heroku',
     },
     {
-        num: '04', 
+        num: '05', 
         category: 'AI', 
         title: 'PhEASYCS', 
         description: 'PhEASYCS is an AI Chatbot designed to teach students about basic Physics. Made from scratch using Deep Neural Networks and Natural Language Processing. PhEASYCS - Physics Excogitation Utilizing Artificial Intelligence System (Deep Neural Network) To Yield Comprehension for students.',
@@ -63,7 +75,7 @@ const projects = [
         github: 'https://github.com/gael55x/PhEASYCS',
     },
     {
-        num: '05', 
+        num: '06', 
         category: 'AI', 
         title: 'ARTIST AI', 
         description: "A.R.T.I.S.T. is an AI model that creates captivating images by blending the style of one image with the content of another in real-time. Using Neural Style Transfer (NST), it combines elements like a photo of the Basilica del Santo Niño in Cebu with the style of Van Gogh's 'The Starry Night.' Powered by a pre-trained VGG-19 model, A.R.T.I.S.T. leverages a neural network inspired by the human brain, trained on the ImageNet database to recognize various image features.",
@@ -75,7 +87,7 @@ const projects = [
         github: 'https://github.com/gael55x/ARTIST',
     },
     {
-        num: '06', 
+        num: '07', 
         category: 'AI', 
         title: 'Car Detection AI Model', 
         description: 'An AI model designed to detect cars using convnet, Yolo algorithm, Non-max suppression, and IOU.',
@@ -87,7 +99,7 @@ const projects = [
         github: 'https://github.com/gael55x/Car-Detection-AI-model-',
     },
     {
-        num: '07', 
+        num: '08', 
         category: 'AI', 
         title: 'MUSICAI', 
         description: "MUSIC-AI is an Artificial Intelligence model designed to generate music. It's currently in its very early stages, under experimentation. This model employs an LSTM network (RNN) to generate music based on its training data. Initial tests show promise, with the AI model successfully generating 90 unique values (notes - which comprise pitch and duration) from the training data.  ",
@@ -99,7 +111,7 @@ const projects = [
         github: 'https://github.com/gael55x/MusicAI',
     },
     {
-        num: '08', 
+        num: '09', 
         category: 'Fullstack', 
         title: 'Daddy Mikes Kitchenette', 
         description: "I created a full-stack website for Daddy Mike's Kitchenette as a voluntary project. This website helps promote the business and enhance its online presence.",
@@ -111,7 +123,7 @@ const projects = [
         github: 'https://github.com/gael55x/Daddy-Mike-s-Kitchenette',
     },
     {
-        num: '09', 
+        num: '10', 
         category: 'Fullstack', 
         title: 'Gaille Blog Website', 
         description: "A website introducing Gaille's journey as a software engineer. A blog website.",
@@ -123,7 +135,7 @@ const projects = [
         github: 'https://gael55x-blog.vercel.app/',
     },
     {
-        num: '10', 
+        num: '11', 
         category: 'Fullstack', 
         title: 'GoLearnHub', 
         description: 'I contributed to a full-stack application designed for users to learn and post courses.',
@@ -135,7 +147,7 @@ const projects = [
         github: 'https://github.com/gael55x/golearn-hub',
     },
     {
-        num: '11', 
+        num: '12', 
         category: 'Fullstack', 
         title: 'MessageMe', 
         description: 'A full-stack application designed for users to message each other. And make posts.',
@@ -147,7 +159,7 @@ const projects = [
         github: 'https://github.com/gael55x/MessageMe',
     },
     {
-        num: "12",
+        num: "13",
         category: "Fullstack",
         title: "MyGym",
         description: "A full-stack web application that personalizes routines for gym users, helping them track and optimize their workouts.",
@@ -162,7 +174,7 @@ const projects = [
         github: "https://github.com/gael55x/MyGym"
     },
     {
-        num: "13",
+        num: "14",
         category: "Fullstack",
         title: "News Web Application",
         description: "A full-stack application designed to deliver the latest news and updates to users in real-time.",
@@ -177,7 +189,7 @@ const projects = [
         github: "https://github.com/gael55x/News-Web-app"
     },
     {
-        num: "14",
+        num: "15",
         category: "Fullstack",
         title: "Social Media App",
         description: "A full-stack web application for social media interactions, allowing users to connect and share content.",
@@ -190,7 +202,7 @@ const projects = [
         github: "https://github.com/gael55x/Social-media-app"
     },
     {
-        num: "15",
+        num: "16",
         category: "Fullstack",
         title: "Freedom Board",
         description: "A freedom board where users can post and share their thoughts freely.",
