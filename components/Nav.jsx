@@ -38,14 +38,14 @@ const Nav = () => {
     };
 
     return (
-        <nav className="hidden lg:flex gap-6 xl:gap-8">
+        <nav className="hidden lg:flex gap-8">
             {links.map((link, index) => {
                 return (
                     <a 
                         href={link.path}
                         key={index} 
                         onClick={(e) => handleClick(e, link.path)}
-                        className={`capitalize font-medium hover:text-accent transition-all text-base xl:text-lg cursor-pointer`}
+                        className="capitalize font-medium hover:text-accent transition-colors duration-200 text-sm tracking-wide cursor-pointer opacity-90 hover:opacity-100"
                     >
                         {link.name}
                     </a>
