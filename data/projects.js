@@ -61,78 +61,6 @@ export const projects = [
     },
     {
         num: '06', 
-        category: 'SOCIAL NETWORKING', 
-        title: 'Social Media Platform - Community Building', 
-        description: '>>> Building social connection infrastructure...\n\nFull-stack social networking platform with real-time messaging, content sharing, and community features. Built to connect users through shared interests and facilitate meaningful social interactions.\n\n[IMPACT: Social Connection] | [FEATURES: Real-time Communication]',
-        stack: [
-            {name: 'React'}, {name: 'Node.js'}, {name: 'Socket.io'}, {name: 'MongoDB'}, {name: 'Express'}, {name: 'Real-time Chat'}
-        ], 
-        image: '/assets/projects/social-media-app.png',
-        live: '#',
-        github: 'https://github.com/gael55x/social-media-platform',
-    },
-    {
-        num: '07', 
-        category: 'FITNESS TECHNOLOGY', 
-        title: 'MyGym - Fitness Management System', 
-        description: '>>> Loading fitness optimization platform...\n\nComprehensive gym management system featuring workout tracking, progress analytics, membership management, and personalized fitness recommendations. Designed to enhance fitness journey through technology.\n\n[IMPACT: Health & Fitness] | [PURPOSE: Wellness Technology]',
-        stack: [
-            {name: 'React'}, {name: 'Node.js'}, {name: 'MySQL'}, {name: 'Express'}, {name: 'Fitness Analytics'}, {name: 'Dashboard'}
-        ], 
-        image: '/assets/projects/mygym.png',
-        live: '#',
-        github: 'https://github.com/gael55x/MyGym',
-    },
-    {
-        num: '08', 
-        category: 'COMMUNICATION PLATFORM', 
-        title: 'MessageMe - Real-time Messaging System', 
-        description: '>>> Establishing secure communication protocols...\n\nReal-time messaging application with end-to-end encryption, group conversations, file sharing, and multi-platform synchronization. Built for secure and efficient communication.\n\n[IMPACT: Secure Communication] | [FEATURES: End-to-End Encryption]',
-        stack: [
-            {name: 'React'}, {name: 'Node.js'}, {name: 'Socket.io'}, {name: 'MongoDB'}, {name: 'Encryption'}, {name: 'Real-time'}
-        ], 
-        image: '/assets/projects/messageme.png',
-        live: '#',
-        github: 'https://github.com/gael55x/MessageMe',
-    },
-    {
-        num: '09', 
-        category: 'CONTENT PLATFORM', 
-        title: 'Personal Blog - Technical Writing Platform', 
-        description: '>>> Deploying knowledge sharing infrastructure...\n\nPersonal blogging platform focused on technical content, programming tutorials, and AI insights. Features content management, SEO optimization, and reader engagement tools to share knowledge with the developer community.\n\n[IMPACT: Knowledge Sharing] | [PURPOSE: Technical Education]',
-        stack: [
-            {name: 'NextJS'}, {name: 'React'}, {name: 'Markdown'}, {name: 'SEO'}, {name: 'Content Management'}, {name: 'Technical Writing'}
-        ], 
-        image: '/assets/projects/gaille_blog.png',
-        live: '#',
-        github: 'https://github.com/gael55x/personal-blog',
-    },
-    {
-        num: '10', 
-        category: 'NEWS AGGREGATION', 
-        title: 'News Web Application - Information Hub', 
-        description: '>>> Loading news aggregation system...\n\nReal-time news aggregation platform that curates and displays breaking news from multiple sources. Features categorization, search functionality, and personalized news feeds for informed decision-making.\n\n[IMPACT: Information Access] | [FEATURES: Real-time Updates]',
-        stack: [
-            {name: 'React'}, {name: 'News API'}, {name: 'JavaScript'}, {name: 'CSS'}, {name: 'Data Aggregation'}, {name: 'Real-time'}
-        ], 
-        image: '/assets/projects/newswebapp.png',
-        live: '#',
-        github: 'https://github.com/gael55x/news-app',
-    },
-    {
-        num: '11', 
-        category: 'PROJECT MANAGEMENT', 
-        title: 'FreedomBoard - Collaborative Workspace', 
-        description: '>>> Initializing project collaboration platform...\n\nKanban-style project management tool designed for team collaboration and productivity. Features task tracking, deadline management, team communication, and progress visualization for enhanced project delivery.\n\n[IMPACT: Team Productivity] | [PURPOSE: Project Management]',
-        stack: [
-            {name: 'React'}, {name: 'Node.js'}, {name: 'MongoDB'}, {name: 'Express'}, {name: 'Kanban'}, {name: 'Team Collaboration'}
-        ], 
-        image: '/assets/projects/freedomboard.png',
-        live: '#',
-        github: 'https://github.com/gael55x/FreedomBoard',
-    },
-    {
-        num: '12', 
         category: 'RESTAURANT TECHNOLOGY', 
         title: 'Daddy Mikes - Restaurant Management System', 
         description: '>>> Loading restaurant operations platform...\n\nComprehensive restaurant management system featuring order processing, inventory management, customer relations, and analytics dashboard. Designed to streamline restaurant operations and enhance customer experience.\n\n[IMPACT: Business Operations] | [PURPOSE: Restaurant Technology]',
@@ -144,7 +72,7 @@ export const projects = [
         github: 'https://github.com/gael55x/restaurant-management',
     },
     {
-        num: '13', 
+        num: '07', 
         category: 'AI EDUCATION', 
         title: 'PhEASYCS - Physics Learning AI Assistant', 
         description: '>>> Launching educational AI system...\n\nAI-powered chatbot designed to teach physics concepts through interactive conversations. Built from scratch using deep neural networks and natural language processing to make physics education more accessible and engaging.\n\n[IMPACT: STEM Education] | [TECHNOLOGY: Educational AI]',
@@ -156,7 +84,7 @@ export const projects = [
         github: 'https://github.com/gael55x/PhEASYCS',
     },
     {
-        num: '14', 
+        num: '08', 
         category: 'COMPUTER VISION', 
         title: 'ARTIST AI - Neural Style Transfer System', 
         description: '>>> Initializing visual AI processing...\n\nAdvanced neural style transfer system that combines content and artistic styles in real-time. Demonstrates practical application of convolutional neural networks for creative AI and computer vision applications.\n\n[IMPACT: Creative AI] | [TECHNOLOGY: Computer Vision]',
@@ -168,7 +96,7 @@ export const projects = [
         github: 'https://github.com/gael55x/ARTIST',
     },
     {
-        num: '15', 
+        num: '09', 
         category: 'AUTONOMOUS SYSTEMS', 
         title: 'Car Detection AI - Object Recognition System', 
         description: '>>> Activating computer vision protocols...\n\nAutonomous vehicle detection system utilizing YOLO algorithm architecture with non-max suppression and intersection over union calculations. Designed for traffic monitoring and autonomous driving applications.\n\n[IMPACT: Transportation Technology] | [APPLICATION: Autonomous Systems]',
@@ -180,7 +108,7 @@ export const projects = [
         github: 'https://github.com/gael55x/Car-Detection-AI-model-',
     },
     {
-        num: '16', 
+        num: '10', 
         category: 'MUSIC GENERATION', 
         title: 'MusicAI - Creative Neural Composition', 
         description: '>>> Loading music composition algorithms...\n\nExperimental AI music generation system powered by LSTM-RNN architecture. Analyzes musical patterns and generates original compositions, demonstrating the intersection of artificial intelligence and creative arts.\n\n[IMPACT: Creative Technology] | [STATUS: Research Project]',
