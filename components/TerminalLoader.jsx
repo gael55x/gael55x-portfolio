@@ -118,49 +118,55 @@ const TerminalLoader = ({ onComplete }) => {
           <span className="text-green-400 text-sm font-mono ml-4">terminal</span>
         </div>
 
-        {/* Terminal Body */}
-        <div className="p-6 font-mono text-sm min-h-[400px] bg-black rounded-b-lg">
-          {/* Show completed steps */}
-          {steps.slice(0, currentStep).map((step, index) => (
-            <div key={index} className={`mb-2 ${getTextColor(step.type)}`}>
-              {step.text}
-              {step.type === 'loading' && (
-                <div className="mt-1 ml-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-400 text-xs">
-                      {'█'.repeat(25)}
-                    </span>
-                    <span className="text-green-400 text-xs">100%</span>
-                  </div>
-                  <div className="text-green-400 text-xs mt-1">✓ Complete</div>
-                </div>
-              )}
-            </div>
-          ))}
-
-          {/* Current step */}
-          {currentStep < steps.length && (
-            <div className={`mb-2 ${getTextColor(steps[currentStep]?.type)}`}>
-              {displayText}
-              {!isLoading && showCursor && (
-                <span className="bg-green-400 w-2 h-4 inline-block ml-1"></span>
-              )}
-              
-              {isLoading && (
-                <div className="mt-1 ml-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-400 text-xs">
-                      {renderProgressBar()}
-                    </span>
-                    <span className="text-green-400 text-xs">
-                      {Math.floor(progress)}%
-                    </span>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+                 {/* Terminal Body */}
+         <div className="p-6 font-mono text-sm min-h-[400px] bg-black rounded-b-lg">
+           {/* Show all steps */}
+           {steps.map((step, index) => {
+             if (index < currentStep) {
+               // Completed step
+               return (
+                 <div key={index} className={`mb-2 ${getTextColor(step.type)}`}>
+                   {step.text}
+                   {step.type === 'loading' && (
+                     <div className="mt-1 ml-4">
+                       <div className="flex items-center gap-2">
+                         <span className="text-green-400 text-xs">
+                           {'█'.repeat(25)}
+                         </span>
+                         <span className="text-green-400 text-xs">100%</span>
+                       </div>
+                       <div className="text-green-400 text-xs mt-1">✓ Complete</div>
+                     </div>
+                   )}
+                 </div>
+               );
+             } else if (index === currentStep) {
+               // Current step
+               return (
+                 <div key={index} className={`mb-2 ${getTextColor(step.type)}`}>
+                   {displayText}
+                   {!isLoading && showCursor && (
+                     <span className="bg-green-400 w-2 h-4 inline-block ml-1"></span>
+                   )}
+                   
+                   {isLoading && (
+                     <div className="mt-1 ml-4">
+                       <div className="flex items-center gap-2">
+                         <span className="text-green-400 text-xs">
+                           {renderProgressBar()}
+                         </span>
+                         <span className="text-green-400 text-xs">
+                           {Math.floor(progress)}%
+                         </span>
+                       </div>
+                     </div>
+                   )}
+                 </div>
+               );
+             }
+             return null;
+           })}
+         </div>
       </motion.div>
     </div>
   );
