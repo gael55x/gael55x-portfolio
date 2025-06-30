@@ -206,7 +206,7 @@ export default function Home() {
                     <span className="text-green-400">{'>'}</span> {experience.title}
                   </h3>
                   <p className="text-white/80 text-center max-w-2xl mx-auto font-mono text-sm sm:text-base px-4">
-                    <span className="text-green-400">///</span> {experience.description}
+                    <span className="text-green-400">{'///'}</span> {experience.description}
                   </p>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {experience.items.map((item, index) => (
@@ -244,7 +244,7 @@ export default function Home() {
                     <span className="text-green-400">{'>'}</span> {education.title}
                   </h3>
                   <p className="text-white/80 text-center max-w-2xl mx-auto font-mono text-sm sm:text-base px-4">
-                    <span className="text-green-400">///</span> {education.description}
+                    <span className="text-green-400">{'///'}</span> {education.description}
                   </p>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {education.items.map((item, index) => (

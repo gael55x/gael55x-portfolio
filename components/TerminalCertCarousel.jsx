@@ -159,7 +159,7 @@ const TerminalCertCarousel = ({ certifications }) => {
                 {/* Certificate Info */}
                 <div className="p-3 sm:p-4 lg:p-6">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-green-400 font-mono text-xs sm:text-sm">///</span>
+                    <span className="text-green-400 font-mono text-xs sm:text-sm">{'///'}</span>
                     <span className="text-cyan-400 text-xs font-mono uppercase tracking-wider">
                       {currentCert.category}
                     </span>

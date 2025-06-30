@@ -3,24 +3,24 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const terminalLines = [
+  { text: "$ sudo access gaille_portfolio.exe", delay: 0.5, type: "command" },
+  { text: "Password: ••••••••••••", delay: 1.2, type: "text" },
+  { text: "Access granted. Welcome, visitor.", delay: 1.8, type: "success" },
+  { text: "Initializing portfolio systems...", delay: 2.4, type: "text" },
+  { text: "Loading AI modules", delay: 3.0, type: "loading", progress: "ai" },
+  { text: "Loading projects", delay: 4.0, type: "loading", progress: "projects" },
+  { text: "Loading skills database", delay: 5.0, type: "loading", progress: "skills" },
+  { text: "System ready. Launching interface...", delay: 6.2, type: "success" },
+  { text: "$ ./launch_portfolio.sh", delay: 6.8, type: "command" }
+];
+
 const TerminalLoader = ({ onComplete }) => {
   const [currentLine, setCurrentLine] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [aiProgress, setAiProgress] = useState(0);
   const [projectsProgress, setProjectsProgress] = useState(0);
   const [skillsProgress, setSkillsProgress] = useState(0);
-  
-  const terminalLines = [
-    { text: "$ sudo access gaille_portfolio.exe", delay: 0.5, type: "command" },
-    { text: "Password: ••••••••••••", delay: 1.2, type: "text" },
-    { text: "Access granted. Welcome, visitor.", delay: 1.8, type: "success" },
-    { text: "Initializing portfolio systems...", delay: 2.4, type: "text" },
-    { text: "Loading AI modules", delay: 3.0, type: "loading", progress: "ai" },
-    { text: "Loading projects", delay: 4.0, type: "loading", progress: "projects" },
-    { text: "Loading skills database", delay: 5.0, type: "loading", progress: "skills" },
-    { text: "System ready. Launching interface...", delay: 6.2, type: "success" },
-    { text: "$ ./launch_portfolio.sh", delay: 6.8, type: "command" }
-  ];
 
   useEffect(() => {
     const timer = setTimeout(() => {
