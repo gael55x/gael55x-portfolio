@@ -98,7 +98,7 @@ const TerminalCertCarousel = ({ certifications }) => {
         {/* Terminal Body */}
         <div className="flex">
           {/* Left Panel - Terminal Output */}
-          <div className="w-1/3 bg-black p-4 h-[500px] overflow-y-auto">
+          <div className="w-1/3 bg-black p-4 h-[700px] overflow-y-auto">
             <div className="font-mono text-sm space-y-1">
               {terminalLines.slice(-15).map((line, index) => (
                 <motion.div
@@ -135,12 +135,12 @@ const TerminalCertCarousel = ({ certifications }) => {
                 className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg border border-green-500/30 overflow-hidden h-full"
               >
                 {/* Certificate Image */}
-                <div className="relative h-[200px] overflow-hidden bg-white">
+                <div className="relative h-[400px] overflow-hidden bg-white rounded-t-lg">
                   <Image 
                     src={currentCert.imageUrl} 
                     alt={currentCert.title}
                     fill
-                    className="object-cover" 
+                    className="object-contain p-2" 
                   />
                   <div className="absolute top-4 right-4 bg-green-400/90 text-black p-2 rounded-full">
                     <MdVerified className="text-xl" />
