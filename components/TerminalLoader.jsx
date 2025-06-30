@@ -4,15 +4,15 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const terminalLines = [
-  { text: "$ sudo access gaille_portfolio.exe", delay: 0.5, type: "command" },
-  { text: "Password: ••••••••••••", delay: 1.2, type: "text" },
-  { text: "Access granted. Welcome, visitor.", delay: 1.8, type: "success" },
-  { text: "Initializing portfolio systems...", delay: 2.4, type: "text" },
-  { text: "Loading AI modules", delay: 3.0, type: "loading", progress: "ai" },
-  { text: "Loading projects", delay: 4.0, type: "loading", progress: "projects" },
-  { text: "Loading skills database", delay: 5.0, type: "loading", progress: "skills" },
-  { text: "System ready. Launching interface...", delay: 6.2, type: "success" },
-  { text: "$ ./launch_portfolio.sh", delay: 6.8, type: "command" }
+  { text: "$ sudo access gaille_portfolio.exe", delay: 0.3, type: "command", typing: true },
+  { text: "Password: ••••••••••••", delay: 0.8, type: "text", typing: true },
+  { text: "Access granted. Welcome, visitor.", delay: 1.2, type: "success", typing: true },
+  { text: "Initializing portfolio systems...", delay: 1.8, type: "text", typing: true },
+  { text: "Loading AI modules", delay: 2.3, type: "loading", progress: "ai" },
+  { text: "Loading projects", delay: 3.2, type: "loading", progress: "projects" },
+  { text: "Loading skills database", delay: 4.0, type: "loading", progress: "skills" },
+  { text: "System ready. Launching interface...", delay: 4.8, type: "success", typing: true },
+  { text: "$ ./launch_portfolio.sh", delay: 5.2, type: "command", typing: true }
 ];
 
 const TerminalLoader = ({ onComplete }) => {
@@ -21,23 +21,72 @@ const TerminalLoader = ({ onComplete }) => {
   const [aiProgress, setAiProgress] = useState(0);
   const [projectsProgress, setProjectsProgress] = useState(0);
   const [skillsProgress, setSkillsProgress] = useState(0);
+  const [typedText, setTypedText] = useState({});
+  const [showCursor, setShowCursor] = useState(true);
 
+  // Typing animation for text lines
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (currentLine < terminalLines.length - 1) {
-        setCurrentLine(currentLine + 1);
-      } else {
-        setTimeout(() => {
-          setIsVisible(false);
-          setTimeout(() => onComplete && onComplete(), 500);
-        }, 1000);
-      }
-    }, terminalLines[currentLine]?.delay * 1000 || 500);
+    const currentTerminalLine = terminalLines[currentLine];
+    if (currentTerminalLine?.typing && !typedText[currentLine]) {
+      const text = currentTerminalLine.text;
+      let index = 0;
+      
+      const typeInterval = setInterval(() => {
+        if (index < text.length) {
+          setTypedText(prev => ({
+            ...prev,
+            [currentLine]: text.substring(0, index + 1)
+          }));
+          index++;
+        } else {
+          clearInterval(typeInterval);
+          // Move to next line after typing is complete
+          setTimeout(() => {
+            if (currentLine < terminalLines.length - 1) {
+              setCurrentLine(currentLine + 1);
+            } else {
+              setTimeout(() => {
+                setIsVisible(false);
+                setTimeout(() => onComplete && onComplete(), 800);
+              }, 1000);
+            }
+          }, 300);
+        }
+      }, 50 + Math.random() * 50); // Variable typing speed for realism
 
-    return () => clearTimeout(timer);
-  }, [currentLine, terminalLines, onComplete]);
+      return () => clearInterval(typeInterval);
+    }
+  }, [currentLine, typedText, onComplete]);
 
-  // Progress animations
+  // Main line progression for non-typing lines
+  useEffect(() => {
+    const currentTerminalLine = terminalLines[currentLine];
+    if (!currentTerminalLine?.typing) {
+      const timer = setTimeout(() => {
+        if (currentLine < terminalLines.length - 1) {
+          setCurrentLine(currentLine + 1);
+        } else {
+          setTimeout(() => {
+            setIsVisible(false);
+            setTimeout(() => onComplete && onComplete(), 800);
+          }, 1000);
+        }
+      }, currentTerminalLine?.delay * 1000 || 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [currentLine, onComplete]);
+
+  // Cursor blinking effect
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 530);
+
+    return () => clearInterval(cursorInterval);
+  }, []);
+
+  // Smooth progress animations
   useEffect(() => {
     const currentTerminalLine = terminalLines[currentLine];
     if (currentTerminalLine?.type === 'loading') {
@@ -46,36 +95,52 @@ const TerminalLoader = ({ onComplete }) => {
           setAiProgress(prev => {
             if (prev >= 100) {
               clearInterval(progressTimer);
+              // Smooth transition to next line
+              setTimeout(() => {
+                if (currentLine < terminalLines.length - 1) {
+                  setCurrentLine(currentLine + 1);
+                }
+              }, 500);
               return 100;
             }
-            return Math.min(prev + Math.random() * 15 + 5, 100);
+            return Math.min(prev + Math.random() * 8 + 4, 100);
           });
         } else if (currentTerminalLine.progress === 'projects') {
           setProjectsProgress(prev => {
             if (prev >= 100) {
               clearInterval(progressTimer);
+              setTimeout(() => {
+                if (currentLine < terminalLines.length - 1) {
+                  setCurrentLine(currentLine + 1);
+                }
+              }, 500);
               return 100;
             }
-            return Math.min(prev + Math.random() * 20 + 10, 100);
+            return Math.min(prev + Math.random() * 12 + 6, 100);
           });
         } else if (currentTerminalLine.progress === 'skills') {
           setSkillsProgress(prev => {
             if (prev >= 100) {
               clearInterval(progressTimer);
+              setTimeout(() => {
+                if (currentLine < terminalLines.length - 1) {
+                  setCurrentLine(currentLine + 1);
+                }
+              }, 500);
               return 100;
             }
-            return Math.min(prev + Math.random() * 25 + 15, 100);
+            return Math.min(prev + Math.random() * 15 + 8, 100);
           });
         }
-      }, 50);
+      }, 80);
 
       return () => clearInterval(progressTimer);
     }
-  }, [currentLine, terminalLines]);
+  }, [currentLine]);
 
   const renderProgressBar = (progress) => {
-    const filledBars = Math.floor((progress / 100) * 20);
-    const emptyBars = 20 - filledBars;
+    const filledBars = Math.floor((progress / 100) * 25);
+    const emptyBars = 25 - filledBars;
     return '█'.repeat(filledBars) + '░'.repeat(emptyBars);
   };
 
@@ -85,18 +150,40 @@ const TerminalLoader = ({ onComplete }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      exit={{ 
+        opacity: 0,
+        scale: 0.95,
+        filter: "blur(4px)"
+      }}
+      transition={{ 
+        duration: 0.8,
+        ease: "easeInOut"
+      }}
       className="fixed inset-0 z-50 bg-black flex items-center justify-center"
     >
-      <div className="bg-gray-900 border border-green-500 rounded-lg p-8 w-[90%] max-w-2xl shadow-2xl shadow-green-500/20">
-        <div className="flex items-center gap-2 mb-4 border-b border-green-500 pb-3">
+      <motion.div 
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ 
+          duration: 0.6,
+          ease: "easeOut",
+          delay: 0.2
+        }}
+        className="bg-gray-900 border border-green-500 rounded-lg p-6 sm:p-8 w-[90%] max-w-3xl shadow-2xl shadow-green-500/30"
+      >
+        <motion.div 
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="flex items-center gap-2 mb-6 border-b border-green-500 pb-4"
+        >
           <div className="w-3 h-3 rounded-full bg-red-500"></div>
           <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
           <div className="w-3 h-3 rounded-full bg-green-500"></div>
           <span className="text-green-400 text-sm ml-4 font-mono">Terminal - gaille@portfolio</span>
-        </div>
+        </motion.div>
         
-        <div className="font-mono text-green-400 space-y-2">
+        <div className="font-mono text-green-400 space-y-3 min-h-[400px]">
           <AnimatePresence>
             {terminalLines.slice(0, currentLine + 1).map((line, index) => {
               const getTextColor = (type) => {
@@ -116,46 +203,87 @@ const TerminalLoader = ({ onComplete }) => {
                   else if (line.progress === 'skills') progress = skillsProgress;
 
                   return (
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                       <span className={getTextColor(line.type)}>{line.text}</span>
-                      <div className="bg-gray-800 rounded px-2 py-1 min-w-[300px]">
-                        <div className="flex items-center gap-2">
-                          <span className="text-green-400 font-mono text-sm">
+                      <motion.div 
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="bg-gray-800 rounded-lg px-4 py-2 min-w-[320px] border border-green-500/30"
+                      >
+                        <div className="flex items-center gap-3">
+                          <motion.span 
+                            className="text-green-400 font-mono text-sm tracking-wider"
+                            style={{
+                              filter: progress > 0 ? 'brightness(1.2)' : 'brightness(0.8)'
+                            }}
+                          >
                             {renderProgressBar(progress)}
-                          </span>
-                          <span className="text-green-400 text-sm min-w-[40px]">
+                          </motion.span>
+                          <motion.span 
+                            initial={{ scale: 0.8 }}
+                            animate={{ scale: 1 }}
+                            className="text-green-400 text-sm min-w-[50px] font-bold"
+                          >
                             {Math.floor(progress)}%
-                          </span>
+                          </motion.span>
                         </div>
-                      </div>
+                        {progress === 100 && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-green-400 text-xs mt-1"
+                          >
+                            ✓ Complete
+                          </motion.div>
+                        )}
+                      </motion.div>
                     </div>
                   );
                 }
+
+                // Handle typing effect
+                if (line.typing) {
+                  const displayText = typedText[index] || '';
+                  return (
+                    <span className={getTextColor(line.type)}>
+                      {displayText}
+                      {index === currentLine && displayText.length < line.text.length && showCursor && (
+                        <motion.span
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="ml-1 w-2 h-5 bg-green-400 inline-block"
+                        />
+                      )}
+                    </span>
+                  );
+                }
+
                 return <span className={getTextColor(line.type)}>{line.text}</span>;
               };
 
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex items-center"
+                  transition={{ 
+                    duration: 0.4,
+                    ease: "easeOut",
+                    delay: index * 0.1
+                  }}
+                  className="flex items-start gap-2"
                 >
-                  {renderLineContent(line, index)}
-                  {index === currentLine && line.type !== 'loading' && (
-                    <motion.span
-                      animate={{ opacity: [1, 0] }}
-                      transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
-                      className="ml-2 w-2 h-5 bg-green-400 inline-block"
-                    />
-                  )}
+                  <span className="text-green-400 mt-0.5">$</span>
+                  <div className="flex-1">
+                    {renderLineContent(line, index)}
+                  </div>
                 </motion.div>
               );
             })}
           </AnimatePresence>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
