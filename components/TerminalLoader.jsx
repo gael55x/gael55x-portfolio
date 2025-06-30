@@ -14,12 +14,12 @@ const TerminalLoader = ({ onComplete }) => {
     { text: '$ sudo access gaille_portfolio.exe', type: 'command', delay: 1000 },
     { text: 'Password: ••••••••••••', type: 'input', delay: 1500 },
     { text: 'Access granted ✓', type: 'success', delay: 2000 },
-    { text: 'Loading portfolio systems...', type: 'info', delay: 2500 },
-    { text: 'Loading projects, skills...', type: 'loading', delay: 2000 },
-    { text: 'Loading AI modules...', type: 'loading', delay: 2000 },
-    { text: 'System ready ✓', type: 'success', delay: 5500 },
-    { text: '$ ./launch_portfolio.sh', type: 'command', delay: 6000 },
-    { text: 'Launching...', type: 'info', delay: 6500 }
+    { text: 'Loading portfolio systems...', type: 'info', delay: 1500 },
+    { text: 'Loading projects, skills...', type: 'loading', delay: 1000 },
+    { text: 'Loading AI modules...', type: 'loading', delay: 1000 },
+    { text: 'System ready ✓', type: 'success', delay: 2000 },
+    { text: '$ ./launch_portfolio.sh', type: 'command', delay: 1000 },
+    { text: 'Launching...', type: 'info', delay: 1000 }
   ];
 
   // Cursor blinking
