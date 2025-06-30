@@ -11,34 +11,51 @@ import { Button } from "./ui/button";
 
 const links = [
     {
-        name: 'services', 
-        path: '/services'
+        name: 'home', 
+        path: '#home'
     },
+    
     {
         name: 'resume', 
-        path: '/resume'
+        path: '#resume'
     },
     {
         name: 'projects', 
-        path: '/projects'
+        path: '#projects'
     },
     {
         name: 'certifications', 
-        path: '/certifications'
+        path: '#certifications'
     },
     {
-        name: 'speaker', 
-        path: '/speaking'
+        name: 'speaking', 
+        path: '#speaking'
     },
     {
         name: 'contact', 
-        path: '/contact'
+        path: '#contact'
     }
 ]
 
 
-export default function MobileNav() {
+const MobileNav = () => {
     const pathname = usePathname();
+
+    const handleClick = (e, path) => {
+        e.preventDefault();
+        const targetElement = document.querySelector(path);
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            });
+        }
+        // Close the sheet after clicking
+        const closeButton = document.querySelector('[data-sheet-close]');
+        if (closeButton) {
+            closeButton.click();
+        }
+    };
 
     return (
     <Sheet>
@@ -55,14 +72,15 @@ export default function MobileNav() {
             <nav className="flex flex-col justify-center items-center gap-8">
                 {links.map((link, index)=> {
                     return (
-                        <Link 
+                        <a 
                             href={link.path} 
                             key={index} 
+                            onClick={(e) => handleClick(e, link.path)}
                             className={`${link.path === pathname ? "text-accent border-b-2 border-accent" : "text-white"} 
                             text-xl py-2 px-4 capitalize hover:text-accent transition-all active:scale-95`}
                         >
                             {link.name}
-                        </Link>
+                        </a>
                     );
                 })}
             </nav>
@@ -91,3 +109,5 @@ export default function MobileNav() {
     </Sheet>
     );
   }
+
+export default MobileNav;
