@@ -14,10 +14,7 @@ const links = [
         name: 'home', 
         path: '#home'
     },
-    {
-        name: 'services', 
-        path: '#services'
-    },
+    
     {
         name: 'resume', 
         path: '#resume'

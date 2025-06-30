@@ -1,9 +1,9 @@
 export const projects = [
     {
         num: '01', 
-        category: 'Fullstack', 
-        title: 'DSA Visualizer', 
-        description: 'An interactive web application that visualizes various data structures and algorithms to help students and developers understand complex concepts through animations and real-time demonstrations. Features sorting algorithms, graph traversals, tree operations, and more.',
+        category: 'FULLSTACK EXPLOIT', 
+        title: 'DSA Visualizer - Algorithm Matrix', 
+        description: '>>> Initializing data structure visualization protocol...\n\nInteractive algorithm visualization system engineered to decrypt complex computational concepts through real-time matrix animations. Features dynamic sorting algorithms, graph traversal protocols, tree operation sequences, and advanced data structure analysis.\n\n[STATUS: SYSTEM OPERATIONAL] | [THREAT LEVEL: EDUCATIONAL]',
         stack: [
             {name: 'NextJS'}, {name: 'React'}, {name: 'JavaScript'}, {name: 'TailwindCSS'}, {name: 'Framer Motion'}, {name: 'Data Structures'}, {name: 'Algorithms'}
         ], 
@@ -13,9 +13,9 @@ export const projects = [
     },
     {
         num: '02', 
-        category: 'Mobile App', 
-        title: 'Ren - AI Emotional Support', 
-        description: 'Ren is a mobile application designed to deliver personalized motivational quotes, affirmations, and advice tailored to a user\'s emotional state. By utilizing artificial intelligence, Ren generates custom motivational content that adapts to how the user feels at any given moment.',
+        category: 'MOBILE AI SYSTEM', 
+        title: 'Ren - Emotional Intelligence Engine', 
+        description: '>>> Loading AI emotional support framework...\n\nAdvanced mobile intelligence system designed to analyze user emotional states and deploy personalized motivational payloads. Utilizes neural network algorithms to generate adaptive psychological support protocols based on real-time sentiment analysis.\n\n[CLASSIFICATION: AI THERAPEUTIC] | [SECURITY CLEARANCE: PERSONAL]',
         stack: [
             {name: 'React Native'}, {name: 'AI'}, {name: 'Natural Language Processing'}, {name: 'Mobile Development'}
         ], 
@@ -25,9 +25,9 @@ export const projects = [
     },
     {
         num: '03', 
-        category: 'AI & Finance', 
-        title: 'LSTM Mean Reversion Trading Strategy', 
-        description: 'An LSTM model for mean reversion trading, exposed via a FastAPI application and containerized using Docker. This project demonstrates the application of deep learning techniques to financial markets, specifically for mean reversion trading strategies.',
+        category: 'FINTECH WEAPONIZATION', 
+        title: 'LSTM Trading Algorithm - Market Exploit', 
+        description: '>>> Deploying neural network trading protocol...\n\nLong Short-Term Memory neural architecture weaponized for mean reversion trading strategies. Containerized trading system with FastAPI deployment, featuring AWS ECS orchestration and Docker Hub integration for maximum financial market penetration.\n\n[CLASSIFICATION: FINANCIAL WEAPON] | [DEPLOYMENT: CLOUD NATIVE]',
         stack: [
             {name: 'Python'}, {name: 'TensorFlow'}, {name: 'LSTM'}, {name: 'FastAPI'}, {name: 'Docker'}, {name: 'AWS ECS'}, {name: 'Docker Hub'}
         ], 
@@ -37,9 +37,9 @@ export const projects = [
     },
     {
         num: '04', 
-        category: 'Fullstack', 
-        title: 'The Official MSHS Website', 
-        description: 'I volunteered to create the school website to make an impact on my school. It features three apps: a homepage, a news website, and another news platform.',
+        category: 'INSTITUTIONAL HACK', 
+        title: 'MSHS Digital Infrastructure - School System Infiltration', 
+        description: '>>> Accessing educational network architecture...\n\nVoluntary penetration of school digital infrastructure to establish comprehensive web presence. Multi-app ecosystem featuring homepage portal, news distribution network, and information dissemination platform. Deployed using containerized Django architecture.\n\n[ACCESS LEVEL: ADMINISTRATIVE] | [PURPOSE: EDUCATIONAL ENHANCEMENT]',
         stack: [
             {name: 'Django'}, {name: 'Docker'}, {name: 'Railway'}, {name: 'JavaScript'}, {name: 'NGINX'}, {name: 'HTML'}, {name: 'CSS'}, {name: 'Python'}
         ], 
@@ -49,9 +49,9 @@ export const projects = [
     },
     {
         num: '05', 
-        category: 'AI', 
-        title: 'PhEASYCS', 
-        description: 'PhEASYCS is an AI Chatbot designed to teach students about basic Physics. Made from scratch using Deep Neural Networks and Natural Language Processing. PhEASYCS - Physics Excogitation Utilizing Artificial Intelligence System (Deep Neural Network) To Yield Comprehension for students.',
+        category: 'EDUCATIONAL AI VIRUS', 
+        title: 'PhEASYCS - Physics Knowledge Injection System', 
+        description: '>>> Launching educational AI payload...\n\nDeep Neural Network chatbot engineered to infiltrate student minds with advanced Physics knowledge. Custom-built from scratch using NLP algorithms and TF-IDF vectorization. Educational virus designed to enhance comprehension through conversational AI interface.\n\n[INFECTION TYPE: KNOWLEDGE] | [TARGET: STUDENT NEURAL NETWORKS]',
         stack: [
             {name: 'Python'}, {name: 'TensorFlow'}, {name: 'JSON'}, {name: 'NER'}, {name: 'TF-IDF'}, {name: 'Deep Neural Network'}
         ], 
@@ -61,9 +61,9 @@ export const projects = [
     },
     {
         num: '06', 
-        category: 'AI', 
-        title: 'ARTIST AI', 
-        description: "A.R.T.I.S.T. is an AI model that creates captivating images by blending the style of one image with the content of another in real-time. Using Neural Style Transfer (NST), it combines elements like a photo of the Basilica del Santo Niño in Cebu with the style of Van Gogh's 'The Starry Night.'",
+        category: 'VISUAL MANIPULATION TOOL', 
+        title: 'ARTIST AI - Neural Style Transfer Weapon', 
+        description: '>>> Initializing image synthesis protocol...\n\nArtificial Reality Transformation Intelligence System Toolkit. Advanced neural style transfer system capable of real-time image fusion, combining content matrices with artistic style vectors. Weaponizes Convolutional Neural Networks for visual content manipulation.\n\n[CAPABILITY: IMAGE FUSION] | [TECHNOLOGY: NEURAL STYLE TRANSFER]',
         stack: [
             {name: 'Python'}, {name: 'TensorFlow'}, {name: 'Neural Style Transfer'}, {name: 'Convolutional Neural Network'}
         ], 
@@ -73,9 +73,9 @@ export const projects = [
     },
     {
         num: '07', 
-        category: 'AI', 
-        title: 'Car Detection AI Model', 
-        description: 'An AI model designed to detect cars using convnet, Yolo algorithm, Non-max suppression, and IOU.',
+        category: 'SURVEILLANCE SYSTEM', 
+        title: 'Car Detection Neural Network - Vehicle Tracking Protocol', 
+        description: '>>> Activating object detection surveillance...\n\nAdvanced vehicle identification system utilizing YOLO algorithm architecture, Non-max suppression filtering, and Intersection over Union calculations. Designed for real-time automotive detection and tracking capabilities in surveillance networks.\n\n[SURVEILLANCE TYPE: VEHICLE] | [ACCURACY: HIGH-PRECISION]',
         stack: [
             {name: 'Python'}, {name: 'TensorFlow'}, {name: 'Yolo algorithm'}, {name: 'Non-max suppression'}, {name: 'IOU'}
         ], 
@@ -85,9 +85,9 @@ export const projects = [
     },
     {
         num: '08', 
-        category: 'AI', 
-        title: 'MUSICAI', 
-        description: "MUSIC-AI is an Artificial Intelligence model designed to generate music. It's currently in its very early stages, under experimentation. This model employs an LSTM network (RNN) to generate music based on its training data.",
+        category: 'AUDIO SYNTHESIS ENGINE', 
+        title: 'MUSICAI - Creative Neural Generation System', 
+        description: '>>> Loading musical composition algorithms...\n\nExperimental AI music generation system powered by LSTM-RNN architecture. Early-stage prototype designed to analyze musical patterns and synthesize original compositions. Neural network trained on musical sequences for creative audio generation.\n\n[STATUS: EXPERIMENTAL] | [CLASSIFICATION: CREATIVE AI]',
         stack: [
             {name: 'Python'}, {name: 'TensorFlow'}, {name: 'Convolutional Neural Network'}, {name: 'LSTM'}, {name: 'RNN'}
         ], 

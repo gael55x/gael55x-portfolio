@@ -32,7 +32,7 @@ import TerminalStatusBar from "@/components/TerminalStatusBar";
 // Data imports
 import { projects } from "../data/projects";
 import { certifications } from "../data/certifications";
-import { services } from "../data/services";
+
 import { about, experience, education, skills } from "../data/resume";
 import { stats } from "../data/stats";
 import { speakingEvents, advocacyActivities } from "../data/speaking";
@@ -177,8 +177,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 relative z-10">
+
+
+      {/* Resume/Experience Section */}
+      <section id="resume" className="py-20 bg-black/60 relative z-10">
         <div className="container mx-auto px-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -187,54 +189,11 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-white mb-4 font-mono">
-              <span className="text-green-400">$</span> cat services.txt
+              <span className="text-green-400">$</span> cat /var/log/journey.log
             </h2>
             <div className="h-1 w-32 bg-green-400 mx-auto mb-6 rounded-full"></div>
-            <p className="text-white/70 max-w-2xl mx-auto text-lg font-mono">
-              <span className="text-green-400">{'>'}</span> Comprehensive technology solutions tailored to your needs
-            </p>
-          </motion.div>
-          
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-            {services.map((service, index) => (
-              <HackerCard key={index} delay={index * 0.1}>
-                <div className='flex flex-col gap-6 group'>
-                  <div className="w-full flex justify-between items-center">
-                    <div className='text-5xl font-extrabold text-green-400 font-mono group-hover:text-green-300 transition-all duration-500'>
-                      {service.num}
-                    </div>
-                    <div className='w-[70px] h-[70px] rounded-full bg-green-500/20 group-hover:bg-green-500 transition-all duration-500 flex justify-center items-center cursor-pointer hover:-rotate-45 border border-green-500'>
-                      <BsArrowDownRight className='text-green-400 group-hover:text-black text-3xl' />
-                    </div>
-                  </div>
-                  <h3 className='text-3xl font-bold leading-none text-white group-hover:text-green-400 transition-colors duration-300 font-mono'>
-                    <GlitchText>{service.title}</GlitchText>
-                  </h3>
-                  <p className='text-white/80 font-mono text-sm leading-relaxed'>
-                    <span className="text-green-400 mr-2">{'///'}</span>
-                    {service.description}
-                  </p>
-                  <div className="border-b border-green-500/30 w-full"></div>
-                </div>
-              </HackerCard>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Resume/Experience Section */}
-      <section id="resume" className="py-20 bg-gradient-to-br from-primary/30 to-black/10">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-white mb-4">My Journey</h2>
-            <div className="h-1 w-32 bg-accent mx-auto mb-6 rounded-full"></div>
-            <p className="text-white/70 max-w-2xl mx-auto text-lg">
-              Experience, education, and skills that define my expertise
+            <p className="text-white/80 max-w-2xl mx-auto text-lg font-mono">
+              <span className="text-green-400">{'>'}</span> Experience, education, and skills that define my expertise
             </p>
           </motion.div>
 
@@ -253,17 +212,25 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex flex-col gap-8"
                 >
-                  <h3 className="text-3xl font-bold text-center">{experience.title}</h3>
-                  <p className="text-white/60 text-center max-w-2xl mx-auto">{experience.description}</p>
+                  <h3 className="text-3xl font-bold text-center text-white font-mono">
+                    <span className="text-green-400">{'>'}</span> {experience.title}
+                  </h3>
+                  <p className="text-white/80 text-center max-w-2xl mx-auto font-mono">
+                    <span className="text-green-400">///</span> {experience.description}
+                  </p>
                   <div className="grid gap-6">
                     {experience.items.map((item, index) => (
-                      <div key={index} className="bg-[#1e1e2a] rounded-xl p-6 shadow-lg">
-                        <div className="flex justify-between items-start mb-2">
-                          <h4 className="text-xl font-semibold text-white">{item.position}</h4>
-                          <span className="text-accent text-sm">{item.duration}</span>
+                      <HackerCard key={index} delay={index * 0.1}>
+                        <div className="flex justify-between items-start mb-4">
+                          <h4 className="text-xl font-semibold text-white font-mono">{item.position}</h4>
+                          <span className="text-green-400 text-sm font-mono bg-green-400/10 px-3 py-1 rounded border border-green-400/30">
+                            {item.duration}
+                          </span>
                         </div>
-                        <p className="text-white/70">{item.company}</p>
-                      </div>
+                        <p className="text-white/80 font-mono">
+                          <span className="text-green-400 mr-2">@</span>{item.company}
+                        </p>
+                      </HackerCard>
                     ))}
                   </div>
                 </motion.div>
@@ -361,17 +328,32 @@ export default function Home() {
                 <div className="text-8xl leading-none font-extrabold text-transparent text-outline">
                   {activeProject.num}
                 </div>
-                <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize">
-                  {activeProject.category} project
+                <h2 className="text-[32px] font-bold leading-none text-green-400 transition-all duration-500 font-mono uppercase tracking-wider">
+                  {activeProject.category}
                 </h2>
-                <p className="text-white/60">{activeProject.description}</p>
-                <ul className="flex flex-wrap gap-2">
-                  {activeProject.stack.map((item, index) => (
-                    <li key={index} className="text-accent bg-accent/10 px-3 py-1 rounded-full text-sm">
-                      {item.name}
-                    </li>
+                <h3 className="text-2xl font-bold text-white font-mono">
+                  {activeProject.title}
+                </h3>
+                <div className="text-white/80 font-mono text-sm leading-relaxed">
+                  {activeProject.description.split('\n').map((line, index) => (
+                    <p key={index} className={line.startsWith('>>>') ? 'text-green-400 mb-2' : 
+                      line.startsWith('[') ? 'text-cyan-400 text-xs mt-4' : 'mb-2'}>
+                      {line}
+                    </p>
                   ))}
-                </ul>
+                </div>
+                <div className="mb-4">
+                  <p className="text-green-400 font-mono text-sm mb-2">
+                    <span className="text-green-400">$</span> tech_stack --list
+                  </p>
+                  <ul className="flex flex-wrap gap-2">
+                    {activeProject.stack.map((item, index) => (
+                      <li key={index} className="text-green-400 bg-green-400/10 px-3 py-1 rounded border border-green-400/30 text-sm font-mono hover:bg-green-400/20 transition-colors">
+                        {item.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
                 <div className="border border-white/20"></div>
                 <div className="flex items-center gap-4">
                   <Link href={activeProject.live}>
@@ -429,7 +411,7 @@ export default function Home() {
       </section>
 
       {/* Certifications Section */}
-      <section id="certifications" className="py-20 bg-gradient-to-br from-primary/30 to-black/10">
+      <section id="certifications" className="py-20 bg-black/60 relative z-10">
         <div className="container mx-auto px-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -437,10 +419,12 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-white mb-4">My Certifications</h2>
-            <div className="h-1 w-32 bg-accent mx-auto mb-6 rounded-full"></div>
-            <p className="text-white/70 max-w-2xl mx-auto text-lg">
-              Continuous learning and professional development across cloud, AI, and full-stack technologies.
+            <h2 className="text-4xl font-bold text-white mb-4 font-mono">
+              <span className="text-green-400">$</span> ls -la /credentials/certificates/
+            </h2>
+            <div className="h-1 w-32 bg-green-400 mx-auto mb-6 rounded-full"></div>
+            <p className="text-white/80 max-w-2xl mx-auto text-lg font-mono">
+              <span className="text-green-400">{'>'}</span> Continuous learning and professional development across cloud, AI, and full-stack technologies.
             </p>
           </motion.div>
           
@@ -452,8 +436,10 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 className="flex items-center gap-3 mb-8"
               >
-                <div className="h-1 w-8 bg-accent rounded-full"></div>
-                <h3 className='text-3xl font-bold leading-none text-white'>{category}</h3>
+                <div className="h-1 w-8 bg-green-400 rounded-full"></div>
+                <h3 className='text-3xl font-bold leading-none text-white font-mono'>
+                  <span className="text-green-400">///</span> {category}
+                </h3>
               </motion.div>
               
               <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
