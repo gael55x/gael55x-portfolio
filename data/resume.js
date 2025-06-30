@@ -53,19 +53,19 @@ export const experience = {
     description: "This is Gaille's Journey as a software engineer and AI advocate",
     items: [
         {
-            company: "AI Pilipinas",
-            position: "AI in Finance Advocate", 
-            duration: "January 2025 - present"
-        },
-        {
             company: "Bitwork solutions",
             position: "Lead Software Engineer", 
-            duration: "May 2025 - present"
+            duration: "May 2024 - present"
         },
         {
             company: "Bitwork solutions",
             position: "Software Engineer & DevOps Engineer", 
-            duration: "September 2023 - May 2025"
+            duration: "September 2023 - May 2024"
+        },
+        {
+            company: "AI Pilipinas",
+            position: "AI in Finance Advocate", 
+            duration: "June 2024 - March 2025"
         },
         {
             company: "LSTM Trading Systems",
