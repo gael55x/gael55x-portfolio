@@ -6,10 +6,28 @@ import {
     FaNodeJs,
     FaAws,
     FaDocker,
-    FaPython
+    FaPython,
+    FaGitAlt,
+    FaLinux
 } from 'react-icons/fa';
 
-import { SiNextdotjs, SiDjango, SiFastapi, SiTensorflow, SiMongodb, SiPostgresql } from 'react-icons/si';
+import { 
+    SiNextdotjs, 
+    SiDjango, 
+    SiFastapi, 
+    SiTensorflow, 
+    SiMongodb, 
+    SiPostgresql,
+    SiC,
+    SiCplusplus,
+    SiKubernetes,
+    SiRedis,
+    SiNginx,
+    SiTypescript,
+    SiExpress,
+    SiMysql,
+    SiFirebase
+} from 'react-icons/si';
 
 // about data 
 export const about = {
@@ -188,6 +206,50 @@ export const skills = {
         {
             icon: <SiPostgresql />, 
             name: 'PostgreSQL'
+        },
+        {
+            icon: <FaGitAlt />, 
+            name: 'Git'
+        },
+        {
+            icon: <FaLinux />, 
+            name: 'Linux'
+        },
+        {
+            icon: <SiC />, 
+            name: 'C'
+        },
+        {
+            icon: <SiCplusplus />, 
+            name: 'C++'
+        },
+        {
+            icon: <SiKubernetes />, 
+            name: 'Kubernetes'
+        },
+        {
+            icon: <SiRedis />, 
+            name: 'Redis'
+        },
+        {
+            icon: <SiNginx />, 
+            name: 'Nginx'
+        },
+        {
+            icon: <SiTypescript />, 
+            name: 'TypeScript'
+        },
+        {
+            icon: <SiExpress />, 
+            name: 'Express'
+        },
+        {
+            icon: <SiMysql />, 
+            name: 'MySQL'
+        },
+        {
+            icon: <SiFirebase />, 
+            name: 'Firebase'
         }
     ]
 }; 
