@@ -58,10 +58,10 @@ const TerminalLoader = ({ onComplete }) => {
     }
   }, [currentLine, typedText, onComplete]);
 
-  // Main line progression for non-typing lines
+  // Main line progression for non-typing lines (loading bars)
   useEffect(() => {
     const currentTerminalLine = terminalLines[currentLine];
-    if (!currentTerminalLine?.typing) {
+    if (!currentTerminalLine?.typing && currentTerminalLine?.type !== 'loading') {
       const timer = setTimeout(() => {
         if (currentLine < terminalLines.length - 1) {
           setCurrentLine(currentLine + 1);
@@ -272,9 +272,8 @@ const TerminalLoader = ({ onComplete }) => {
                     ease: "easeOut",
                     delay: index * 0.1
                   }}
-                  className="flex items-start gap-2"
+                  className="flex items-start"
                 >
-                  <span className="text-green-400 mt-0.5">$</span>
                   <div className="flex-1">
                     {renderLineContent(line, index)}
                   </div>
