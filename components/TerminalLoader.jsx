@@ -23,22 +23,46 @@ const TerminalLoader = ({ onComplete }) => {
   const [skillsProgress, setSkillsProgress] = useState(0);
   const [typedText, setTypedText] = useState({});
   const [showCursor, setShowCursor] = useState(true);
-  const [isTyping, setIsTyping] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
-  // Start initial typing animation
+  // Start the entire sequence
   useEffect(() => {
-    if (currentLine === 0) {
-      setTimeout(() => {
-        startTypingAnimation(0);
-      }, 500); // Small delay before starting
-    }
+    const timer = setTimeout(() => {
+      processNextLine();
+    }, 500);
+    
+    return () => clearTimeout(timer);
   }, []);
+
+  const processNextLine = () => {
+    if (isProcessing) return;
+    
+    const line = terminalLines[currentLine];
+    if (!line) {
+      // All lines processed, complete the loader
+      setTimeout(() => {
+        setIsVisible(false);
+        setTimeout(() => onComplete && onComplete(), 500);
+      }, 1000);
+      return;
+    }
+
+    setIsProcessing(true);
+
+    if (line.typing) {
+      startTypingAnimation(currentLine);
+    } else if (line.type === 'loading') {
+      startProgressAnimation(currentLine);
+    } else {
+      // For non-typing, non-loading lines, just show and continue
+      setTimeout(() => {
+        moveToNextLine();
+      }, 800);
+    }
+  };
 
   const startTypingAnimation = (lineIndex) => {
     const line = terminalLines[lineIndex];
-    if (!line || !line.typing) return;
-
-    setIsTyping(true);
     const text = line.text;
     let index = 0;
     
@@ -51,36 +75,64 @@ const TerminalLoader = ({ onComplete }) => {
         index++;
       } else {
         clearInterval(typeInterval);
-        setIsTyping(false);
-        
-        // Move to next line after a brief pause
+        // Typing complete, move to next line
         setTimeout(() => {
           moveToNextLine();
-        }, 400);
+        }, 600);
       }
-    }, 50 + Math.random() * 40);
+    }, 60 + Math.random() * 40);
+  };
 
-    return () => clearInterval(typeInterval);
+  const startProgressAnimation = (lineIndex) => {
+    const line = terminalLines[lineIndex];
+    const progressType = line.progress;
+    
+    const progressInterval = setInterval(() => {
+      if (progressType === 'ai') {
+        setAiProgress(prev => {
+          const newProgress = Math.min(prev + Math.random() * 12 + 6, 100);
+          if (newProgress >= 100) {
+            clearInterval(progressInterval);
+            setTimeout(() => {
+              moveToNextLine();
+            }, 800);
+          }
+          return newProgress;
+        });
+      } else if (progressType === 'projects') {
+        setProjectsProgress(prev => {
+          const newProgress = Math.min(prev + Math.random() * 15 + 8, 100);
+          if (newProgress >= 100) {
+            clearInterval(progressInterval);
+            setTimeout(() => {
+              moveToNextLine();
+            }, 800);
+          }
+          return newProgress;
+        });
+      } else if (progressType === 'skills') {
+        setSkillsProgress(prev => {
+          const newProgress = Math.min(prev + Math.random() * 18 + 10, 100);
+          if (newProgress >= 100) {
+            clearInterval(progressInterval);
+            setTimeout(() => {
+              moveToNextLine();
+            }, 800);
+          }
+          return newProgress;
+        });
+      }
+    }, 100);
   };
 
   const moveToNextLine = () => {
-    if (currentLine < terminalLines.length - 1) {
-      setCurrentLine(prev => prev + 1);
-      
-      // If next line is a typing line, start typing
-      const nextLine = terminalLines[currentLine + 1];
-      if (nextLine?.typing) {
-        setTimeout(() => {
-          startTypingAnimation(currentLine + 1);
-        }, 200);
-      }
-    } else {
-      // All lines complete, exit
-      setTimeout(() => {
-        setIsVisible(false);
-        setTimeout(() => onComplete && onComplete(), 800);
-      }, 1000);
-    }
+    setCurrentLine(prev => prev + 1);
+    setIsProcessing(false);
+    
+    // Process the next line after a short delay
+    setTimeout(() => {
+      processNextLine();
+    }, 200);
   };
 
   // Cursor blinking effect
@@ -91,45 +143,6 @@ const TerminalLoader = ({ onComplete }) => {
 
     return () => clearInterval(cursorInterval);
   }, []);
-
-  // Handle progress bar animations for loading lines
-  useEffect(() => {
-    const currentTerminalLine = terminalLines[currentLine];
-    if (currentTerminalLine?.type === 'loading') {
-      const progressTimer = setInterval(() => {
-        if (currentTerminalLine.progress === 'ai') {
-          setAiProgress(prev => {
-            if (prev >= 100) {
-              clearInterval(progressTimer);
-              setTimeout(() => moveToNextLine(), 500);
-              return 100;
-            }
-            return Math.min(prev + Math.random() * 8 + 4, 100);
-          });
-        } else if (currentTerminalLine.progress === 'projects') {
-          setProjectsProgress(prev => {
-            if (prev >= 100) {
-              clearInterval(progressTimer);
-              setTimeout(() => moveToNextLine(), 500);
-              return 100;
-            }
-            return Math.min(prev + Math.random() * 12 + 6, 100);
-          });
-        } else if (currentTerminalLine.progress === 'skills') {
-          setSkillsProgress(prev => {
-            if (prev >= 100) {
-              clearInterval(progressTimer);
-              setTimeout(() => moveToNextLine(), 500);
-              return 100;
-            }
-            return Math.min(prev + Math.random() * 15 + 8, 100);
-          });
-        }
-      }, 80);
-
-      return () => clearInterval(progressTimer);
-    }
-  }, [currentLine]);
 
   const renderProgressBar = (progress) => {
     const filledBars = Math.floor((progress / 100) * 25);
@@ -221,7 +234,7 @@ const TerminalLoader = ({ onComplete }) => {
                             {Math.floor(progress)}%
                           </motion.span>
                         </div>
-                        {progress === 100 && (
+                        {progress >= 100 && (
                           <motion.div
                             initial={{ opacity: 0, y: 5 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -238,10 +251,12 @@ const TerminalLoader = ({ onComplete }) => {
                 // Handle typing effect
                 if (line.typing) {
                   const displayText = typedText[index] || '';
+                  const isCurrentlyTyping = index === currentLine && displayText.length < line.text.length;
+                  
                   return (
                     <span className={getTextColor(line.type)}>
                       {displayText}
-                      {index === currentLine && isTyping && showCursor && (
+                      {isCurrentlyTyping && showCursor && (
                         <motion.span
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
@@ -263,7 +278,7 @@ const TerminalLoader = ({ onComplete }) => {
                   transition={{ 
                     duration: 0.4,
                     ease: "easeOut",
-                    delay: index * 0.05
+                    delay: index * 0.03
                   }}
                   className="flex items-start"
                 >
