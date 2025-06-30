@@ -2,8 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { FiDownload } from "react-icons/fi";
-import { BsArrowUpRight, BsGithub, BsArrowDownRight } from "react-icons/bs";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaQuoteLeft, BsMic, BsCalendarEvent } from "react-icons/fa";
+import { BsArrowUpRight, BsGithub, BsArrowDownRight, BsMic, BsCalendarEvent } from "react-icons/bs";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaQuoteLeft } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import { motion } from "framer-motion";
 import Link from "next/link";
