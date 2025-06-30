@@ -15,7 +15,8 @@ const TerminalLoader = ({ onComplete }) => {
     { text: 'Password: ••••••••••••', type: 'input', delay: 1500 },
     { text: 'Access granted ✓', type: 'success', delay: 2000 },
     { text: 'Loading portfolio systems...', type: 'info', delay: 2500 },
-    { text: 'Initializing components', type: 'loading', delay: 3000 },
+    { text: 'Loading projects, skills...', type: 'loading', delay: 2000 },
+    { text: 'Loading AI modules...', type: 'loading', delay: 2000 },
     { text: 'System ready ✓', type: 'success', delay: 5500 },
     { text: '$ ./launch_portfolio.sh', type: 'command', delay: 6000 },
     { text: 'Launching...', type: 'info', delay: 6500 }
