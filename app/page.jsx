@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { FiDownload } from "react-icons/fi";
-import { BsArrowUpRight, BsGithub, BsArrowDownRight, BsMic, BsCalendarEvent } from "react-icons/bs";
+import { BsArrowUpRight, BsGithub, BsArrowDownRight, BsMic, BsCalendar } from "react-icons/bs";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaQuoteLeft } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import { motion } from "framer-motion";
@@ -538,7 +538,7 @@ export default function Home() {
                       className="object-cover" 
                     />
                     <div className="absolute bottom-4 left-4 bg-accent/90 text-white py-2 px-4 rounded-full flex items-center gap-2">
-                      <BsCalendarEvent />
+                                                  <BsCalendar />
                       <span>{event.date}</span>
                     </div>
                   </div>
