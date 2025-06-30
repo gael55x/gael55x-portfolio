@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { FiDownload } from "react-icons/fi";
 import { BsArrowUpRight, BsGithub, BsArrowDownRight, BsMic, BsCalendar } from "react-icons/bs";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaQuoteLeft } from "react-icons/fa";
-import { MdVerified } from "react-icons/md";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -28,6 +27,7 @@ import TypewriterText from "@/components/TypewriterText";
 import GlitchText from "@/components/GlitchText";
 import HackerCard from "@/components/HackerCard";
 import TerminalStatusBar from "@/components/TerminalStatusBar";
+import TerminalCertCarousel from "@/components/TerminalCertCarousel";
 
 // Data imports
 import { projects } from "../data/projects";
@@ -48,17 +48,7 @@ export default function Home() {
     setActiveProject(projects[currentIndex]);
   };
 
-  const groupByCategory = (certifications) => {
-    return certifications.reduce((acc, cert) => {
-      if (!acc[cert.category]) {
-        acc[cert.category] = [];
-      }
-      acc[cert.category].push(cert);
-      return acc;
-    }, {});
-  };
 
-  const groupedCertifications = groupByCategory(certifications);
 
   if (showLoader) {
     return <TerminalLoader onComplete={() => {
@@ -428,60 +418,13 @@ export default function Home() {
             </p>
           </motion.div>
           
-          {Object.keys(groupedCertifications).map((category, index) => (
-            <div key={index} className='mb-16'>
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="flex items-center gap-3 mb-8"
-              >
-                <div className="h-1 w-8 bg-green-400 rounded-full"></div>
-                <h3 className='text-3xl font-bold leading-none text-white font-mono'>
-                  <span className="text-green-400">///</span> {category}
-                </h3>
-              </motion.div>
-              
-              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-                {groupedCertifications[category].map((cert, certIndex) => (
-                  <motion.div
-                    key={certIndex}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: certIndex * 0.1 }}
-                    className="bg-gradient-to-br from-[#1e1e2a] to-[#2d2d3a] rounded-2xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300"
-                  >
-                    <div className="relative h-[250px] overflow-hidden">
-                      <Image 
-                        src={cert.imageUrl} 
-                        alt={cert.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500" 
-                      />
-                      <div className="absolute top-4 right-4 bg-accent/90 text-white p-2 rounded-full">
-                        <MdVerified className="text-xl" />
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <h4 className="text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
-                        {cert.title}
-                      </h4>
-                      <p className="text-white/70 text-sm mb-4">{cert.description}</p>
-                      <div className="flex justify-between items-center mb-4">
-                        <span className="text-accent font-medium">{cert.issuer}</span>
-                        <span className="text-white/60 text-sm">{cert.date}</span>
-                      </div>
-                      <Link href={cert.href} target="_blank" rel="noopener noreferrer">
-                        <Button className="w-full bg-accent/10 hover:bg-accent text-accent hover:text-white border border-accent">
-                          View Certificate <BsArrowUpRight className="ml-2" />
-                        </Button>
-                      </Link>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          ))}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <TerminalCertCarousel certifications={certifications} />
+          </motion.div>
         </div>
       </section>
 
