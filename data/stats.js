@@ -12,7 +12,7 @@ export const stats = [
         text: "Technologies Mastered"
     }, 
     {
-        num: 338, 
+        num: 521, 
         text: "Code commits (2025)"
     }, 
 ]; 
