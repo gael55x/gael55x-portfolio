@@ -73,32 +73,38 @@ export const experience = {
         {
             company: "Bitwork solutions",
             position: "Lead Software Engineer", 
-            duration: "May 2024 - present"
+            duration: "May 2024 - present",
+            description: "Leading development teams and architecting scalable solutions. Driving technical strategy and mentoring junior developers while delivering enterprise-grade applications."
         },
         {
             company: "Bitwork solutions",
             position: "Software Engineer & DevOps Engineer", 
-            duration: "September 2023 - May 2024"
+            duration: "September 2023 - May 2024",
+            description: "Built robust full-stack applications and implemented CI/CD pipelines. Managed cloud infrastructure and automated deployment processes using Docker and AWS."
         },
         {
             company: "AI Pilipinas",
             position: "AI in Finance Advocate", 
-            duration: "June 2024 - March 2025"
+            duration: "June 2024 - March 2025",
+            description: "Promoting responsible AI adoption in financial services. Speaking at conferences and developing educational content on AI applications in fintech."
         },
         {
-            company: "LSTM Trading Systems",
-            position: "AI Research & Development", 
-            duration: "June 2024 - December 2024"
+            company: "Medium - InsiderFinance & Scriptonomy",
+            position: "AI in Finance Technical Writer", 
+            duration: "June 2024 - February 2025",
+            description: "Developing LSTM-based quantitative trading algorithms and predictive models. Researching machine learning applications for financial market analysis."
         },
         {
             company: "TidalStack",
             position: "Freelancer Full Stack Developer", 
-            duration: "January 2024 - March 2024"
+            duration: "January 2024 - March 2024",
+            description: "Delivered custom web applications using modern frameworks. Collaborated with clients to build responsive, user-centric solutions from concept to deployment."
         },
         {
             company: "Minglanilla Science High School",
             position: "Head Developer - Volunteer Work", 
-            duration: "March 2023 - March 2024"
+            duration: "March 2023 - March 2024",
+            description: "Led volunteer team to build the school's official website and digital infrastructure. Impacted 2000+ students and staff through improved digital services."
         },
     ]
 };
@@ -111,37 +117,44 @@ export const education = {
         {
             institution: "AWS",
             degree: "AWS Specialization Certificate", 
-            duration: "2025"
+            duration: "2025",
+            description: "Advanced cloud architecture and solutions. Mastering scalable infrastructure design and enterprise-grade cloud services deployment."
         },
         {
             institution: "Cebu Institute of Technology",
             degree: "Bachelor of Science in Computer Science", 
-            duration: "2024-2028"
+            duration: "2024-2028",
+            description: "Comprehensive computer science fundamentals including algorithms, data structures, software engineering principles, and advanced programming concepts."
         },
         {
             institution: "Harvard University",
             degree: "CS50X", 
-            duration: "2021"
+            duration: "2021",
+            description: "Introduction to computer science and programming. Foundation in algorithmic thinking, data structures, and multiple programming languages."
         },
         {
             institution: "Harvard University",
             degree: "CS50Web", 
-            duration: "2023"
+            duration: "2023",
+            description: "Web programming with Python and JavaScript. Full-stack development using Django, React, and modern web technologies."
         },
         {
             institution: "Harvard University",
             degree: "CS50AI", 
-            duration: "2023"
+            duration: "2023",
+            description: "Artificial intelligence concepts and applications. Machine learning, neural networks, natural language processing, and computer vision."
         },
         {
             institution: "DeepLearning.AI & Stanford",
             degree: "Neural Networks and Deep Learning", 
-            duration: "2023-2024"
+            duration: "2023-2024",
+            description: "Advanced deep learning specialization. Convolutional networks, RNNs, LSTMs, and practical applications in AI development."
         },
         {
             institution: "Yale University",
             degree: "Financial Markets Course", 
-            duration: "2024"
+            duration: "2024",
+            description: "Comprehensive understanding of financial markets, risk management, and investment principles. Foundation for AI in finance applications."
         }
     ]
 };
