@@ -48,12 +48,10 @@ export default function Home() {
     setActiveProject(projects[currentIndex]);
   };
 
-
-
   if (showLoader) {
     return <TerminalLoader onComplete={() => {
       setShowLoader(false);
-      setTimeout(() => setLoaderComplete(true), 500);
+      setTimeout(() => setLoaderComplete(true), 100); // Reduced from 500ms to 100ms
     }} />;
   }
 
@@ -69,13 +67,13 @@ export default function Home() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: loaderComplete ? 1 : 0, y: loaderComplete ? 0 : 20 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.1 }} // Reduced delay from 0.5 to 0.1
               className="text-center xl:text-left order-2 xl:order-none flex-1"
             >
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
+                transition={{ delay: 0.2 }} // Reduced from 1s to 0.2s
                 className="text-lg sm:text-xl text-green-400 font-mono"
               >
                 $ whoami
@@ -83,16 +81,16 @@ export default function Home() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
                 <TypewriterText 
                   text="Hello I'm" 
-                  delay={1500}
-                  speed={100}
+                  delay={300} // Reduced from 1500ms
+                  speed={80} // Slightly faster
                   className="text-white"
                 />
                 <br/>
                 <GlitchText className="text-accent">
                   <TypewriterText 
                     text="Gaille Amolong" 
-                    delay={2500}
-                    speed={120}
+                    delay={800} // Reduced from 2500ms
+                    speed={100}
                     className="text-accent"
                   />
                 </GlitchText>
@@ -100,7 +98,7 @@ export default function Home() {
               <motion.p 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 4 }}
+                transition={{ delay: 1.5 }} // Reduced from 4s
                 className="max-w-[500px] mb-9 text-white/80 font-mono text-sm sm:text-base leading-relaxed mx-auto xl:mx-0"
               >
                 <span className="text-green-400">{'>'}</span> I develop intelligent systems and innovative applications, specializing in artificial intelligence, finance technology, and full-stack development. I&apos;m passionate about advancing AI applications in finance and sharing knowledge through speaking engagements.
