@@ -404,10 +404,20 @@ export default function Home() {
               >
                 {projects.map((project, index) => (
                   <SwiperSlide key={index} className="w-full">
-                    <div className="h-full relative group flex justify-center items-center bg-pink-50/20 rounded-lg overflow-hidden">
-                      <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
-                      <div className="relative w-full h-full">
-                        <Image src={project.image} fill className="object-cover" alt={project.title} />
+                    <div className="h-full relative group flex justify-center items-center bg-gradient-to-br from-gray-900/90 to-black/90 rounded-lg overflow-hidden">
+                      <div className="absolute top-0 bottom-0 w-full h-full bg-black/20 z-10"></div>
+                      <div className="relative w-full h-full p-4 flex items-center justify-center">
+                        <Image 
+                          src={project.image} 
+                          fill 
+                          className={`${
+                            project.image.includes('BuhAI') || project.image.includes('Ren') 
+                              ? 'object-contain' // For mobile app screenshots
+                              : 'object-cover'   // For web app screenshots
+                          }`} 
+                          alt={project.title}
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
                       </div>
                     </div>
                   </SwiperSlide>
