@@ -79,7 +79,7 @@ export const experience = {
         {
             company: "Bitwork solutions",
             position: "Software Engineer & DevOps Engineer", 
-            duration: "September 2023 - May 2024",
+            duration: "September 2023 - May 2025",
             description: "Built robust full-stack applications and implemented CI/CD pipelines. Managed cloud infrastructure and automated deployment processes using Docker and AWS."
         },
         {
