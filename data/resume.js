@@ -73,7 +73,7 @@ export const experience = {
         {
             company: "Bitwork solutions",
             position: "Lead Software Engineer", 
-            duration: "May 2024 - present",
+            duration: "May 2025 - present",
             description: "Leading development teams and architecting scalable solutions. Driving technical strategy and mentoring junior developers while delivering enterprise-grade applications."
         },
         {
@@ -83,16 +83,16 @@ export const experience = {
             description: "Built robust full-stack applications and implemented CI/CD pipelines. Managed cloud infrastructure and automated deployment processes using Docker and AWS."
         },
         {
+            company: "Medium",
+            position: "Technical Writer - AI in Finance and Cybersecurity", 
+            duration: "June 2024 - Present",
+            description: "Developing LSTM-based quantitative trading algorithms and predictive models. Researching machine learning applications for financial market analysis."
+        },
+        {
             company: "AI Pilipinas",
             position: "AI in Finance Advocate", 
             duration: "June 2024 - March 2025",
             description: "Promoting responsible AI adoption in financial services. Speaking at conferences and developing educational content on AI applications in fintech."
-        },
-        {
-            company: "Medium - InsiderFinance & Scriptonomy",
-            position: "AI in Finance Technical Writer", 
-            duration: "June 2024 - February 2025",
-            description: "Developing LSTM-based quantitative trading algorithms and predictive models. Researching machine learning applications for financial market analysis."
         },
         {
             company: "TidalStack",
