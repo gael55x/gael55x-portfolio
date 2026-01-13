@@ -7,6 +7,7 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaQuoteLeft } from "react-icons
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
@@ -38,6 +39,8 @@ import { stats } from "../data/stats";
 import { speakingEvents, advocacyActivities } from "../data/speaking";
 import { contactInfo } from "../data/contact";
 
+const ThreeHeroBackground = dynamic(() => import("@/components/ThreeHeroBackground"), { ssr: false });
+
 export default function Home() {
   const [activeProject, setActiveProject] = useState(projects[0]);
   const [showLoader, setShowLoader] = useState(true);
@@ -62,7 +65,10 @@ export default function Home() {
       
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center py-8 px-4 relative z-10">
-        <div className="container mx-auto">
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
+          <ThreeHeroBackground className="h-full w-full" />
+        </div>
+        <div className="container mx-auto relative z-10">
           <div className="flex flex-col xl:flex-row items-center justify-between gap-8">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
