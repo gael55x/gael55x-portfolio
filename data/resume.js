@@ -71,15 +71,21 @@ export const experience = {
     description: "This is Gaille's Journey as a software engineer and AI advocate",
     items: [
         {
-            company: "Bitwork solutions",
-            position: "Lead Software Engineer", 
-            duration: "May 2025 - present",
+            company: "Willed",
+            position: "Software Engineer (Contract)",
+            duration: "Sep 2025 - Present",
+            description: "Focused on cybersecurity, feature development, and testing infrastructure for Willed’s core platform. I work on improving system security, building new product features, and maintaining robust CI/CD pipelines."
+        },
+        {
+            company: "BitWork Solutions",
+            position: "Lead Software Engineer",
+            duration: "May 2025 - Present",
             description: "Leading development teams and architecting scalable solutions. Driving technical strategy and mentoring junior developers while delivering enterprise-grade applications."
         },
         {
-            company: "Bitwork solutions",
+            company: "BitWork Solutions",
             position: "Software Engineer & DevOps Engineer", 
-            duration: "September 2023 - May 2025",
+            duration: "Sep 2023 - May 2025",
             description: "Built robust full-stack applications and implemented CI/CD pipelines. Managed cloud infrastructure and automated deployment processes using Docker and AWS."
         },
         {
@@ -97,13 +103,13 @@ export const experience = {
         {
             company: "TidalStack",
             position: "Freelancer Full Stack Developer", 
-            duration: "January 2024 - March 2024",
+            duration: "Jan 2024 - Mar 2024",
             description: "Delivered custom web applications using modern frameworks. Collaborated with clients to build responsive, user-centric solutions from concept to deployment."
         },
         {
             company: "Minglanilla Science High School",
             position: "Head Developer - Volunteer Work", 
-            duration: "March 2023 - March 2024",
+            duration: "Mar 2023 - Mar 2024",
             description: "Led volunteer team to build the school's official website and digital infrastructure. Impacted 2000+ students and staff through improved digital services."
         },
     ]
