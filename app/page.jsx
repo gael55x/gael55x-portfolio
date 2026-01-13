@@ -65,9 +65,6 @@ export default function Home() {
       
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center py-8 px-4 relative z-10">
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
-          <ThreeHeroBackground className="h-full w-full" />
-        </div>
         <div className="container mx-auto relative z-10">
           <div className="flex flex-col xl:flex-row items-center justify-between gap-8">
             <motion.div 
@@ -127,8 +124,19 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="order-1 xl:order-none mb-8 xl:mb-0 flex-shrink-0"
+              className="order-1 xl:order-none mb-8 xl:mb-0 flex-shrink-0 relative"
             >
+              <div
+                className="hidden md:block absolute -inset-16 -z-10 pointer-events-none opacity-35 blur-[0.5px]"
+                style={{
+                  maskImage:
+                    "radial-gradient(circle at 55% 45%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%)",
+                  WebkitMaskImage:
+                    "radial-gradient(circle at 55% 45%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%)",
+                }}
+              >
+                <ThreeHeroBackground className="h-full w-full" />
+              </div>
               <Photo />
             </motion.div>
           </div>

@@ -50,7 +50,7 @@ export default function ThreeHeroBackground({ className = '' }) {
         color: 0x00ff7a,
         wireframe: true,
         transparent: true,
-        opacity: 0.32,
+        opacity: 0.18,
       }),
     );
     group.add(wire);
@@ -60,12 +60,12 @@ export default function ThreeHeroBackground({ className = '' }) {
       new THREE.LineBasicMaterial({
         color: 0x00ffc6,
         transparent: true,
-        opacity: 0.22,
+        opacity: 0.12,
       }),
     );
     group.add(shellEdges);
 
-    const particleCount = 900;
+    const particleCount = 600;
     const positions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
       const r = 4 + Math.random() * 7;
@@ -86,7 +86,7 @@ export default function ThreeHeroBackground({ className = '' }) {
         size: 0.035,
         sizeAttenuation: true,
         transparent: true,
-        opacity: 0.55,
+        opacity: 0.28,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       }),
@@ -117,9 +117,9 @@ export default function ThreeHeroBackground({ className = '' }) {
 
     const renderFrame = (t) => {
       const time = t * 0.001;
-      group.rotation.y = time * 0.25 + pointer.x * 0.25;
-      group.rotation.x = time * 0.12 + pointer.y * 0.15;
-      particles.rotation.y = -time * 0.05;
+      group.rotation.y = time * 0.18 + pointer.x * 0.16;
+      group.rotation.x = time * 0.08 + pointer.y * 0.12;
+      particles.rotation.y = -time * 0.03;
       renderer.render(scene, camera);
       rafId = window.requestAnimationFrame(renderFrame);
     };
@@ -152,4 +152,3 @@ export default function ThreeHeroBackground({ className = '' }) {
     </div>
   );
 }
-
