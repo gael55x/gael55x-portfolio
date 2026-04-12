@@ -5,9 +5,6 @@ const links = [
   { name: 'work', path: '#work' },
   { name: 'projects', path: '#projects' },
   { name: 'about', path: '#about' },
-  { name: 'resume', path: '#resume' },
-  { name: 'certifications', path: '#certifications' },
-  { name: 'speaking', path: '#speaking' },
   { name: 'contact', path: '#contact' },
 ];
 
@@ -24,7 +21,7 @@ const Nav = () => {
   };
 
   return (
-    <nav className="hidden lg:flex flex-wrap gap-x-6 gap-y-2 justify-end max-w-3xl">
+    <nav className="hidden lg:flex gap-x-6">
       {links.map((link, index) => (
         <a
           href={link.path}
