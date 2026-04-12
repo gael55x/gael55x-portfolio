@@ -1,21 +1,26 @@
 'use client';
 
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-
-function usePrefersReducedMotion() {
-  return useMemo(() => {
-    if (typeof window === 'undefined' || !window.matchMedia) return false;
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }, []);
-}
+import { usePrefersReducedMotion } from '@/lib/usePrefersReducedMotion';
 
 export default function ThreeHeroBackground({ className = '' }) {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia('(min-width: 768px)');
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion || !isDesktop) return;
     const container = containerRef.current;
     const canvas = canvasRef.current;
     if (!container || !canvas) return;
@@ -144,7 +149,11 @@ export default function ThreeHeroBackground({ className = '' }) {
       shellEdges.material.dispose();
       renderer.dispose();
     };
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, isDesktop]);
+
+  if (prefersReducedMotion || !isDesktop) {
+    return null;
+  }
 
   return (
     <div ref={containerRef} className={className}>

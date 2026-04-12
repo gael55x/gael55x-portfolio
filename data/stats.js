@@ -1,18 +1,7 @@
+/** Headline metrics — string display (no misleading CountUp on non-numeric claims). */
 export const stats = [
-    {
-        num: 4, 
-        text: "+ Years of Experience"
-    }, 
-    {
-        num: 64, 
-        text: "Projects Completed"
-    }, 
-    {
-        num: 13, 
-        text: "Technologies Mastered"
-    }, 
-    {
-        num: 521, 
-        text: "Code commits (2025)"
-    }, 
-]; 
+  { display: '20×', text: 'Optimized CV pipeline (10 min to 30 s)' },
+  { display: '150k+', text: 'Users on platforms shipped' },
+  { display: '5k+', text: 'Early users scaled (Referrin)' },
+  { display: '4+', text: 'Years of shipping production systems' },
+];

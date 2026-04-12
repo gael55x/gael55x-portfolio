@@ -1,7 +1,6 @@
 'use client';
 
-import {Sheet, SheetContent, SheetTrigger} from '@/components/ui/sheet';
-import {usePathname} from 'next/navigation';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Link from 'next/link';
 import { CiMenuFries } from 'react-icons/ci';
 import { SiLeetcode } from "react-icons/si";
@@ -10,36 +9,19 @@ import { Button } from "./ui/button";
 
 
 const links = [
-    {
-        name: 'home', 
-        path: '#home'
-    },
-    
-    {
-        name: 'resume', 
-        path: '#resume'
-    },
-    {
-        name: 'projects', 
-        path: '#projects'
-    },
-    {
-        name: 'certifications', 
-        path: '#certifications'
-    },
-    {
-        name: 'speaking', 
-        path: '#speaking'
-    },
-    {
-        name: 'contact', 
-        path: '#contact'
-    }
-]
+    { name: 'home', path: '#home' },
+    { name: 'work', path: '#work' },
+    { name: 'projects', path: '#projects' },
+    { name: 'about', path: '#about' },
+    { name: 'resume', path: '#resume' },
+    { name: 'certifications', path: '#certifications' },
+    { name: 'speaking', path: '#speaking' },
+    { name: 'contact', path: '#contact' },
+];
 
 
 const MobileNav = () => {
-    const pathname = usePathname();
+    const year = new Date().getFullYear();
 
     const handleClick = (e, path) => {
         e.preventDefault();
@@ -76,8 +58,7 @@ const MobileNav = () => {
                             href={link.path} 
                             key={index} 
                             onClick={(e) => handleClick(e, link.path)}
-                            className={`${link.path === pathname ? "text-accent border-b-2 border-accent" : "text-white"} 
-                            text-xl py-2 px-4 capitalize hover:text-accent transition-all active:scale-95`}
+                            className="text-white text-xl py-2 px-4 capitalize hover:text-accent border-b-2 border-transparent hover:border-accent/40 transition-all active:scale-95"
                         >
                             {link.name}
                         </a>
@@ -101,8 +82,8 @@ const MobileNav = () => {
                     </Link>
                 </div>
                 <div className="text-center text-white/50 text-sm mt-4">
-                    <p>© 2025 Gaille Amolong</p>
-                    <p>Software Engineer & AI Advocate</p>
+                    <p>© {year} Gaille Amolong</p>
+                    <p>Lead Software Engineer</p>
                 </div>
             </div>
         </SheetContent>
