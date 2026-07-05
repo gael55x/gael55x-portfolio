@@ -37,7 +37,7 @@ const MobileNav = () => {
       <SheetTrigger className="flex lg:hidden justify-center items-center p-2">
         <CiMenuFries className="text-3xl text-accent" />
       </SheetTrigger>
-      <SheetContent className="flex flex-col bg-[#1e1e2a]/95 backdrop-blur-md border-l border-accent/20">
+      <SheetContent className="flex flex-col bg-surface-raised/95 backdrop-blur-md border-l border-accent/20">
         <div className="mt-12 mb-16 text-center">
           <Link href="/" className="text-3xl font-semibold">
             <h1>

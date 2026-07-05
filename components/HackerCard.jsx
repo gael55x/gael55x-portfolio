@@ -9,7 +9,7 @@ const HackerCard = ({ children, className = '', delay = 0 }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.35, delay }}
-      className={`relative rounded-xl border border-white/10 bg-[#14141c]/90 hover:border-accent/30 transition-colors ${className}`}
+      className={`relative rounded-xl border border-white/10 bg-surface/90 hover:border-accent/30 transition-colors ${className}`}
     >
       {children}
     </motion.div>

@@ -8,7 +8,7 @@ const EMAIL = 'mailto:gaille.amolong1@gmail.com?subject=Interview%20request%20%E
 
 export default function MobileHireBar() {
   return (
-    <div className="lg:hidden fixed bottom-0 inset-x-0 z-[45] border-t border-white/10 bg-[#12121a]/95 backdrop-blur-md px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+    <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 border-t border-white/10 bg-surface-deep/95 backdrop-blur-md px-3 pt-3 pb-safe">
       <div className="flex gap-2 max-w-lg mx-auto">
         <Link
           href={RESUME}

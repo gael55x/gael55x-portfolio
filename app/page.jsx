@@ -32,7 +32,7 @@ export default function Home() {
         id="home"
         className="min-h-screen flex items-center justify-center py-12 px-4 relative z-10 scroll-mt-28"
       >
-        <div className="container mx-auto max-w-[900px]">
+        <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col xl:flex-row items-center justify-between gap-10 xl:gap-14">
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 16 }}
@@ -41,22 +41,36 @@ export default function Home() {
               className="text-center xl:text-left order-2 xl:order-none flex-1"
             >
               <p className="text-sm sm:text-base text-accent font-mono tracking-wide mb-4">
-                Lead Software Engineer
+                AI Platform Software Engineer
               </p>
-              <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold mb-5 leading-tight text-white font-sans tracking-tight">
-                I cut a manufacturing CV pipeline from 10&nbsp;min to 30&nbsp;sec and ship secure platforms to 150,000+ users.
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-tight text-white font-sans tracking-tight">
+                I cut a manufacturing CV pipeline from 10&nbsp;min to 30&nbsp;sec and ship secure platforms to 170,000+ users.
               </h1>
-              <p className="text-white/60 text-base sm:text-lg mb-8 font-sans">
-                Bitwork Solutions <span className="text-white/40">(Lead)</span> · Willed{' '}
-                <span className="text-white/40">(150k+ users)</span> · Referrin{' '}
-                <span className="text-white/40">(5k+ early adopters)</span>
+              <p className="text-white/60 text-base sm:text-lg mb-6 font-sans">
+                Willed <span className="text-white/40">(170k+ users)</span> · Referrin Health{' '}
+                <span className="text-white/40">(5k+ providers)</span> · BitWork Solutions{' '}
+                <span className="text-white/40">(Lead)</span>
               </p>
+              <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 justify-center xl:justify-start mb-8 text-xs sm:text-sm font-mono text-white/50">
+                <li className="flex items-center gap-1.5">
+                  <span className="text-accent">✓</span> 170k+ users shipped
+                </li>
+                <li className="flex items-center gap-1.5 border-l border-white/10 pl-5">
+                  <span className="text-accent">✓</span> 20x CV speedup
+                </li>
+                <li className="flex items-center gap-1.5 border-l border-white/10 pl-5">
+                  <span className="text-accent">✓</span> 5k+ providers
+                </li>
+                <li className="flex items-center gap-1.5 border-l border-white/10 pl-5">
+                  <span className="text-accent">✓</span> AWS certified
+                </li>
+              </ul>
               <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 justify-center xl:justify-start">
                 <Link
                   href={RESUME_HREF}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none min-w-[180px]"
+                  className="flex-1 sm:flex-none min-w-44"
                 >
                   <Button
                     size="lg"
@@ -66,7 +80,7 @@ export default function Home() {
                     <FiDownload className="text-xl" />
                   </Button>
                 </Link>
-                <Link href={MAIL_HREF} className="flex-1 sm:flex-none min-w-[180px]">
+                <Link href={MAIL_HREF} className="flex-1 sm:flex-none min-w-44">
                   <Button
                     size="lg"
                     variant="outline"
@@ -102,7 +116,7 @@ export default function Home() {
 
       {/* ── SIDE PROJECTS ── */}
       <section id="projects" className="py-20 relative z-10 scroll-mt-24">
-        <div className="container mx-auto px-4 max-w-[1100px]">
+        <div className="container mx-auto px-4 max-w-5xl">
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -126,7 +140,7 @@ export default function Home() {
 
       {/* ── ABOUT ── */}
       <section id="about" className="py-20 relative z-10 scroll-mt-24">
-        <div className="container mx-auto px-4 max-w-[900px]">
+        <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 font-sans text-center xl:text-left">
             {about.title}
           </h2>
@@ -149,7 +163,7 @@ export default function Home() {
 
       {/* ── CONTACT ── */}
       <section id="contact" className="py-20 relative z-10 scroll-mt-24">
-        <div className="container mx-auto px-4 max-w-[900px]">
+        <div className="container mx-auto px-4 max-w-4xl">
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -164,7 +178,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="max-w-md mx-auto rounded-xl border border-white/10 bg-[#14141c]/90 p-6 sm:p-8 flex flex-col gap-5">
+          <div className="max-w-md mx-auto rounded-xl border border-white/10 bg-surface/90 p-6 sm:p-8 flex flex-col gap-5">
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href={RESUME_HREF} target="_blank" rel="noopener noreferrer" className="flex-1">
                 <Button className="w-full bg-accent text-primary hover:bg-accent-hover font-semibold gap-2">
