@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /Users/gailleamolong/Documents/Documents/Personal/Snapline/packages/cli/dist/main.js hook claude post-tool-use"
+            "command": "npx --no-install snapline hook claude post-tool-use"
           }
         ]
       }
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /Users/gailleamolong/Documents/Documents/Personal/Snapline/packages/cli/dist/main.js hook claude stop"
+            "command": "npx --no-install snapline hook claude stop"
           }
         ]
       }
