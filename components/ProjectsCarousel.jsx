@@ -37,8 +37,8 @@ export default function ProjectsCarousel({ projects }) {
       >
         {projects.map((project) => (
           <SwiperSlide key={project.num}>
-            <article className="mx-auto max-w-xl rounded-xl border border-white/10 bg-[#14141c]/90 overflow-hidden flex flex-col hover:border-accent/20 transition-colors">
-              <div className="relative h-48 sm:h-52 w-full bg-gradient-to-br from-gray-900/90 to-black/90">
+            <article className="mx-auto max-w-xl rounded-xl border border-white/10 bg-surface/90 overflow-hidden flex flex-col hover:border-accent/20 transition-colors">
+              <div className="relative h-48 sm:h-52 w-full bg-gradient-to-br from-surface/90 to-surface-deep/90">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -80,7 +80,7 @@ export default function ProjectsCarousel({ projects }) {
                     {project.stack.map((s, i) => (
                       <li
                         key={i}
-                        className="text-accent/90 bg-accent/10 px-2 py-0.5 rounded border border-accent/20 text-[10px] sm:text-xs font-mono"
+                        className="text-accent/90 bg-accent/10 px-2 py-0.5 rounded border border-accent/20 text-xs font-mono"
                       >
                         {s.name}
                       </li>

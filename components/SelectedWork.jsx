@@ -8,7 +8,7 @@ export default function SelectedWork() {
 
   return (
     <section id="work" className="py-20 relative z-10 scroll-mt-24">
-      <div className="container mx-auto px-4 max-w-[900px]">
+      <div className="container mx-auto px-4 max-w-4xl">
         <div className="mb-12 text-center xl:text-left">
           <p className="text-accent font-mono text-sm mb-2 tracking-wide">
             Selected work
@@ -29,7 +29,7 @@ export default function SelectedWork() {
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.35, delay: reduceMotion ? 0 : index * 0.05 }}
-              className="rounded-xl border border-white/10 bg-[#14141c]/90 p-6 sm:p-8"
+              className="rounded-xl border border-white/10 bg-surface/90 p-6 sm:p-8"
             >
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-5">
                 <div>
@@ -87,7 +87,7 @@ export default function SelectedWork() {
           ))}
         </ul>
 
-        <blockquote className="mt-10 rounded-xl border border-white/10 bg-[#14141c]/90 p-6 sm:p-8 text-center">
+        <blockquote className="mt-10 rounded-xl border border-white/10 bg-surface/90 p-6 sm:p-8 text-center">
           <p className="text-white/85 italic text-base leading-relaxed font-sans">
             &ldquo;Gaille quickly stood out as a brilliant full-stack developer. He is incredibly
             smart, hardworking, and dedicated, often going the extra mile to deliver high-quality

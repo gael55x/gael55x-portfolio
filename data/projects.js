@@ -1,6 +1,54 @@
 export const projects = [
   {
     num: '01',
+    category: 'AI DEVTOOLS',
+    title: 'Snapline — Agent UI repair hook',
+    problem:
+      'AI coding agents write React/Tailwind UI that quietly drifts off the design system: raw hex colors, arbitrary values, hand-rolled buttons next to real components.',
+    action:
+      'Built a deterministic TSX scanner (TypeScript compiler API, no LLM) wired into Claude Code lifecycle hooks: it blocks the agent with exact repair contracts and gates completion until severe drift is fixed. Shipped as a pnpm monorepo with a CLI, Claude plugin, and a reproducible agent benchmark.',
+    result:
+      'Open-source agent UI repair hook with 9 drift rules, safe autofixes, and live hook overhead around 126ms per session.',
+    businessImpact:
+      'Design-system discipline that survives AI-generated code — enforced in the agent loop instead of caught in review.',
+    stack: [
+      { name: 'TypeScript' },
+      { name: 'Node.js' },
+      { name: 'Claude Code' },
+      { name: 'TailwindCSS' },
+      { name: 'shadcn/ui' },
+      { name: 'pnpm' },
+    ],
+    image: '/assets/projects/Snapline.png',
+    live: 'https://github.com/gael55x/Snapline',
+    github: 'https://github.com/gael55x/Snapline',
+    featured: true,
+  },
+  {
+    num: '02',
+    category: 'AI DEVTOOLS',
+    title: 'Grape — Context transport for AI coding agents',
+    problem:
+      'Coding agents reread the same files, rules, and decisions every chat — burning tool calls rebuilding context they already had and keeping stale assumptions after the repo changes.',
+    action:
+      'Built a repo-backed context continuity layer: dependency-tracked context artifacts compiled from the repository, per-session ledgers of what an agent has already seen, and MCP/CLI surfaces that send only what is new, changed, pinned, or stale.',
+    result:
+      'Structured context packs (NEW / CHANGED / PINNED / OMIT_UNCHANGED / RESTORE_AVAILABLE) that cut repeated rereads across chats, tools, and handoffs.',
+    businessImpact:
+      'Agents that keep repository context across turns instead of rediscovering it — fewer tool calls, fewer stale-assumption bugs.',
+    stack: [
+      { name: 'TypeScript' },
+      { name: 'Node.js' },
+      { name: 'MCP' },
+      { name: 'CLI' },
+    ],
+    image: '/assets/projects/Grape.png',
+    live: 'https://github.com/gael55x/Grape',
+    github: 'https://github.com/gael55x/Grape',
+    featured: true,
+  },
+  {
+    num: '03',
     category: 'AI HEALTHCARE',
     title: 'BuhAI — Personalized diabetes assistant',
     problem:
@@ -28,7 +76,7 @@ export const projects = [
     featured: true,
   },
   {
-    num: '02',
+    num: '04',
     category: 'EDTECH',
     title: 'DSA Visualizer — Algorithm learning platform',
     problem:
@@ -52,7 +100,7 @@ export const projects = [
     featured: true,
   },
   {
-    num: '03',
+    num: '05',
     category: 'AI MENTAL HEALTH',
     title: 'Ren — Emotional support companion',
     problem:
@@ -75,7 +123,7 @@ export const projects = [
     featured: false,
   },
   {
-    num: '04',
+    num: '06',
     category: 'QUANT / ML OPS',
     title: 'LSTM mean-reversion — research stack',
     problem:
@@ -100,7 +148,7 @@ export const projects = [
     featured: true,
   },
   {
-    num: '05',
+    num: '07',
     category: 'LMS',
     title: 'GoLearnHub — Learning management',
     problem:
@@ -124,7 +172,7 @@ export const projects = [
     featured: false,
   },
   {
-    num: '06',
+    num: '08',
     category: 'INSTITUTIONAL',
     title: 'MSHS official site — Digital infrastructure',
     problem:
@@ -147,7 +195,7 @@ export const projects = [
     featured: true,
   },
   {
-    num: '07',
+    num: '09',
     category: 'OPERATIONS',
     title: 'Daddy Mikes — Restaurant management',
     problem:
@@ -170,7 +218,7 @@ export const projects = [
     featured: false,
   },
   {
-    num: '08',
+    num: '10',
     category: 'EDTECH / NLP',
     title: 'PhEASYCS — Physics tutoring assistant',
     problem:
@@ -193,7 +241,7 @@ export const projects = [
     featured: false,
   },
   {
-    num: '09',
+    num: '11',
     category: 'COMPUTER VISION',
     title: 'ARTIST — Neural style transfer',
     problem:
@@ -216,7 +264,7 @@ export const projects = [
     featured: false,
   },
   {
-    num: '10',
+    num: '12',
     category: 'CV / DETECTION',
     title: 'Car detection — YOLO-style object detection',
     problem:
@@ -239,7 +287,7 @@ export const projects = [
     featured: false,
   },
   {
-    num: '11',
+    num: '13',
     category: 'RESEARCH',
     title: 'MusicAI — LSTM composition (R&D)',
     problem:

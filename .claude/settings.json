@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /Users/gailleamolong/Documents/Documents/Personal/Snapline/packages/cli/dist/main.js hook claude post-tool-use"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /Users/gailleamolong/Documents/Documents/Personal/Snapline/packages/cli/dist/main.js hook claude stop"
+          }
+        ]
+      }
+    ]
+  }
+}
