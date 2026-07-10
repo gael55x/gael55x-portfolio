@@ -5,14 +5,7 @@ import Link from 'next/link';
 import { CiMenuFries } from 'react-icons/ci';
 import { FiDownload } from 'react-icons/fi';
 import { Button } from './ui/button';
-
-const links = [
-  { name: 'home', path: '#home' },
-  { name: 'work', path: '#work' },
-  { name: 'projects', path: '#projects' },
-  { name: 'about', path: '#about' },
-  { name: 'contact', path: '#contact' },
-];
+import { navLinks as links } from '@/data/navLinks';
 
 const MobileNav = () => {
   const year = new Date().getFullYear();
