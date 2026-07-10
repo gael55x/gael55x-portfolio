@@ -17,22 +17,22 @@ const inter = Inter({
 
 export const metadata = {
   title: {
-    default: 'Gaille Amolong — Lead Software Engineer | AI, platform & security',
+    default: 'Gaille Amolong — AI Platform & Security Engineer',
     template: '%s | Gaille Amolong',
   },
   description:
-    'Lead software engineer: production computer vision (10 min to 30 s pipelines), platform & SIEM-oriented security at 150k+ users, full-stack scale to 5k+ users. AI, backend, DevOps.',
+    'Production AI and security systems with public proof: enterprise SIEM for 170k+ users, healthcare platform for 5,000+ providers, a 20x computer-vision pipeline speedup, and open-source agent tooling on npm.',
   openGraph: {
-    title: 'Gaille Amolong — Lead Software Engineer',
+    title: 'Gaille Amolong — AI Platform & Security Engineer',
     description:
-      'Production AI/CV, secure platforms, and full-stack delivery—Bitwork, Willed, early-stage products.',
+      'Enterprise SIEM for 170k+ users, healthcare infrastructure for 5,000+ providers, 20x CV pipeline speedup, open-source agent tooling on npm.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Gaille Amolong — Lead Software Engineer',
+    title: 'Gaille Amolong — AI Platform & Security Engineer',
     description:
-      'Production AI/CV, secure platforms, and full-stack delivery—measurable impact.',
+      'Production AI and security systems with public proof — SIEM at 170k+ users, agent devtools on npm.',
   },
   icons: {
     icon: '/favicon.svg',

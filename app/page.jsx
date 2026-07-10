@@ -12,9 +12,10 @@ import MobileHireBar from '@/components/MobileHireBar';
 import ProofBand from '@/components/ProofBand';
 import OpenSourceShowcase from '@/components/OpenSourceShowcase';
 import ProjectsGrid from '@/components/ProjectsGrid';
+import Writing from '@/components/Writing';
 
 import { projects } from '../data/projects';
-import { about, skillNames } from '../data/resume';
+import { about, credentials, skillNames } from '../data/resume';
 
 const RESUME_HREF = '/assets/resume/Amolong_Gaille_Resume.pdf';
 const MAIL_HREF =
@@ -39,15 +40,16 @@ export default function Home() {
               className="text-center xl:text-left order-2 xl:order-none flex-1"
             >
               <p className="text-sm sm:text-base text-accent font-mono tracking-wide mb-4">
-                AI Platform Software Engineer
+                Gaille Amolong · AI platform &amp; security engineer · Cebu, PH (remote)
               </p>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-tight text-white font-sans tracking-tight">
-                I cut a manufacturing CV pipeline from 10&nbsp;min to 30&nbsp;sec and ship secure platforms to 170,000+ users.
+                I ship production AI and security systems — and publish the proof.
               </h1>
               <p className="text-white/60 text-base sm:text-lg mb-6 font-sans">
-                Willed <span className="text-white/40">(170k+ users)</span> · Referrin Health{' '}
-                <span className="text-white/40">(5k+ providers)</span> · BitWork Solutions{' '}
-                <span className="text-white/40">(Lead)</span>
+                Enterprise SIEM guarding 170,000+ users at Willed. Referral infrastructure for
+                5,000+ healthcare providers at Referrin. A manufacturing CV pipeline cut from
+                10&nbsp;minutes to 30&nbsp;seconds at BitWork. Open-source agent tooling live on
+                npm.
               </p>
               <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 justify-center xl:justify-start mb-8 text-xs sm:text-sm font-mono text-white/50">
                 <li className="flex items-center gap-1.5">
@@ -141,6 +143,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── WRITING ── */}
+      <Writing />
+
       {/* ── ABOUT ── */}
       <section id="about" className="py-20 relative z-10 scroll-mt-24">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -151,6 +156,25 @@ export default function Home() {
           <p className="text-white/85 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto xl:mx-0 mb-8 font-sans">
             {about.lead}
           </p>
+          <ul className="grid sm:grid-cols-2 gap-3 mb-8">
+            {credentials.map((credential) => (
+              <li key={credential.label}>
+                <Link
+                  href={credential.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col rounded-lg border border-white/10 bg-surface/90 px-4 py-3 hover:border-accent/30 transition-colors"
+                >
+                  <span className="text-white text-sm font-semibold font-sans group-hover:text-accent transition-colors">
+                    {credential.label}
+                  </span>
+                  <span className="text-white/50 text-xs font-sans mt-0.5">
+                    {credential.detail}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
           <div className="flex flex-wrap gap-2 justify-center xl:justify-start">
             {skillNames.map((skill) => (
               <span
