@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
+import { FiArrowUpRight } from 'react-icons/fi';
 import { selectedWork } from '@/data/selectedWork';
 
 export default function SelectedWork() {
@@ -40,6 +41,17 @@ export default function SelectedWork() {
                     {item.company} · {item.role}
                   </p>
                 </div>
+                {item.link && (
+                  <a
+                    href={item.link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 text-accent hover:bg-accent/20 transition-colors text-xs font-mono"
+                  >
+                    Visit {item.link.label}
+                    <FiArrowUpRight />
+                  </a>
+                )}
               </div>
               <dl className="grid gap-4 text-sm sm:text-base">
                 <div>

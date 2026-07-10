@@ -34,15 +34,16 @@ export const selectedWork = [
     id: 'bitwork',
     company: 'BitWork Solutions',
     role: 'Lead Software Engineer',
-    title: 'Vision R&D & ecommerce for 5,000+ users',
+    title: 'Led 8BallDesigner.com — vision R&D & ecommerce at scale',
     problem:
-      'Manual emblem processing capped manufacturing throughput, and the 8-Ball/Badge Guru platforms needed reliable ecommerce handling hundreds of transactions per hour.',
+      'Manual emblem processing capped manufacturing throughput, and 8BallDesigner.com / Badge Guru needed reliable ecommerce that could handle hundreds of transactions per hour for a growing customer base.',
     action:
-      'Led a lean team across frontend, backend, mobile, and DevOps; built computer vision R&D for the rendering pipeline (OpenCV, ArUco detection, glare reduction, vectorization); architected Stripe/GoShippo ecommerce workflows; reworked auth with NextAuth + OAuth2/OIDC; introduced blue-green deployments with rollback.',
+      'Led engineering delivery for 8BallDesigner.com across a lean frontend, backend, mobile, and DevOps team; built computer vision R&D for the rendering pipeline (OpenCV, ArUco detection, glare reduction, vectorization); architected Stripe/GoShippo ecommerce workflows; reworked auth with NextAuth + OAuth2/OIDC; introduced blue-green deployments with rollback.',
     result:
-      'Emblem processing cut from 10 minutes to 30 seconds (~20x), 5,000+ users on stabilized platforms, and dependable checkout/shipment operations.',
+      'Emblem processing cut from 10 minutes to 30 seconds (~20x), thousands of customers served on 8BallDesigner.com, and dependable checkout/shipment operations across stabilized platforms.',
     business:
-      'More units through the line per shift and an ecommerce operation the business can scale on.',
+      'More units through the line per shift and an ecommerce store the business can scale revenue on.',
     stack: ['React/Next.js', 'React Native', 'FastAPI', 'OpenCV', 'PostgreSQL', 'AWS'],
+    link: { href: 'https://8balldesigner.com', label: '8balldesigner.com' },
   },
 ];
