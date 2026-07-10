@@ -21,6 +21,16 @@ const RESUME_HREF = '/assets/resume/Amolong_Gaille_Resume.pdf';
 const MAIL_HREF =
   'mailto:gaille.amolong1@gmail.com?subject=Interview%20request%20%E2%80%94%20Gaille%20Amolong';
 
+const heroStagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07 } },
+};
+
+const heroItem = {
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+};
+
 export default function Home() {
   const reduceMotion = useReducedMotion();
 
@@ -34,24 +44,36 @@ export default function Home() {
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col xl:flex-row items-center justify-between gap-10 xl:gap-14">
             <motion.div
-              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
+              variants={reduceMotion ? undefined : heroStagger}
+              initial={reduceMotion ? false : 'hidden'}
+              animate="visible"
               className="text-center xl:text-left order-2 xl:order-none flex-1"
             >
-              <p className="text-sm sm:text-base text-accent font-mono tracking-wide mb-4">
+              <motion.p
+                variants={reduceMotion ? undefined : heroItem}
+                className="text-sm sm:text-base text-accent font-mono tracking-wide mb-4"
+              >
                 Gaille Amolong · AI platform &amp; security engineer · Cebu, PH (remote)
-              </p>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-tight text-white font-sans tracking-tight">
+              </motion.p>
+              <motion.h1
+                variants={reduceMotion ? undefined : heroItem}
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-tight text-white font-sans tracking-tight"
+              >
                 I ship production AI and security systems — and publish the proof.
-              </h1>
-              <p className="text-white/60 text-base sm:text-lg mb-6 font-sans">
+              </motion.h1>
+              <motion.p
+                variants={reduceMotion ? undefined : heroItem}
+                className="text-white/60 text-base sm:text-lg mb-6 font-sans"
+              >
                 Enterprise SIEM guarding 170,000+ users at Willed. Referral infrastructure for
                 5,000+ healthcare providers at Referrin. A manufacturing CV pipeline cut from
                 10&nbsp;minutes to 30&nbsp;seconds at BitWork. Open-source agent tooling live on
                 npm.
-              </p>
-              <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 justify-center xl:justify-start mb-8 text-xs sm:text-sm font-mono text-white/50">
+              </motion.p>
+              <motion.ul
+                variants={reduceMotion ? undefined : heroItem}
+                className="flex flex-wrap items-center gap-x-5 gap-y-2 justify-center xl:justify-start mb-8 text-xs sm:text-sm font-mono text-white/50"
+              >
                 <li className="flex items-center gap-1.5">
                   <span className="text-accent">✓</span> 170k+ users shipped
                 </li>
@@ -64,8 +86,11 @@ export default function Home() {
                 <li className="flex items-center gap-1.5 border-l border-white/10 pl-5">
                   <span className="text-accent">✓</span> AWS certified
                 </li>
-              </ul>
-              <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 justify-center xl:justify-start">
+              </motion.ul>
+              <motion.div
+                variants={reduceMotion ? undefined : heroItem}
+                className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 justify-center xl:justify-start"
+              >
                 <Link
                   href={RESUME_HREF}
                   target="_blank"
@@ -90,13 +115,13 @@ export default function Home() {
                     <FiMail className="text-xl" />
                   </Button>
                 </Link>
-              </div>
-              <div className="mt-6">
+              </motion.div>
+              <motion.div variants={reduceMotion ? undefined : heroItem} className="mt-6">
                 <Socials
                   containerStyles="flex gap-4 justify-center xl:justify-start"
                   iconStyles="w-10 h-10 border border-white/15 rounded-full flex justify-center items-center text-white/70 text-base hover:border-accent hover:text-accent transition-all duration-200"
                 />
-              </div>
+              </motion.div>
             </motion.div>
 
             <motion.div
