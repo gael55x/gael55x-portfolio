@@ -1,12 +1,6 @@
 'use client';
 
-const links = [
-  { name: 'home', path: '#home' },
-  { name: 'work', path: '#work' },
-  { name: 'projects', path: '#projects' },
-  { name: 'about', path: '#about' },
-  { name: 'contact', path: '#contact' },
-];
+import { navLinks as links } from '@/data/navLinks';
 
 const Nav = () => {
   const handleClick = (e, path) => {
