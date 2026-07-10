@@ -4,19 +4,17 @@ import { Button } from '@/components/ui/button';
 import { FiDownload, FiMail } from 'react-icons/fi';
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 
 import Socials from '@/components/Socials';
 import Photo from '@/components/Photo';
 import SelectedWork from '@/components/SelectedWork';
 import MobileHireBar from '@/components/MobileHireBar';
+import ProofBand from '@/components/ProofBand';
+import OpenSourceShowcase from '@/components/OpenSourceShowcase';
+import ProjectsGrid from '@/components/ProjectsGrid';
 
 import { projects } from '../data/projects';
 import { about, skillNames } from '../data/resume';
-
-const ProjectsCarousel = dynamic(() => import('@/components/ProjectsCarousel'), {
-  ssr: false,
-});
 
 const RESUME_HREF = '/assets/resume/Amolong_Gaille_Resume.pdf';
 const MAIL_HREF =
@@ -111,10 +109,16 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── PROOF BAND ── */}
+      <ProofBand />
+
       {/* ── SELECTED WORK ── */}
       <SelectedWork />
 
-      {/* ── SIDE PROJECTS ── */}
+      {/* ── OPEN SOURCE ── */}
+      <OpenSourceShowcase />
+
+      {/* ── MORE PROJECTS ── */}
       <section id="projects" className="py-20 relative z-10 scroll-mt-24">
         <div className="container mx-auto px-4 max-w-5xl">
           <motion.div
@@ -125,16 +129,15 @@ export default function Home() {
             className="text-center mb-12"
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 font-sans">
-              Side projects
+              More projects
             </h2>
             <div className="h-1 w-24 bg-accent mx-auto mb-4 rounded-full" />
             <p className="text-white/60 max-w-2xl mx-auto text-sm sm:text-base font-sans">
-              Independent work that shows range beyond employer projects ({projects.length}{' '}
-              projects).
+              Smaller builds that show range: mobile AI, edtech, and volunteer infrastructure.
             </p>
           </motion.div>
 
-          <ProjectsCarousel projects={projects} />
+          <ProjectsGrid projects={projects} />
         </div>
       </section>
 
