@@ -31,19 +31,34 @@ export const selectedWork = [
     stack: ['React/Next.js', 'FastAPI', 'PostgreSQL', 'AWS', 'Docker', 'E2E testing'],
   },
   {
-    id: 'bitwork',
+    id: 'badge-guru',
     company: 'BitWork Solutions',
     role: 'Lead Software Engineer',
-    title: 'Badge Guru vision pipeline & 8BallDesigner.com ecommerce',
+    title: 'Badge Guru — computer vision pipeline for manufacturing',
     problem:
-      'Two products, two bottlenecks. Badge Guru: manual emblem processing capped manufacturing throughput. 8BallDesigner.com: the store needed ecommerce reliable enough for a customer base in the thousands.',
+      'Manual emblem processing capped manufacturing throughput: every badge design took about 10 minutes of hand work before it could go to production.',
     action:
-      'For Badge Guru, built the computer vision R&D behind scanner automation — OpenCV rendering pipeline, ArUco detection, glare reduction, vectorization. For 8BallDesigner.com, led engineering delivery across a lean frontend, backend, mobile, and DevOps team: Stripe/GoShippo ecommerce workflows, auth rework with NextAuth + OAuth2/OIDC, and blue-green deployments with rollback.',
+      'Built the computer vision R&D behind scanner automation: an OpenCV rendering pipeline with ArUco marker detection, glare reduction, and vectorization that turns a physical scan into production-ready assets.',
     result:
-      'Badge Guru emblem processing cut from 10 minutes to 30 seconds (~20x). 8BallDesigner.com serving thousands of customers with dependable checkout and shipment operations.',
+      'Emblem processing cut from 10 minutes to 30 seconds (~20x) — automated, repeatable, and no longer the bottleneck on the line.',
     business:
-      'More units through the manufacturing line per shift, and an ecommerce store the business scales revenue on.',
-    stack: ['React/Next.js', 'React Native', 'FastAPI', 'OpenCV', 'PostgreSQL', 'AWS'],
+      'More units through the manufacturing line per shift without adding headcount.',
+    stack: ['Python', 'OpenCV', 'ArUco', 'FastAPI', 'AWS'],
+  },
+  {
+    id: '8balldesigner',
+    company: 'BitWork Solutions',
+    role: 'Lead Software Engineer',
+    title: '8BallDesigner.com — ecommerce serving thousands of customers',
+    problem:
+      'The store needed ecommerce reliable enough for a customer base in the thousands — checkout, shipping, and auth could not be weak links.',
+    action:
+      'Led engineering delivery across a lean frontend, backend, mobile, and DevOps team: architected Stripe/GoShippo ecommerce workflows, reworked auth with NextAuth + OAuth2/OIDC, and introduced blue-green deployments with rollback.',
+    result:
+      'Thousands of customers served with dependable checkout and shipment operations on a stabilized platform.',
+    business:
+      'An ecommerce store the business scales revenue on, with deploys that no longer risk downtime.',
+    stack: ['React/Next.js', 'React Native', 'Stripe', 'PostgreSQL', 'AWS'],
     link: { href: 'https://8balldesigner.com', label: '8balldesigner.com' },
   },
 ];
