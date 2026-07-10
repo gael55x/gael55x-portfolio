@@ -13,6 +13,7 @@ import ProofBand from '@/components/ProofBand';
 import OpenSourceShowcase from '@/components/OpenSourceShowcase';
 import ProjectsGrid from '@/components/ProjectsGrid';
 import Writing from '@/components/Writing';
+import SpeakingGallery from '@/components/SpeakingGallery';
 
 import { projects } from '../data/projects';
 import { about, credentials, skillNames } from '../data/resume';
@@ -53,7 +54,7 @@ export default function Home() {
                 variants={reduceMotion ? undefined : heroItem}
                 className="text-sm sm:text-base text-accent font-mono tracking-wide mb-4"
               >
-                Gaille Amolong · AI platform &amp; security engineer · Cebu, PH (remote)
+                Gaille Amolong · Cebu, PH · remote
               </motion.p>
               <motion.h1
                 variants={reduceMotion ? undefined : heroItem}
@@ -63,30 +64,11 @@ export default function Home() {
               </motion.h1>
               <motion.p
                 variants={reduceMotion ? undefined : heroItem}
-                className="text-white/60 text-base sm:text-lg mb-6 font-sans"
+                className="text-white/60 text-base sm:text-lg mb-8 font-sans"
               >
-                Enterprise SIEM guarding 170,000+ users at Willed. Referral infrastructure for
-                5,000+ healthcare providers at Referrin. A manufacturing CV pipeline cut from
-                10&nbsp;minutes to 30&nbsp;seconds at BitWork. Open-source agent tooling live on
-                npm.
+                SIEM for 170k+ users at Willed · 5,000+ provider health platform at Referrin ·
+                20× CV pipeline speedup at BitWork · agent devtools on npm
               </motion.p>
-              <motion.ul
-                variants={reduceMotion ? undefined : heroItem}
-                className="flex flex-wrap items-center gap-x-5 gap-y-2 justify-center xl:justify-start mb-8 text-xs sm:text-sm font-mono text-white/50"
-              >
-                <li className="flex items-center gap-1.5">
-                  <span className="text-accent">✓</span> 170k+ users shipped
-                </li>
-                <li className="flex items-center gap-1.5 border-l border-white/10 pl-5">
-                  <span className="text-accent">✓</span> 20x CV speedup
-                </li>
-                <li className="flex items-center gap-1.5 border-l border-white/10 pl-5">
-                  <span className="text-accent">✓</span> 5k+ providers
-                </li>
-                <li className="flex items-center gap-1.5 border-l border-white/10 pl-5">
-                  <span className="text-accent">✓</span> AWS certified
-                </li>
-              </motion.ul>
               <motion.div
                 variants={reduceMotion ? undefined : heroItem}
                 className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 justify-center xl:justify-start"
@@ -181,6 +163,9 @@ export default function Home() {
           <p className="text-white/85 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto xl:mx-0 mb-8 font-sans">
             {about.lead}
           </p>
+          <div className="mb-8">
+            <SpeakingGallery />
+          </div>
           <ul className="grid sm:grid-cols-2 gap-3 mb-8">
             {credentials.map((credential) => (
               <li key={credential.label}>
