@@ -34,15 +34,15 @@ export const selectedWork = [
     id: 'bitwork',
     company: 'BitWork Solutions',
     role: 'Lead Software Engineer',
-    title: 'Led 8BallDesigner.com — vision R&D & ecommerce at scale',
+    title: 'Badge Guru vision pipeline & 8BallDesigner.com ecommerce',
     problem:
-      'Manual emblem processing capped manufacturing throughput, and 8BallDesigner.com / Badge Guru needed reliable ecommerce that could handle hundreds of transactions per hour for a growing customer base.',
+      'Two products, two bottlenecks. Badge Guru: manual emblem processing capped manufacturing throughput. 8BallDesigner.com: the store needed ecommerce reliable enough for a customer base in the thousands.',
     action:
-      'Led engineering delivery for 8BallDesigner.com across a lean frontend, backend, mobile, and DevOps team; built computer vision R&D for the rendering pipeline (OpenCV, ArUco detection, glare reduction, vectorization); architected Stripe/GoShippo ecommerce workflows; reworked auth with NextAuth + OAuth2/OIDC; introduced blue-green deployments with rollback.',
+      'For Badge Guru, built the computer vision R&D behind scanner automation — OpenCV rendering pipeline, ArUco detection, glare reduction, vectorization. For 8BallDesigner.com, led engineering delivery across a lean frontend, backend, mobile, and DevOps team: Stripe/GoShippo ecommerce workflows, auth rework with NextAuth + OAuth2/OIDC, and blue-green deployments with rollback.',
     result:
-      'Emblem processing cut from 10 minutes to 30 seconds (~20x), thousands of customers served on 8BallDesigner.com, and dependable checkout/shipment operations across stabilized platforms.',
+      'Badge Guru emblem processing cut from 10 minutes to 30 seconds (~20x). 8BallDesigner.com serving thousands of customers with dependable checkout and shipment operations.',
     business:
-      'More units through the line per shift and an ecommerce store the business can scale revenue on.',
+      'More units through the manufacturing line per shift, and an ecommerce store the business scales revenue on.',
     stack: ['React/Next.js', 'React Native', 'FastAPI', 'OpenCV', 'PostgreSQL', 'AWS'],
     link: { href: 'https://8balldesigner.com', label: '8balldesigner.com' },
   },
