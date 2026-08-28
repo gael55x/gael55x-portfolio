@@ -1,55 +1,60 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
   content: [
     './pages/**/*.{js,jsx}',
     './components/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
   ],
-  prefix: "",
   theme: {
-    container: {
-      center: true,
-      padding: "15px",
-    },
     screens: {
-      sm: '640px', 
+      sm: '640px',
       md: '768px',
       lg: '960px',
       xl: '1200px',
     },
     fontFamily: {
-      primary: "var(--font-jetbrainsMono)",
-      sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
-      mono: ["var(--font-jetbrainsMono)", "ui-monospace", "monospace"],
+      sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      serif: ['var(--font-newsreader)', 'Georgia', 'serif'],
+      mono: ['var(--font-jetbrainsMono)', 'ui-monospace', 'monospace'],
     },
     extend: {
+      aspectRatio: {
+        portrait: '3 / 4',
+      },
+      fontSize: {
+        /* Fine print for mono labels and captions. */
+        '2xs': ['0.6875rem', { lineHeight: '1.45' }],
+        /* Display sizes for serif headlines. */
+        display: ['3.6rem', { lineHeight: '1.08' }],
+        'display-sm': ['2.75rem', { lineHeight: '1.15' }],
+        'display-lg': ['4.75rem', { lineHeight: '1.02' }],
+      },
+      gridTemplateColumns: {
+        /* Structural left rail with sticky chapter numerals. */
+        rail: '4.5rem minmax(0, 1fr)',
+      },
       colors: {
-        primary: '#1c1c22',
-        surface: '#14141c',
-        'surface-deep': '#12121a',
-        'surface-raised': '#1e1e2a',
-        accent: {
-          DEFAULT: '#00ff99',
-          hover: '#00e187'
-        }
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+        /* Palette sampled from the hero photograph: plaster, dusk sky,
+           terracotta knit, ink-blue hair. */
+        paper: '#f4f0e6',
+        'paper-deep': '#ece7d9',
+        sand: '#d8d0bc',
+        ink: {
+          DEFAULT: '#242936',
+          soft: '#494f5e',
+          faint: '#676d7c',
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+        clay: {
+          DEFAULT: '#8f4938',
+          deep: '#6f3527',
         },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        dusk: {
+          DEFAULT: '#3f8fca',
+          deep: '#2e6d9e',
+          pale: '#a9d5ee',
+        },
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-}
+  plugins: [],
+};

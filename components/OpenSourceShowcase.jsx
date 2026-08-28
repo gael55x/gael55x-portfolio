@@ -1,133 +1,89 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
-import Link from 'next/link';
-import { FiPackage } from 'react-icons/fi';
-import { BsGithub } from 'react-icons/bs';
+import Section from '@/components/Section';
 import { openSource } from '@/data/projects';
 
 export default function OpenSourceShowcase() {
-  const reduceMotion = useReducedMotion();
 
   return (
-    <section id="open-source" className="py-20 relative z-10 scroll-mt-24">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="mb-12 text-center xl:text-left"
-        >
-          <p className="text-accent font-mono text-sm mb-2 tracking-wide">Open source</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight font-sans">
-            Infrastructure I build in public
-          </h2>
-          <p className="mt-3 text-white/60 max-w-2xl mx-auto xl:mx-0 text-base leading-relaxed font-sans">
-            Shipped tools with commits, releases, benchmarks, and packages you can inspect —
-            not weekend demos.
-          </p>
-        </motion.div>
+    <Section
+      id="open-source"
+      index="02"
+      kicker="Open source"
+      title="Infrastructure I build in public"
+      sub="Shipped tools with commits, releases, benchmarks, and packages you can inspect, not weekend demos."
+    >
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {openSource.map((repo, index) => (
-            <motion.article
+        <ul>
+          {openSource.map((repo) => (
+            <li
               key={repo.id}
-              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.35, delay: reduceMotion ? 0 : (index % 2) * 0.08 }}
-              className="group rounded-xl border border-white/10 bg-surface/90 p-6 sm:p-7 flex flex-col gap-4 hover:border-accent/30 transition-colors"
+              className="border-t border-ink/15 py-9 sm:py-10 grid gap-6 lg:grid-cols-12 lg:gap-10"
             >
-              <header>
-                <div className="flex items-center justify-between gap-3 mb-2">
-                  <p className="text-accent/90 font-mono text-xs uppercase tracking-wider">
-                    {repo.category}
-                  </p>
-                  <div className="flex items-center gap-2">
-                    {repo.npm && (
-                      <Link
-                        href={repo.npm}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${repo.name} on npm`}
-                        className="w-9 h-9 rounded-full bg-white/5 flex justify-center items-center text-white/70 hover:text-accent hover:bg-white/10 transition-colors"
-                      >
-                        <FiPackage className="text-base" />
-                      </Link>
-                    )}
-                    <Link
-                      href={repo.github}
+              <div className="lg:col-span-4">
+                <p className="font-mono text-xs text-ink-faint mb-1.5">{repo.category}</p>
+                <h3 className="font-serif text-2xl text-ink leading-snug">{repo.name}</h3>
+                <p className="mt-1 text-sm text-ink-soft">{repo.tagline}</p>
+                <p className="mt-4 font-mono text-xs leading-relaxed text-ink-faint">
+                  {repo.stack.join(' · ')}
+                </p>
+                <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs">
+                  <a
+                    href={repo.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition-colors"
+                  >
+                    GitHub <span aria-hidden="true">↗</span>
+                  </a>
+                  {repo.npm && (
+                    <a
+                      href={repo.npm}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`${repo.name} on GitHub`}
-                      className="w-9 h-9 rounded-full bg-white/5 flex justify-center items-center text-white/70 hover:text-accent hover:bg-white/10 transition-colors"
+                      className="text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition-colors"
                     >
-                      <BsGithub className="text-base" />
-                    </Link>
-                  </div>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-semibold text-white font-sans">
-                  {repo.name}
-                </h3>
-                <p className="text-white/60 text-sm font-sans mt-0.5">{repo.tagline}</p>
-              </header>
-
-              <div className="grid grid-cols-3 rounded-lg border border-white/10 bg-surface-deep overflow-hidden">
-                {repo.stats.map((stat, statIndex) => (
-                  <div
-                    key={stat.label}
-                    className={`p-3 flex flex-col gap-0.5 border-white/10 ${
-                      statIndex > 0 ? 'border-l' : ''
-                    }`}
-                  >
-                    <span className="text-white font-semibold font-sans text-sm sm:text-base leading-tight">
-                      {stat.value}
-                    </span>
-                    <span className="text-white/50 text-xs leading-snug font-sans">
-                      {stat.label}
-                    </span>
-                  </div>
-                ))}
+                      npm: {repo.npmLabel} <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                </p>
+                {repo.note && (
+                  <p className="mt-2 font-mono text-2xs text-ink-faint">{repo.note}</p>
+                )}
               </div>
 
-              <dl className="text-sm space-y-3 flex-1 font-sans">
-                <div>
-                  <dt className="text-white/45 text-xs uppercase tracking-wider font-mono mb-1">
-                    What it is
-                  </dt>
-                  <dd className="text-white/80 leading-relaxed">{repo.what}</dd>
-                </div>
-                <div>
-                  <dt className="text-white/45 text-xs uppercase tracking-wider font-mono mb-1">
-                    The hard part
-                  </dt>
-                  <dd className="text-white/80 leading-relaxed">{repo.hardPart}</dd>
-                </div>
-              </dl>
+              <div className="lg:col-span-5">
+                <dl className="grid gap-5 text-sm leading-relaxed">
+                  <div>
+                    <dt className="font-mono text-2xs uppercase tracking-wider text-ink-faint mb-1">
+                      What it is
+                    </dt>
+                    <dd className="text-ink-soft">{repo.what}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-mono text-2xs uppercase tracking-wider text-ink-faint mb-1">
+                      The hard part
+                    </dt>
+                    <dd className="text-ink-soft">{repo.hardPart}</dd>
+                  </div>
+                </dl>
+              </div>
 
-              <footer className="pt-3 border-t border-white/10 flex flex-wrap items-center gap-1.5">
-                {repo.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="text-accent/90 bg-accent/10 px-2 py-0.5 rounded border border-accent/20 text-xs font-mono"
-                  >
-                    {tech}
-                  </span>
-                ))}
-                {repo.npmLabel && (
-                  <span className="ml-auto text-white/40 text-xs font-mono">
-                    npm: {repo.npmLabel}
-                  </span>
-                )}
-                {repo.note && (
-                  <span className="ml-auto text-white/40 text-xs font-mono">{repo.note}</span>
-                )}
-              </footer>
-            </motion.article>
+              <div className="lg:col-span-3">
+                <dl className="grid grid-cols-3 gap-4 lg:grid-cols-1 lg:gap-5 lg:border-l lg:border-ink/15 lg:pl-6">
+                  {repo.stats.map((stat) => (
+                    <div key={stat.label}>
+                      <dd className="font-serif text-xl sm:text-2xl text-dusk-deep tracking-tight">
+                        {stat.value}
+                      </dd>
+                      <dt className="mt-0.5 text-xs text-ink-faint leading-snug">{stat.label}</dt>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </li>
           ))}
-        </div>
-      </div>
-    </section>
+        </ul>
+    </Section>
   );
 }

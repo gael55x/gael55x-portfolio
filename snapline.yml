@@ -2,55 +2,41 @@ version: 1
 
 stack:
   framework: next
-  ui: shadcn
   styling: tailwind
 
-components:
-  Button:
-    import: "@/components/ui/button"
-    preferOver:
-      - button
-  Input:
-    import: "@/components/ui/input"
-    preferOver:
-      - input
-
-# This portfolio's design language: dark theme with primary/accent tokens
-# (tailwind.config.js) plus white/black opacity variants as the neutral ramp.
+# This portfolio's design language: warm-paper editorial system derived from
+# the hero photograph. Tokens live in tailwind.config.js.
 tokens:
   colors:
     semanticOnly: true
     allowed:
-      - bg-primary
-      - text-primary
-      - border-primary
-      - bg-accent
-      - text-accent
-      - border-accent
-      - ring-accent
-      - bg-accent-hover
-      - text-accent-hover
-      - bg-white
-      - text-white
-      - border-white
-      - ring-white
-      - bg-black
-      - text-black
-      - border-black
-      - bg-surface
-      - bg-surface-deep
-      - bg-surface-raised
-      - border-surface
+      - bg-paper
+      - bg-paper-deep
+      - bg-sand
+      - bg-clay
+      - bg-clay-deep
+      - bg-dusk
+      - text-paper
+      - text-ink
+      - text-ink-soft
+      - text-ink-faint
+      - text-clay
+      - text-clay-deep
+      - text-dusk
+      - text-dusk-deep
+      - border-ink
+      - border-clay
+      - border-sand
+      - border-dusk
+      - decoration-clay
+      - decoration-ink
+      - ring-clay
 
 rules:
   noRawHex: error
-  noInlineStyle: error
-  noArbitraryTailwind: error
+  noInlineStyle: warn
+  noArbitraryTailwind: warn
   noRawPaletteColor: warn
-  requireButtonComponent: error
-  requireInputComponent: error
-  requireDialogComponent: warn
-  requireCardComponent: warn
   noDuplicateComponents: warn
 
 fix:

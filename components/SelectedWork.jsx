@@ -1,117 +1,98 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
-import { FiArrowUpRight } from 'react-icons/fi';
+import Section from '@/components/Section';
 import { selectedWork } from '@/data/selectedWork';
 
 export default function SelectedWork() {
-  const reduceMotion = useReducedMotion();
 
   return (
-    <section id="work" className="py-20 relative z-10 scroll-mt-24">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="mb-12 text-center xl:text-left">
-          <p className="text-accent font-mono text-sm mb-2 tracking-wide">
-            Selected work
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight font-sans">
-            Impact at scale
-          </h2>
-          <p className="mt-3 text-white/60 max-w-2xl mx-auto xl:mx-0 text-base leading-relaxed font-sans">
-            Problem, approach, measurable outcomes, and why it mattered for the business.
-          </p>
-        </div>
+    <Section
+      id="work"
+      index="01"
+      kicker="Selected work"
+      title="Impact at scale"
+      sub="Problem, approach, measurable outcomes, and why it mattered for the business."
+    >
 
-        <ul className="flex flex-col gap-8">
+        <ul>
           {selectedWork.map((item, index) => (
-            <motion.li
+            <li
               key={item.id}
-              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.35, delay: reduceMotion ? 0 : index * 0.05 }}
-              className="rounded-xl border border-white/10 bg-surface/90 p-6 sm:p-8"
+              className="border-t border-ink/15 py-9 sm:py-11 grid gap-6 lg:grid-cols-12 lg:gap-10"
             >
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-5">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-semibold text-white font-sans">
-                    {item.title}
-                  </h3>
-                  <p className="text-accent text-sm font-mono mt-1">
-                    {item.company} · {item.role}
-                  </p>
-                </div>
+              <div className="lg:col-span-4">
+                <p className="font-mono text-xs text-ink-faint mb-1.5">
+                  {String(index + 1).padStart(2, '0')}
+                </p>
+                <h3 className="font-serif text-2xl text-ink leading-snug">{item.company}</h3>
+                <p className="mt-1 text-sm text-ink-soft">{item.role}</p>
+                <p className="mt-1 font-mono text-xs text-dusk-deep">{item.dates}</p>
+                <p className="mt-4 font-mono text-xs leading-relaxed text-ink-faint">
+                  {item.stack.join(' · ')}
+                </p>
                 {item.link && (
                   <a
                     href={item.link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="shrink-0 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 text-accent hover:bg-accent/20 transition-colors text-xs font-mono"
+                    className="mt-3 inline-block font-mono text-xs text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition-colors"
                   >
-                    Visit {item.link.label}
-                    <FiArrowUpRight />
+                    {item.link.label} <span aria-hidden="true">↗</span>
                   </a>
                 )}
               </div>
-              <dl className="grid gap-4 text-sm sm:text-base">
-                <div>
-                  <dt className="text-white/50 font-mono text-xs uppercase tracking-wider mb-1">
-                    Problem
-                  </dt>
-                  <dd className="text-white/85 leading-relaxed font-sans">{item.problem}</dd>
-                </div>
-                <div>
-                  <dt className="text-white/50 font-mono text-xs uppercase tracking-wider mb-1">
-                    Action
-                  </dt>
-                  <dd className="text-white/85 leading-relaxed font-sans">{item.action}</dd>
-                </div>
-                <div>
-                  <dt className="text-white/50 font-mono text-xs uppercase tracking-wider mb-1">
+
+              <div className="lg:col-span-8">
+                <h4 className="font-serif text-xl sm:text-2xl text-ink leading-snug">
+                  {item.title}
+                </h4>
+
+                <div className="mt-4 border-l-2 border-clay pl-4 sm:pl-5">
+                  <p className="font-mono text-2xs uppercase tracking-wider text-clay mb-1">
                     Result
-                  </dt>
-                  <dd className="text-white/90 leading-relaxed font-sans font-medium">
-                    {item.result}
-                  </dd>
+                  </p>
+                  <p className="text-ink font-medium leading-relaxed">{item.result}</p>
                 </div>
-                <div>
-                  <dt className="text-white/50 font-mono text-xs uppercase tracking-wider mb-1">
-                    Business impact
-                  </dt>
-                  <dd className="text-white/80 leading-relaxed font-sans">{item.business}</dd>
-                </div>
-              </dl>
-              {item.stack && (
-                <div className="mt-4 pt-4 border-t border-white/5">
-                  <ul className="flex flex-wrap gap-1.5">
-                    {item.stack.map((tech) => (
-                      <li
-                        key={tech}
-                        className="text-accent/90 bg-accent/10 px-2 py-0.5 rounded text-xs font-mono border border-accent/20"
-                      >
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </motion.li>
+
+                <dl className="mt-6 grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <dt className="font-mono text-2xs uppercase tracking-wider text-ink-faint mb-1">
+                      Problem
+                    </dt>
+                    <dd className="text-sm text-ink-soft leading-relaxed">{item.problem}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-mono text-2xs uppercase tracking-wider text-ink-faint mb-1">
+                      Action
+                    </dt>
+                    <dd className="text-sm text-ink-soft leading-relaxed">{item.action}</dd>
+                  </div>
+                  <div className="sm:col-span-2">
+                    <dt className="font-mono text-2xs uppercase tracking-wider text-ink-faint mb-1">
+                      Business impact
+                    </dt>
+                    <dd className="text-sm text-ink-soft leading-relaxed">{item.business}</dd>
+                  </div>
+                </dl>
+              </div>
+            </li>
           ))}
         </ul>
 
-        <blockquote className="mt-10 rounded-xl border border-white/10 bg-surface/90 p-6 sm:p-8 text-center">
-          <p className="text-white/85 italic text-base leading-relaxed font-sans">
-            &ldquo;Gaille quickly stood out as a brilliant full-stack developer. He is incredibly
-            smart, hardworking, and dedicated, often going the extra mile to deliver high-quality
-            work. He communicates openly, collaborates effectively, and uplifts those around
-            him.&rdquo;
-          </p>
-          <cite className="block mt-4 text-sm not-italic">
-            <span className="text-white font-medium">Sheldon Arthur Sagrado</span>
-            <span className="text-white/50"> · Full-stack Developer, Bitwork Solutions</span>
-          </cite>
+        <blockquote className="border-t border-ink/15 pt-9 sm:pt-11 lg:grid lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-8 lg:col-start-5 border-l-2 border-sand pl-4 sm:pl-5">
+            <p className="font-serif italic text-lg sm:text-xl text-ink leading-relaxed">
+              &ldquo;Gaille quickly stood out as a brilliant full-stack developer. He is incredibly
+              smart, hardworking, and dedicated, often going the extra mile to deliver high-quality
+              work. He communicates openly, collaborates effectively, and uplifts those around
+              him.&rdquo;
+            </p>
+            <cite className="mt-3 block text-sm not-italic">
+              <span className="text-ink font-medium">Sheldon Arthur Sagrado</span>
+              <span className="text-ink-faint"> · Full-stack Developer, Bitwork Solutions</span>
+            </cite>
+          </div>
         </blockquote>
-      </div>
-    </section>
+    </Section>
   );
 }
