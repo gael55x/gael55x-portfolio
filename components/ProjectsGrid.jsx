@@ -1,82 +1,71 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
-import { motion, useReducedMotion } from 'framer-motion';
-import { FiExternalLink } from 'react-icons/fi';
-import { BsGithub } from 'react-icons/bs';
 
 export default function ProjectsGrid({ projects }) {
-  const reduceMotion = useReducedMotion();
 
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
       {projects.map((project, index) => (
-        <motion.article
+        <article
           key={project.num}
-          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.3, delay: reduceMotion ? 0 : (index % 3) * 0.06 }}
-          className="group rounded-xl border border-white/10 bg-surface/90 overflow-hidden flex flex-col hover:border-accent/30 transition-colors"
+          className="group flex flex-col"
         >
-          <div className="relative h-36 w-full bg-surface-deep overflow-hidden">
+          <div className="frame-offset relative h-40 w-full border border-ink/20 bg-paper-deep">
             <Image
               src={project.image}
-              alt={project.title}
+              alt={`${project.title} screenshot`}
               fill
               className={`${
                 project.image.includes('BuhAI') || project.image.includes('Ren')
                   ? 'object-contain p-3'
                   : 'object-cover'
-              } transition-transform duration-300 group-hover:scale-105`}
+              }`}
               sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 20rem"
             />
           </div>
-          <div className="p-5 flex flex-col flex-1 gap-2.5">
-            <p className="text-accent/90 font-mono text-xs uppercase tracking-wider">
+          <div className="flex flex-1 flex-col pt-4">
+            <p className="font-mono text-2xs tracking-wider text-ink-faint">
+              <span className="text-clay">{project.num}</span>
+              <span className="mx-2 text-ink/30" aria-hidden="true">
+                /
+              </span>
               {project.category}
             </p>
-            <h3 className="text-base font-semibold text-white font-sans leading-snug">
+            <h3 className="mt-2 font-serif text-xl text-ink leading-snug">
               {project.title}
+              {project.subtitle && (
+                <span className="text-ink-faint italic"> · {project.subtitle}</span>
+              )}
             </h3>
-            <p className="text-white/65 text-sm leading-relaxed font-sans flex-1">
+            <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-soft">
               {project.description}
             </p>
-            <ul className="flex flex-wrap gap-1.5">
-              {project.stack.map((tech) => (
-                <li
-                  key={tech}
-                  className="text-white/60 bg-white/5 px-2 py-0.5 rounded border border-white/10 text-xs font-mono"
-                >
-                  {tech}
-                </li>
-              ))}
-            </ul>
-            <div className="flex items-center gap-2 pt-2.5 border-t border-white/10">
+            <p className="mt-3 font-mono text-2xs leading-relaxed text-ink-faint">
+              {project.stack.join(' · ')}
+            </p>
+            <p className="mt-3 flex gap-4 border-t border-ink/15 pt-3 font-mono text-xs">
               {project.live !== project.github && (
-                <Link
+                <a
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`${project.title} — live demo`}
-                  className="w-9 h-9 rounded-full bg-white/5 flex justify-center items-center text-white/70 hover:text-accent hover:bg-white/10 transition-colors"
+                  className="link-draw text-clay hover:text-clay-deep"
                 >
-                  <FiExternalLink className="text-base" />
-                </Link>
+                  Live <span aria-hidden="true">↗</span>
+                </a>
               )}
-              <Link
+              <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${project.title} — source on GitHub`}
-                className="w-9 h-9 rounded-full bg-white/5 flex justify-center items-center text-white/70 hover:text-accent hover:bg-white/10 transition-colors"
+                className="link-draw text-clay hover:text-clay-deep"
               >
-                <BsGithub className="text-base" />
-              </Link>
-            </div>
+                Source <span aria-hidden="true">↗</span>
+              </a>
+            </p>
           </div>
-        </motion.article>
+        </article>
       ))}
     </div>
   );

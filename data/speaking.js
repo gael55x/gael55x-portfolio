@@ -1,4 +1,4 @@
-/** AI/DATA MiniConf (Accenture-hosted, IT Park Cebu, Feb 16 2025) — talk on
+/** AI/DATA MiniConf (Accenture-hosted, IT Park Cebu, Feb 16 2025). Talk on
  * building and deploying an LSTM mean-reversion strategy on AWS + Docker Hub. */
 export const speaking = [
   {
@@ -9,7 +9,7 @@ export const speaking = [
   {
     src: '/assets/speaker/GailleSpeakerCloseImage-web.jpg',
     alt: 'Gaille speaking with a microphone at AI/DATA MiniConf',
-    caption: 'Youngest speaker at AI/DATA MiniConf, Cebu — Feb 2025',
+    caption: 'Youngest speaker at AI/DATA MiniConf, Cebu, Feb 2025',
   },
   {
     src: '/assets/speaker/groupofspeakers-web.jpg',

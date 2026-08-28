@@ -1,5 +1,5 @@
 /**
- * Tier 1 — open-source work with public receipts (stars, commits, releases,
+ * Tier 1: open-source work with public receipts (stars, commits, releases,
  * npm packages, benchmarks). Stats verified against GitHub July 2026;
  * rounded down so they age safely.
  */
@@ -12,7 +12,7 @@ export const openSource = [
     what:
       'A deterministic TSX scanner (TypeScript compiler API, no LLM) wired into Claude Code lifecycle hooks. It blocks agents mid-loop with exact repair contracts and gates completion until severe design-system drift is fixed.',
     hardPart:
-      'Proving it works: a reproducible benchmark of 240 live agent sessions (8 modes × 10 prompts × 3 attempts) — 0/30 drift with the hook on, versus 7–40% drift without it, at ~126ms overhead per hook call.',
+      'Proving it works: a reproducible benchmark of 240 live agent sessions (8 modes × 10 prompts × 3 attempts) showed 0/30 drift with the hook on, versus 7–40% drift without it, at ~126ms overhead per hook call.',
     stats: [
       { value: '0/30', label: 'drift with hook on (vs 7–40% baseline)' },
       { value: '240', label: 'live agent sessions benchmarked' },
@@ -31,7 +31,7 @@ export const openSource = [
     what:
       'A repo-backed context continuity layer: dependency-tracked context artifacts compiled from the repository, per-session ledgers of what an agent has already seen, and MCP/CLI surfaces that send only what is new, changed, pinned, or stale.',
     hardPart:
-      'Diffing context honestly. Grape ships benchmarks showing 31–52% context reduction across three fixtures — published with the caveats, because a benchmark you can’t interrogate is marketing.',
+      'Diffing context honestly. Grape ships benchmarks showing 31–52% context reduction across three fixtures. They are published with the caveats, because a benchmark you can’t interrogate is marketing.',
     stats: [
       { value: '400+', label: 'commits' },
       { value: '14', label: 'releases (v1.0.0 shipped)' },
@@ -48,7 +48,7 @@ export const openSource = [
     tagline: 'Local-first programming tutor with verified practice',
     category: 'AI education',
     what:
-      'Chat a learning goal, get generated programming activities with tests, and run them in Docker sandboxes that grade real solutions — network-isolated, memory- and CPU-capped. Java, Python, C++, and SQL.',
+      'Chat a learning goal, get generated programming activities with tests, and run them in Docker sandboxes that grade real solutions. Network-isolated, memory- and CPU-capped. Java, Python, C++, and SQL.',
     hardPart:
       'Making arbitrary generated code safe to execute: per-activity sandbox isolation and a verification loop where the tests, not the LLM, decide whether your solution passes.',
     stats: [
@@ -79,12 +79,13 @@ export const openSource = [
   },
 ];
 
-/** Tier 2/3 — compact cards. Honest scope, no inflated claims. */
+/** Tier 2/3: compact cards. Honest scope, no inflated claims. */
 export const projects = [
   {
     num: '01',
     category: 'AI HEALTHCARE',
-    title: 'BuhAI — Diabetes assistant in Bisaya',
+    title: 'BuhAI',
+    subtitle: 'Diabetes assistant in Bisaya',
     description:
       'Personalized diabetes assistant for Filipinos: LSTM glucose forecasts (30/60 min) over CGM data, ChromaDB + RAG over logged meals, conversational guidance in Bisaya.',
     stack: ['React Native', 'Python', 'LSTM', 'ChromaDB', 'RAG', 'Gemini'],
@@ -95,7 +96,8 @@ export const projects = [
   {
     num: '02',
     category: 'EDTECH',
-    title: 'DSA Visualizer — Algorithms you can watch',
+    title: 'DSA Visualizer',
+    subtitle: 'Algorithms you can watch',
     description:
       'Step-through visualizations of core data structures and algorithms with interactive controls. 140+ commits, deployed and in active use.',
     stack: ['Next.js', 'TypeScript', 'Framer Motion'],
@@ -106,7 +108,8 @@ export const projects = [
   {
     num: '03',
     category: 'INSTITUTIONAL',
-    title: 'MSHS official site — School infrastructure',
+    title: 'MSHS official site',
+    subtitle: 'School infrastructure',
     description:
       'Volunteer-built official web app for Minglanilla Science High School: news portal, admissions info, reCAPTCHA-hardened auth. ~1.2k monthly users, zero downtime reported since launch.',
     stack: ['Django', 'PostgreSQL', 'Docker', 'NGINX'],
@@ -117,7 +120,8 @@ export const projects = [
   {
     num: '04',
     category: 'AI MOBILE',
-    title: 'Ren — Mood-adaptive support app',
+    title: 'Ren',
+    subtitle: 'Mood-adaptive support app',
     description:
       'React Native app with sentiment-aware flows and adaptive motivational content, backed by Flask + TensorFlow/NLTK. Designed, built, and shipped in one week.',
     stack: ['React Native', 'Flask', 'TensorFlow', 'NLP'],
@@ -128,7 +132,8 @@ export const projects = [
   {
     num: '05',
     category: 'EDTECH / NLP',
-    title: 'PhEASYCS — Physics tutoring bot',
+    title: 'PhEASYCS',
+    subtitle: 'Physics tutoring bot',
     description:
       'High-school project that placed 4th in the Division Science & Technology Fair: a physics Q&A bot built on TensorFlow NLP with TF-IDF features.',
     stack: ['Python', 'TensorFlow', 'NLP'],

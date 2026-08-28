@@ -1,73 +1,63 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
-import Link from 'next/link';
-import { FiArrowUpRight } from 'react-icons/fi';
+import Section from '@/components/Section';
 import { writing } from '@/data/writing';
 
 export default function Writing() {
-  const reduceMotion = useReducedMotion();
 
   return (
-    <section id="writing" className="py-20 relative z-10 scroll-mt-24">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="mb-10 text-center xl:text-left"
-        >
-          <p className="text-accent font-mono text-sm mb-2 tracking-wide">Writing</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight font-sans">
-            Engineering lessons, written down
-          </h2>
-          <p className="mt-3 text-white/60 max-w-2xl mx-auto xl:mx-0 text-base leading-relaxed font-sans">
-            {writing.intro}
-          </p>
-        </motion.div>
+    <Section
+      id="writing"
+      index="04"
+      kicker="Writing"
+      title="Engineering lessons, written down"
+      sub={writing.intro}
+    >
 
-        <ul className="flex flex-col gap-4">
-          {writing.articles.map((article, index) => (
-            <motion.li
+        <ul>
+          {writing.articles.map((article) => (
+            <li
               key={article.url}
-              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.3, delay: reduceMotion ? 0 : index * 0.05 }}
+              className="border-t border-ink/15"
             >
-              <Link
+              <a
                 href={article.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group rounded-xl border border-white/10 bg-surface/90 p-5 sm:p-6 flex items-start justify-between gap-4 hover:border-accent/30 transition-colors"
+                className="group grid gap-2 py-6 sm:py-7 lg:grid-cols-12 lg:gap-10 hover:bg-paper-deep/60 transition-colors sm:-mx-4 sm:px-4"
               >
-                <div>
-                  <p className="text-white/40 text-xs font-mono mb-1.5">{article.meta}</p>
-                  <h3 className="text-base sm:text-lg font-semibold text-white font-sans leading-snug group-hover:text-accent transition-colors">
+                <p className="font-mono text-xs text-dusk-deep lg:col-span-3 lg:pt-1">
+                  {article.meta}
+                </p>
+                <div className="lg:col-span-9">
+                  <h3 className="font-serif text-lg sm:text-xl text-ink leading-snug group-hover:text-clay transition-colors">
                     {article.title}
+                    <span
+                      aria-hidden="true"
+                      className="ml-2 inline-block font-mono text-sm text-ink-faint transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-clay"
+                    >
+                      ↗
+                    </span>
                   </h3>
-                  <p className="mt-1.5 text-white/60 text-sm leading-relaxed font-sans">
+                  <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">
                     {article.description}
                   </p>
                 </div>
-                <FiArrowUpRight className="shrink-0 mt-1 text-white/40 group-hover:text-accent transition-colors text-xl" />
-              </Link>
-            </motion.li>
+              </a>
+            </li>
           ))}
         </ul>
 
-        <div className="mt-6 text-center xl:text-left">
-          <Link
+        <p className="border-t border-ink/15 pt-5">
+          <a
             href={writing.profileUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-accent hover:text-accent-hover text-sm font-mono transition-colors"
+            className="font-mono text-xs link-draw text-clay hover:text-clay-deep"
           >
-            All essays on Medium <FiArrowUpRight />
-          </Link>
-        </div>
-      </div>
-    </section>
+            All essays on Medium <span aria-hidden="true">↗</span>
+          </a>
+        </p>
+    </Section>
   );
 }

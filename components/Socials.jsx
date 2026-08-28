@@ -1,31 +1,25 @@
-import Link from 'next/link';
-
-import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
-
 const socials = [
-  { icon: <FaGithub />, path: 'https://github.com/gael55x' },
-  {
-    icon: <FaLinkedinIn />,
-    path: 'https://www.linkedin.com/in/gaille-amolong-687746312/',
-  },
+  { name: 'GitHub', path: 'https://github.com/gael55x' },
+  { name: 'LinkedIn', path: 'https://www.linkedin.com/in/gaille-amolong-687746312/' },
 ];
 
-const Socials = ({ containerStyles, iconStyles }) => {
+const Socials = ({ containerStyles = '', linkStyles = '' }) => {
   return (
     <div className={containerStyles}>
-      {socials.map((item, index) => {
-        return (
-          <Link
-            key={index}
-            href={item.path}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={iconStyles}
-          >
-            {item.icon}
-          </Link>
-        );
-      })}
+      {socials.map((item) => (
+        <a
+          key={item.name}
+          href={item.path}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={
+            linkStyles ||
+            'link-draw font-mono text-xs text-ink-soft hover:text-clay'
+          }
+        >
+          {item.name} <span aria-hidden="true">↗</span>
+        </a>
+      ))}
     </div>
   );
 };

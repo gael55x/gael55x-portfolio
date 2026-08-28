@@ -1,9 +1,11 @@
-/** Employer-focused case studies (Problem / Action / Result / Business) */
+/** Employer-focused case studies (Problem / Action / Result / Business).
+ * Dates match the resume PDF. */
 export const selectedWork = [
   {
     id: 'willed',
     company: 'Willed',
     role: 'Software Engineer, AI & Security Platform',
+    dates: 'Sep 2025 – Present',
     title: 'Enterprise SIEM for a 170k+ user platform',
     problem:
       'A legal-tech platform serving 170,000+ users needed real detection visibility, SOC 2 readiness, and hardened authentication without slowing product delivery.',
@@ -19,9 +21,10 @@ export const selectedWork = [
     id: 'referrin',
     company: 'Referrin Health',
     role: 'Contract Software Engineer, Platform & AI Product',
+    dates: 'Nov 2025 – Aug 2026',
     title: 'Healthcare referral platform to controlled beta',
     problem:
-      'A healthcare referral SaaS had to move from development into controlled alpha/beta across a network of 5,000+ providers and case managers — with the rollout safety healthcare demands.',
+      'A healthcare referral SaaS had to move from development into controlled alpha/beta across a network of 5,000+ providers and case managers, with the rollout safety healthcare demands.',
     action:
       'Owned major platform engineering: stabilized referral, organization, provider, waitlist, and case-manager workflows; established staging/production environments, CI/CD, and E2E testing standards; built Smartforms AI modules for document handling and referral routing; hardened runtime secrets and encrypted configuration.',
     result:
@@ -34,13 +37,14 @@ export const selectedWork = [
     id: 'badge-guru',
     company: 'BitWork Solutions',
     role: 'Lead Software Engineer',
-    title: 'Badge Guru — computer vision pipeline for manufacturing',
+    dates: 'May 2025 – Present',
+    title: 'Badge Guru, a computer vision pipeline for manufacturing',
     problem:
       'Manual emblem processing capped manufacturing throughput: every badge design took about 10 minutes of hand work before it could go to production.',
     action:
       'Built the computer vision R&D behind scanner automation: an OpenCV rendering pipeline with ArUco marker detection, glare reduction, and vectorization that turns a physical scan into production-ready assets.',
     result:
-      'Emblem processing cut from 10 minutes to 30 seconds (~20x) — automated, repeatable, and no longer the bottleneck on the line.',
+      'Emblem processing cut from 10 minutes to 30 seconds (~20x). Automated, repeatable, and no longer the bottleneck on the line.',
     business:
       'More units through the manufacturing line per shift without adding headcount.',
     stack: ['Python', 'OpenCV', 'ArUco', 'FastAPI', 'AWS'],
@@ -49,9 +53,10 @@ export const selectedWork = [
     id: '8balldesigner',
     company: 'BitWork Solutions',
     role: 'Lead Software Engineer',
-    title: '8BallDesigner.com — ecommerce serving thousands of customers',
+    dates: 'May 2025 – Present',
+    title: '8BallDesigner.com, ecommerce serving thousands of customers',
     problem:
-      'The store needed ecommerce reliable enough for a customer base in the thousands — checkout, shipping, and auth could not be weak links.',
+      'The store needed ecommerce reliable enough for a customer base in the thousands. Checkout, shipping, and auth could not be weak links.',
     action:
       'Led engineering delivery across a lean frontend, backend, mobile, and DevOps team: architected Stripe/GoShippo ecommerce workflows, reworked auth with NextAuth + OAuth2/OIDC, and introduced blue-green deployments with rollback.',
     result:

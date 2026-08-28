@@ -1,12 +1,12 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { FiDownload, FiMail } from 'react-icons/fi';
-import { motion, useReducedMotion } from 'framer-motion';
-import Link from 'next/link';
+import { useState } from 'react';
+import { motion, MotionConfig } from 'framer-motion';
 
 import Socials from '@/components/Socials';
-import Photo from '@/components/Photo';
+import HeroScene from '@/components/HeroScene';
+import CebuClock from '@/components/CebuClock';
+import Section from '@/components/Section';
 import SelectedWork from '@/components/SelectedWork';
 import MobileHireBar from '@/components/MobileHireBar';
 import ProofBand from '@/components/ProofBand';
@@ -19,8 +19,24 @@ import { projects } from '../data/projects';
 import { about, credentials, skillNames } from '../data/resume';
 
 const RESUME_HREF = '/assets/resume/Amolong_Gaille_Resume.pdf';
-const MAIL_HREF =
-  'mailto:gaille.amolong1@gmail.com?subject=Interview%20request%20%E2%80%94%20Gaille%20Amolong';
+const MAIL_HREF = 'mailto:gaille.amolong1@gmail.com?subject=Interview%20request';
+
+/* The hero subline, kept verbatim and set as a ruled ledger.
+   Each line maps to one structure in the sculpture. */
+const HERO_PROOF = [
+  { line: 'SIEM for 170k+ users at Willed', plane: 'dusk' },
+  { line: '5,000+ provider health platform at Referrin', plane: 'sand' },
+  { line: '20× CV pipeline speedup at BitWork', plane: 'clay' },
+  { line: 'agent devtools on npm', plane: 'lattice' },
+];
+
+/* Swatches sampled from the portrait; the whole site runs on them. */
+const PALETTE = [
+  { name: 'sand', hex: '#d8d0bc', chip: 'bg-sand' },
+  { name: 'clay', hex: '#8f4938', chip: 'bg-clay' },
+  { name: 'dusk', hex: '#3f8fca', chip: 'bg-dusk' },
+  { name: 'ink', hex: '#242936', chip: 'bg-ink' },
+];
 
 const heroStagger = {
   hidden: {},
@@ -33,216 +49,222 @@ const heroItem = {
 };
 
 export default function Home() {
-  const reduceMotion = useReducedMotion();
+  const year = new Date().getFullYear();
+  const [highlight, setHighlight] = useState(null);
 
   return (
-    <div className="min-h-screen relative pb-24 lg:pb-0">
-      {/* ── HERO ── */}
-      <section
-        id="home"
-        className="min-h-screen flex items-center justify-center py-12 px-4 relative z-10 scroll-mt-28"
-      >
-        <div className="container mx-auto max-w-4xl">
-          <div className="flex flex-col xl:flex-row items-center justify-between gap-10 xl:gap-14">
-            <motion.div
-              variants={reduceMotion ? undefined : heroStagger}
-              initial={reduceMotion ? false : 'hidden'}
-              animate="visible"
-              className="text-center xl:text-left order-2 xl:order-none flex-1"
-            >
-              <motion.p
-                variants={reduceMotion ? undefined : heroItem}
-                className="text-sm sm:text-base text-accent font-mono tracking-wide mb-4"
-              >
-                Gaille Amolong · Cebu, PH · remote
-              </motion.p>
-              <motion.h1
-                variants={reduceMotion ? undefined : heroItem}
-                className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-tight text-white font-sans tracking-tight"
-              >
-                I ship production AI and security systems — and publish the proof.
-              </motion.h1>
-              <motion.p
-                variants={reduceMotion ? undefined : heroItem}
-                className="text-white/60 text-base sm:text-lg mb-8 font-sans"
-              >
-                SIEM for 170k+ users at Willed · 5,000+ provider health platform at Referrin ·
-                20× CV pipeline speedup at BitWork · agent devtools on npm
-              </motion.p>
+    <MotionConfig reducedMotion="user">
+      <main id="main" className="pb-24 lg:pb-0">
+        {/* ── HERO ── */}
+        <section id="home">
+          <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 sm:py-16 xl:py-20">
+            <div className="grid gap-14 xl:grid-cols-12 xl:gap-10">
               <motion.div
-                variants={reduceMotion ? undefined : heroItem}
-                className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 justify-center xl:justify-start"
+                variants={heroStagger}
+                initial="hidden"
+                animate="visible"
+                className="xl:col-span-7"
               >
-                <Link
-                  href={RESUME_HREF}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none min-w-44"
+                <motion.p
+                  variants={heroItem}
+                  className="mb-6 font-mono text-xs sm:text-sm tracking-wide text-ink-faint"
                 >
-                  <Button
-                    size="lg"
-                    className="w-full uppercase flex items-center justify-center gap-2 bg-accent text-primary hover:bg-accent-hover font-semibold"
-                  >
-                    <span>Download resume</span>
-                    <FiDownload className="text-xl" />
-                  </Button>
-                </Link>
-                <Link href={MAIL_HREF} className="flex-1 sm:flex-none min-w-44">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="w-full uppercase flex items-center justify-center gap-2 border-accent/60 text-accent hover:bg-accent/10"
-                  >
-                    <span>Email me</span>
-                    <FiMail className="text-xl" />
-                  </Button>
-                </Link>
-              </motion.div>
-              <motion.div variants={reduceMotion ? undefined : heroItem} className="mt-6">
-                <Socials
-                  containerStyles="flex gap-4 justify-center xl:justify-start"
-                  iconStyles="w-10 h-10 border border-white/15 rounded-full flex justify-center items-center text-white/70 text-base hover:border-accent hover:text-accent transition-all duration-200"
-                />
-              </motion.div>
-            </motion.div>
+                  Gaille Amolong · Cebu, PH · remote
+                  <CebuClock />
+                </motion.p>
+                <motion.h1
+                  variants={heroItem}
+                  className="font-serif text-4xl sm:text-6xl xl:text-display-lg leading-tight sm:leading-none tracking-tight text-ink"
+                >
+                  I ship production AI and security systems and{' '}
+                  <em className="text-clay">publish the proof</em>.
+                </motion.h1>
 
-            <motion.div
-              initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.45, delay: reduceMotion ? 0 : 0.05 }}
-              className="order-1 xl:order-none mb-4 xl:mb-0 flex-shrink-0"
-            >
-              <Photo />
-            </motion.div>
+                <motion.ul
+                  variants={heroItem}
+                  className="mt-10 max-w-md"
+                  onMouseLeave={() => setHighlight(null)}
+                >
+                  {HERO_PROOF.map((item, i) => (
+                    <li
+                      key={item.line}
+                      onMouseEnter={() => setHighlight(item.plane)}
+                      className="flex items-baseline gap-4 border-t border-ink/15 py-2.5 last:border-b hover:bg-paper-deep/60 transition-colors"
+                    >
+                      <span className="font-mono text-2xs text-dusk-deep" aria-hidden="true">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className="text-sm sm:text-base text-ink-soft">{item.line}</span>
+                    </li>
+                  ))}
+                </motion.ul>
+
+                <motion.div
+                  variants={heroItem}
+                  className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4"
+                >
+                  <a
+                    href={RESUME_HREF}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-clay px-5 py-3 font-mono text-xs tracking-wide text-paper hover:bg-clay-deep transition-colors"
+                  >
+                    download resume
+                  </a>
+                  <a
+                    href={MAIL_HREF}
+                    className="link-draw font-mono text-xs text-ink hover:text-clay"
+                  >
+                    email me
+                  </a>
+                  <Socials containerStyles="flex gap-5" />
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="group xl:col-span-5"
+              >
+                <HeroScene highlight={highlight} />
+                <div className="relative mx-auto mt-14 flex max-w-96 flex-wrap items-center gap-x-4 gap-y-2">
+                  <span className="font-mono text-2xs text-ink-faint">
+                    site palette, sampled from this photo
+                  </span>
+                  <span className="flex items-center gap-3">
+                    {PALETTE.map((swatch) => (
+                      <span key={swatch.name} className="flex items-center gap-1.5">
+                        <span
+                          aria-hidden="true"
+                          className={`inline-block h-3 w-3 border border-ink/20 ${swatch.chip}`}
+                        />
+                        <span className="font-mono text-2xs text-ink-faint">{swatch.hex}</span>
+                      </span>
+                    ))}
+                  </span>
+                </div>
+              </motion.div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── PROOF BAND ── */}
-      <ProofBand />
+        {/* ── PROOF ── */}
+        <ProofBand />
 
-      {/* ── SELECTED WORK ── */}
-      <SelectedWork />
+        {/* ── SELECTED WORK ── */}
+        <SelectedWork />
 
-      {/* ── OPEN SOURCE ── */}
-      <OpenSourceShowcase />
+        {/* ── OPEN SOURCE ── */}
+        <OpenSourceShowcase />
 
-      {/* ── MORE PROJECTS ── */}
-      <section id="projects" className="py-20 relative z-10 scroll-mt-24">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 font-sans">
-              More projects
-            </h2>
-            <div className="h-1 w-24 bg-accent mx-auto mb-4 rounded-full" />
-            <p className="text-white/60 max-w-2xl mx-auto text-sm sm:text-base font-sans">
-              Smaller builds that show range: mobile AI, edtech, and volunteer infrastructure.
-            </p>
-          </motion.div>
-
+        {/* ── MORE PROJECTS ── */}
+        <Section
+          id="projects"
+          index="03"
+          kicker="More projects"
+          title="Range beyond the day job"
+          sub="Smaller builds that show range: mobile AI, edtech, and volunteer infrastructure."
+        >
           <ProjectsGrid projects={projects} />
-        </div>
-      </section>
+        </Section>
 
-      {/* ── WRITING ── */}
-      <Writing />
+        {/* ── WRITING ── */}
+        <Writing />
 
-      {/* ── ABOUT ── */}
-      <section id="about" className="py-20 relative z-10 scroll-mt-24">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 font-sans text-center xl:text-left">
-            {about.title}
-          </h2>
-          <div className="h-1 w-24 bg-accent rounded-full mb-8 mx-auto xl:mx-0" />
-          <p className="text-white/85 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto xl:mx-0 mb-8 font-sans">
-            {about.lead}
-          </p>
-          <div className="mb-8">
+        {/* ── ABOUT ── */}
+        <Section id="about" index="05" kicker={about.title}>
+          <div className="grid gap-10 lg:grid-cols-12">
+            <p className="lg:col-span-7 font-serif text-xl sm:text-2xl leading-relaxed text-ink">
+              {about.lead}
+            </p>
+            <ul className="lg:col-span-5">
+              {credentials.map((credential) => (
+                <li key={credential.label} className="border-t border-ink/15 last:border-b">
+                  <a
+                    href={credential.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-baseline justify-between gap-3 py-3.5"
+                  >
+                    <span>
+                      <span className="block text-sm font-medium text-ink group-hover:text-clay transition-colors">
+                        {credential.label}
+                      </span>
+                      <span className="mt-0.5 block text-xs text-ink-faint">
+                        {credential.detail}
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="font-mono text-sm text-ink-faint transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-clay"
+                    >
+                      ↗
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="mt-12">
             <SpeakingGallery />
           </div>
-          <ul className="grid sm:grid-cols-2 gap-3 mb-8">
-            {credentials.map((credential) => (
-              <li key={credential.label}>
-                <Link
-                  href={credential.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex flex-col rounded-lg border border-white/10 bg-surface/90 px-4 py-3 hover:border-accent/30 transition-colors"
-                >
-                  <span className="text-white text-sm font-semibold font-sans group-hover:text-accent transition-colors">
-                    {credential.label}
-                  </span>
-                  <span className="text-white/50 text-xs font-sans mt-0.5">
-                    {credential.detail}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="flex flex-wrap gap-2 justify-center xl:justify-start">
-            {skillNames.map((skill) => (
-              <span
-                key={skill}
-                className="text-white/70 bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg text-sm font-mono"
-              >
-                {skill}
+          <p className="mt-12 border-t border-ink/15 pt-5 font-mono text-xs leading-loose text-ink-faint">
+            {skillNames.join(' · ')}
+          </p>
+        </Section>
+
+        {/* ── DUSK: the visitor scrolls into night ── */}
+        <div aria-hidden="true" className="h-64 sm:h-80 bg-gradient-to-b from-paper via-twilight to-ink" />
+
+        {/* ── CONTACT: the page ends at night ── */}
+        <section id="contact" className="scroll-mt-0 bg-ink text-paper">
+          <div className="mx-auto max-w-6xl px-5 sm:px-8 py-20 sm:py-28">
+            <p className="mb-3 font-mono text-xs tracking-wide text-paper/60">
+              <span className="text-dusk-pale">06</span>
+              <span className="mx-2 text-paper/30" aria-hidden="true">
+                /
               </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CONTACT ── */}
-      <section id="contact" className="py-20 relative z-10 scroll-mt-24">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="text-center mb-10"
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 font-sans">Contact</h2>
-            <div className="h-1 w-24 bg-accent mx-auto mb-4 rounded-full" />
-            <p className="text-white/60 max-w-xl mx-auto text-sm sm:text-base font-sans">
+              Contact
+            </p>
+            <h2 className="max-w-3xl font-serif text-3xl sm:text-4xl xl:text-display-sm leading-tight tracking-tight text-paper">
               Email is fastest. I typically reply within one business day.
-            </p>
-          </motion.div>
-
-          <div className="max-w-md mx-auto rounded-xl border border-white/10 bg-surface/90 p-6 sm:p-8 flex flex-col gap-5">
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link href={RESUME_HREF} target="_blank" rel="noopener noreferrer" className="flex-1">
-                <Button className="w-full bg-accent text-primary hover:bg-accent-hover font-semibold gap-2">
-                  <FiDownload /> Resume PDF
-                </Button>
-              </Link>
-              <Link href={MAIL_HREF} className="flex-1">
-                <Button
-                  variant="outline"
-                  className="w-full border-accent/50 text-accent hover:bg-accent/10 gap-2"
-                >
-                  <FiMail /> Email
-                </Button>
-              </Link>
-            </div>
-            <p className="text-white/50 text-sm font-mono text-center">
+            </h2>
+            <a
+              href={MAIL_HREF}
+              className="mt-9 inline-block break-all font-serif text-2xl sm:text-5xl text-dusk-pale underline decoration-dusk/50 underline-offset-8 hover:decoration-dusk-pale transition-colors"
+            >
               gaille.amolong1@gmail.com
-            </p>
-            <Socials
-              containerStyles="flex gap-3 justify-center"
-              iconStyles="w-10 h-10 border border-white/15 rounded-full flex justify-center items-center text-white/70 hover:border-accent hover:text-accent transition-all duration-200"
-            />
+            </a>
+            <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <a
+                href={RESUME_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-clay px-5 py-3 font-mono text-xs tracking-wide text-paper hover:bg-clay-deep transition-colors"
+              >
+                resume pdf
+              </a>
+              <Socials
+                containerStyles="flex gap-5"
+                linkStyles="link-draw font-mono text-xs text-paper/70 hover:text-dusk-pale"
+              />
+            </div>
           </div>
-        </div>
-      </section>
+          <footer className="border-t border-paper/15">
+            <div className="mx-auto flex max-w-6xl flex-wrap items-baseline justify-between gap-3 px-5 py-6 sm:px-8">
+              <p className="font-mono text-2xs text-paper/60">
+                © {year} Gaille Amolong · designed and built in Cebu
+              </p>
+              <p className="font-mono text-2xs text-paper/60">
+                Set in Newsreader, Inter, and JetBrains Mono
+              </p>
+            </div>
+          </footer>
+        </section>
 
-      <MobileHireBar />
-    </div>
+        <MobileHireBar />
+      </main>
+    </MotionConfig>
   );
 }

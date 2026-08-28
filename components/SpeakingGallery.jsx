@@ -1,36 +1,30 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'framer-motion';
 import { speaking } from '@/data/speaking';
 
 export default function SpeakingGallery() {
-  const reduceMotion = useReducedMotion();
 
   return (
-    <div className="grid sm:grid-cols-3 gap-4">
+    <div className="grid gap-5 sm:grid-cols-3">
       {speaking.map((photo, index) => (
-        <motion.figure
+        <figure
           key={photo.src}
-          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.3, delay: reduceMotion ? 0 : index * 0.06 }}
-          className="group"
+          className={index === 1 ? 'sm:mt-6' : ''}
         >
-          <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 bg-surface-deep">
+          <div className="frame-offset relative aspect-video border border-ink/20 bg-paper-deep">
             <Image
               src={photo.src}
               alt={photo.alt}
               fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              className="object-cover"
               sizes="(max-width: 640px) 100vw, 33vw"
             />
           </div>
-          <figcaption className="mt-2 text-white/50 text-xs font-sans leading-snug">
+          <figcaption className="mt-2 font-mono text-2xs leading-snug text-ink-faint">
             {photo.caption}
           </figcaption>
-        </motion.figure>
+        </figure>
       ))}
     </div>
   );
