@@ -53,7 +53,7 @@ export default function Writing() {
             href={writing.profileUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition-colors"
+            className="font-mono text-xs link-draw text-clay hover:text-clay-deep"
           >
             All essays on Medium <span aria-hidden="true">↗</span>
           </a>

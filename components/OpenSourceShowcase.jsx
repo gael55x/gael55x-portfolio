@@ -32,7 +32,7 @@ export default function OpenSourceShowcase() {
                     href={repo.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition-colors"
+                    className="link-draw text-clay hover:text-clay-deep"
                   >
                     GitHub <span aria-hidden="true">↗</span>
                   </a>
@@ -41,7 +41,7 @@ export default function OpenSourceShowcase() {
                       href={repo.npm}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition-colors"
+                      className="link-draw text-clay hover:text-clay-deep"
                     >
                       npm: {repo.npmLabel} <span aria-hidden="true">↗</span>
                     </a>

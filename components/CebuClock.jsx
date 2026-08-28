@@ -21,5 +21,13 @@ export default function CebuClock() {
   }, []);
 
   if (!time) return null;
-  return <span> · {time} local</span>;
+  const [hours, minutes] = time.split(':');
+  return (
+    <span>
+      {' · '}
+      {hours}
+      <span className="clock-colon">:</span>
+      {minutes} local
+    </span>
+  );
 }

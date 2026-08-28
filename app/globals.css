@@ -39,6 +39,107 @@
   }
 }
 
+/* Links draw their underline from the left on hover; a faint resting line
+   keeps the affordance visible. */
+.link-draw {
+  background-image: linear-gradient(currentColor, currentColor),
+    linear-gradient(
+      color-mix(in srgb, currentColor 35%, transparent),
+      color-mix(in srgb, currentColor 35%, transparent)
+    );
+  background-repeat: no-repeat;
+  background-size: 0 1px, 100% 1px;
+  background-position: 0 calc(100% - 0.05em), 0 calc(100% - 0.05em);
+  padding-bottom: 0.15em;
+  transition: background-size 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s ease;
+}
+
+.link-draw:hover,
+.link-draw:focus-visible {
+  background-size: 100% 1px, 100% 1px;
+}
+
+/* The colon of the local clock breathes once every two seconds. */
+@media (prefers-reduced-motion: no-preference) {
+  .clock-colon {
+    animation: clock-breath 2s ease-in-out infinite;
+  }
+}
+
+@keyframes clock-breath {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* Crosshairs over the portrait at the exact points the palette was sampled.
+   Revealed when the visitor hovers or focuses the hero media column. */
+.sample-marks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sample-mark {
+  position: absolute;
+  width: 0.875rem;
+  height: 0.875rem;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.sample-mark::before,
+.sample-mark::after {
+  content: '';
+  position: absolute;
+  background: #f4f0e6;
+  box-shadow: 0 0 2px rgba(36, 41, 54, 0.9);
+}
+
+.sample-mark::before {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.sample-mark::after {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.sample-mark-dusk {
+  left: 50%;
+  top: 7%;
+}
+
+.sample-mark-ink {
+  left: 46%;
+  top: 40%;
+  transition-delay: 0.06s;
+}
+
+.sample-mark-sand {
+  left: 85%;
+  top: 68%;
+  transition-delay: 0.12s;
+}
+
+.sample-mark-clay {
+  left: 75%;
+  top: 88%;
+  transition-delay: 0.18s;
+}
+
+.group:hover .sample-mark,
+.group:focus-within .sample-mark {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
 /* Recurring motif from the hero sculpture: an offset dusk frame behind
    photographs and screenshots. */
 .frame-offset {
@@ -198,5 +299,12 @@
   }
   .scene .plane {
     transition: none;
+  }
+  .sample-mark {
+    transition: none;
+    transform: translate(-50%, -50%);
+  }
+  .link-draw {
+    transition: color 0.2s ease;
   }
 }

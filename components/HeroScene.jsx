@@ -87,6 +87,12 @@ export default function HeroScene({ highlight = null }) {
               className="object-cover"
               sizes="(max-width: 640px) 300px, 380px"
             />
+            <div aria-hidden="true" className="sample-marks">
+              <span className="sample-mark sample-mark-dusk" />
+              <span className="sample-mark sample-mark-ink" />
+              <span className="sample-mark sample-mark-sand" />
+              <span className="sample-mark sample-mark-clay" />
+            </div>
           </div>
           <div aria-hidden="true" className="plane plane-clay" />
         </div>

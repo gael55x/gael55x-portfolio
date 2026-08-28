@@ -53,6 +53,8 @@ module.exports = {
           deep: '#2e6d9e',
           pale: '#a9d5ee',
         },
+        /* Midpoint of the sunset gradient between paper and ink. */
+        twilight: '#44536e',
       },
     },
   },

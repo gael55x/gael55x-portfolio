@@ -113,7 +113,7 @@ export default function Home() {
                   </a>
                   <a
                     href={MAIL_HREF}
-                    className="font-mono text-xs text-ink underline decoration-ink/30 underline-offset-4 hover:text-clay hover:decoration-clay transition-colors"
+                    className="link-draw font-mono text-xs text-ink hover:text-clay"
                   >
                     email me
                   </a>
@@ -125,7 +125,7 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="xl:col-span-5"
+                className="group xl:col-span-5"
               >
                 <HeroScene highlight={highlight} />
                 <div className="relative mx-auto mt-14 flex max-w-96 flex-wrap items-center gap-x-4 gap-y-2">
@@ -214,6 +214,9 @@ export default function Home() {
           </p>
         </Section>
 
+        {/* ── DUSK: the visitor scrolls into night ── */}
+        <div aria-hidden="true" className="h-64 sm:h-80 bg-gradient-to-b from-paper via-twilight to-ink" />
+
         {/* ── CONTACT: the page ends at night ── */}
         <section id="contact" className="scroll-mt-0 bg-ink text-paper">
           <div className="mx-auto max-w-6xl px-5 sm:px-8 py-20 sm:py-28">
@@ -244,7 +247,7 @@ export default function Home() {
               </a>
               <Socials
                 containerStyles="flex gap-5"
-                linkStyles="font-mono text-xs text-paper/70 underline decoration-paper/25 underline-offset-4 hover:text-dusk-pale hover:decoration-dusk-pale transition-colors"
+                linkStyles="link-draw font-mono text-xs text-paper/70 hover:text-dusk-pale"
               />
             </div>
           </div>

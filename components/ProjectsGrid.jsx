@@ -50,7 +50,7 @@ export default function ProjectsGrid({ projects }) {
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition-colors"
+                  className="link-draw text-clay hover:text-clay-deep"
                 >
                   Live <span aria-hidden="true">↗</span>
                 </a>
@@ -59,7 +59,7 @@ export default function ProjectsGrid({ projects }) {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition-colors"
+                className="link-draw text-clay hover:text-clay-deep"
               >
                 Source <span aria-hidden="true">↗</span>
               </a>

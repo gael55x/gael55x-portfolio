@@ -31,6 +31,9 @@ tokens:
       - decoration-clay
       - decoration-ink
       - ring-clay
+      - from-paper
+      - via-twilight
+      - to-ink
 
 rules:
   noRawHex: error

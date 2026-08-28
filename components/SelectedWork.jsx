@@ -35,7 +35,7 @@ export default function SelectedWork() {
                     href={item.link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-3 inline-block font-mono text-xs text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition-colors"
+                    className="mt-3 inline-block font-mono text-xs link-draw text-clay hover:text-clay-deep"
                   >
                     {item.link.label} <span aria-hidden="true">↗</span>
                   </a>
