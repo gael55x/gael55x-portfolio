@@ -4,36 +4,35 @@ stack:
   framework: next
   styling: tailwind
 
-# This portfolio's design language: warm-paper editorial system derived from
-# the hero photograph. Tokens live in tailwind.config.js.
+# This portfolio's design language: the night register of the palette sampled
+# from the hero photograph. Tokens live in tailwind.config.js.
 tokens:
   colors:
     semanticOnly: true
     allowed:
-      - bg-paper
-      - bg-paper-deep
-      - bg-sand
+      - bg-night
+      - bg-panel
       - bg-clay
-      - bg-clay-deep
+      - bg-sand
       - bg-dusk
-      - text-paper
-      - text-ink
-      - text-ink-soft
-      - text-ink-faint
+      - bg-ink
+      - bg-dusk-pale
+      - text-night
+      - text-bone
+      - text-bone-dim
+      - text-bone-faint
       - text-clay
-      - text-clay-deep
       - text-dusk
-      - text-dusk-deep
-      - border-ink
+      - text-dusk-pale
+      - text-paper
+      - border-bone
       - border-clay
       - border-sand
       - border-dusk
       - decoration-clay
-      - decoration-ink
+      - decoration-dusk
+      - decoration-dusk-pale
       - ring-clay
-      - from-paper
-      - via-twilight
-      - to-ink
 
 rules:
   noRawHex: error

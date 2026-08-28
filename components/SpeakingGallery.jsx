@@ -12,7 +12,7 @@ export default function SpeakingGallery() {
           key={photo.src}
           className={index === 1 ? 'sm:mt-6' : ''}
         >
-          <div className="frame-offset relative aspect-video border border-ink/20 bg-paper-deep">
+          <div className="frame-offset relative aspect-video border border-bone/20 bg-panel">
             <Image
               src={photo.src}
               alt={photo.alt}
@@ -21,7 +21,7 @@ export default function SpeakingGallery() {
               sizes="(max-width: 640px) 100vw, 33vw"
             />
           </div>
-          <figcaption className="mt-2 font-mono text-2xs leading-snug text-ink-faint">
+          <figcaption className="mt-2 font-mono text-2xs leading-snug text-bone-faint">
             {photo.caption}
           </figcaption>
         </figure>

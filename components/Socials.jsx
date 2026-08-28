@@ -14,7 +14,7 @@ const Socials = ({ containerStyles = '', linkStyles = '' }) => {
           rel="noopener noreferrer"
           className={
             linkStyles ||
-            'link-draw font-mono text-xs text-ink-soft hover:text-clay'
+            'link-draw font-mono text-xs text-bone-dim hover:text-clay'
           }
         >
           {item.name} <span aria-hidden="true">↗</span>
