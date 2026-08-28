@@ -1,10 +1,7 @@
-'use client';
-
 import Section from '@/components/Section';
 import { openSource } from '@/data/projects';
 
 export default function OpenSourceShowcase() {
-
   return (
     <Section
       id="open-source"
@@ -13,77 +10,81 @@ export default function OpenSourceShowcase() {
       title="Infrastructure I build in public"
       sub="Shipped tools with commits, releases, benchmarks, and packages you can inspect, not weekend demos."
     >
-
-        <ul>
-          {openSource.map((repo) => (
-            <li
-              key={repo.id}
-              className="border-t border-ink/15 py-9 sm:py-10 grid gap-6 lg:grid-cols-12 lg:gap-10"
-            >
-              <div className="lg:col-span-4">
-                <p className="font-mono text-xs text-ink-faint mb-1.5">{repo.category}</p>
-                <h3 className="font-serif text-2xl text-ink leading-snug">{repo.name}</h3>
-                <p className="mt-1 text-sm text-ink-soft">{repo.tagline}</p>
-                <p className="mt-4 font-mono text-xs leading-relaxed text-ink-faint">
-                  {repo.stack.join(' · ')}
-                </p>
-                <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs">
+      <ul>
+        {openSource.map((repo) => (
+          <li
+            key={repo.id}
+            className="border-t border-bone/15 py-7 sm:py-8 grid gap-5 lg:grid-cols-12 lg:gap-10"
+          >
+            <div className="lg:col-span-4">
+              <p className="font-mono text-2xs lowercase text-bone-faint mb-1">{repo.category}</p>
+              <h3 className="font-mono text-lg font-bold text-bone leading-snug">{repo.name}</h3>
+              <p className="mt-0.5 font-sans text-xs text-bone-dim">{repo.tagline}</p>
+              <p className="mt-3 font-mono text-2xs leading-relaxed text-bone-faint">
+                {repo.stack.join(' · ')}
+              </p>
+              <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs">
+                <a
+                  href={repo.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-draw text-clay hover:text-dusk-pale"
+                >
+                  GitHub <span aria-hidden="true">↗</span>
+                </a>
+                {repo.npm && (
                   <a
-                    href={repo.github}
+                    href={repo.npm}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link-draw text-clay hover:text-clay-deep"
+                    className="link-draw text-clay hover:text-dusk-pale"
                   >
-                    GitHub <span aria-hidden="true">↗</span>
+                    npm: {repo.npmLabel} <span aria-hidden="true">↗</span>
                   </a>
-                  {repo.npm && (
-                    <a
-                      href={repo.npm}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="link-draw text-clay hover:text-clay-deep"
-                    >
-                      npm: {repo.npmLabel} <span aria-hidden="true">↗</span>
-                    </a>
-                  )}
-                </p>
-                {repo.note && (
-                  <p className="mt-2 font-mono text-2xs text-ink-faint">{repo.note}</p>
                 )}
-              </div>
+              </p>
+              {repo.note && (
+                <p className="mt-2 font-mono text-2xs text-bone-faint">{repo.note}</p>
+              )}
+            </div>
 
-              <div className="lg:col-span-5">
-                <dl className="grid gap-5 text-sm leading-relaxed">
+            <div className="lg:col-span-8">
+              <dl className="grid grid-cols-3 gap-4 max-w-md">
+                {repo.stats.map((stat) => (
+                  <div key={stat.label}>
+                    <dd className="font-mono text-lg sm:text-xl font-bold tracking-tight text-dusk">
+                      {stat.value}
+                    </dd>
+                    <dt className="mt-0.5 font-sans text-2xs text-bone-faint leading-snug">
+                      {stat.label}
+                    </dt>
+                  </div>
+                ))}
+              </dl>
+
+              <details className="fold mt-4">
+                <summary className="font-mono text-2xs lowercase tracking-wider text-bone-faint hover:text-clay transition-colors">
+                  what it is / the hard part
+                </summary>
+                <dl className="mt-4 grid gap-4 text-sm leading-relaxed">
                   <div>
-                    <dt className="font-mono text-2xs uppercase tracking-wider text-ink-faint mb-1">
+                    <dt className="font-mono text-2xs uppercase tracking-wider text-bone-faint mb-1">
                       What it is
                     </dt>
-                    <dd className="text-ink-soft">{repo.what}</dd>
+                    <dd className="font-sans text-bone-dim">{repo.what}</dd>
                   </div>
                   <div>
-                    <dt className="font-mono text-2xs uppercase tracking-wider text-ink-faint mb-1">
+                    <dt className="font-mono text-2xs uppercase tracking-wider text-bone-faint mb-1">
                       The hard part
                     </dt>
-                    <dd className="text-ink-soft">{repo.hardPart}</dd>
+                    <dd className="font-sans text-bone-dim">{repo.hardPart}</dd>
                   </div>
                 </dl>
-              </div>
-
-              <div className="lg:col-span-3">
-                <dl className="grid grid-cols-3 gap-4 lg:grid-cols-1 lg:gap-5 lg:border-l lg:border-ink/15 lg:pl-6">
-                  {repo.stats.map((stat) => (
-                    <div key={stat.label}>
-                      <dd className="font-serif text-xl sm:text-2xl text-dusk-deep tracking-tight">
-                        {stat.value}
-                      </dd>
-                      <dt className="mt-0.5 text-xs text-ink-faint leading-snug">{stat.label}</dt>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </li>
-          ))}
-        </ul>
+              </details>
+            </div>
+          </li>
+        ))}
+      </ul>
     </Section>
   );
 }

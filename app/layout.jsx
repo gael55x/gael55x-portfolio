@@ -1,4 +1,4 @@
-import { JetBrains_Mono, Inter, Newsreader } from 'next/font/google';
+import { JetBrains_Mono, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 
@@ -6,7 +6,7 @@ import Header from '@/components/Header';
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400', '500', '700'],
   variable: '--font-jetbrainsMono',
 });
 
@@ -15,16 +15,8 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-const newsreader = Newsreader({
-  subsets: ['latin'],
-  style: ['normal', 'italic'],
-  variable: '--font-newsreader',
-  fallback: ['Georgia', 'serif'],
-  adjustFontFallback: false,
-});
-
 export const viewport = {
-  themeColor: '#f4f0e6',
+  themeColor: '#161922',
 };
 
 export const metadata = {
@@ -54,12 +46,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${jetbrainsMono.variable} ${inter.variable} ${newsreader.variable} font-sans antialiased`}
-      >
+      <body className={`${jetbrainsMono.variable} ${inter.variable} font-mono antialiased`}>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-paper focus:px-3 focus:py-2 focus:text-sm focus:font-mono"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-night focus:px-3 focus:py-2 focus:text-sm"
         >
           Skip to content
         </a>

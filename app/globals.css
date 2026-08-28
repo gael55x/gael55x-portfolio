@@ -19,15 +19,15 @@
   }
 
   body {
-    @apply bg-paper text-ink font-sans antialiased;
+    @apply bg-night text-bone font-mono antialiased;
   }
 
   ::selection {
-    background: rgba(143, 73, 56, 0.22);
+    background: rgba(201, 112, 79, 0.35);
   }
 
   :focus-visible {
-    outline: 2px solid #8f4938;
+    outline: 2px solid #c9704f;
     outline-offset: 3px;
     border-radius: 1px;
   }
@@ -37,6 +37,26 @@
   .pb-safe {
     padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
   }
+}
+
+/* Collapsed detail folds: heavy prose stays one keypress away. */
+.fold > summary {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.fold > summary::-webkit-details-marker {
+  display: none;
+}
+
+.fold > summary::before {
+  content: '+ ';
+  color: #c9704f;
+}
+
+.fold[open] > summary::before {
+  content: '- ';
 }
 
 /* Links draw their underline from the left on hover; a faint resting line
@@ -72,7 +92,7 @@
   }
 }
 
-/* Crosshairs over the portrait at the exact points the palette was sampled.
+/* Reticles over the portrait at the exact points the palette was sampled.
    Revealed when the visitor hovers or focuses the hero media column. */
 .sample-marks {
   position: absolute;
@@ -94,7 +114,7 @@
   content: '';
   position: absolute;
   background: #f4f0e6;
-  box-shadow: 0 0 2px rgba(36, 41, 54, 0.9);
+  box-shadow: 0 0 2px rgba(22, 25, 34, 0.9);
 }
 
 .sample-mark::before {
@@ -150,7 +170,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(63, 143, 202, 0.5);
+  border: 1px solid rgba(88, 166, 221, 0.45);
   transform: translate(9px, 9px);
   z-index: -1;
   pointer-events: none;
@@ -210,15 +230,15 @@
   transform: rotateX(76deg) translateZ(calc(-24px * var(--depth, 1))) scale(var(--s, 1));
   background-image: repeating-linear-gradient(
       90deg,
-      rgba(36, 41, 54, 0.22) 0,
-      rgba(36, 41, 54, 0.22) 1px,
+      rgba(232, 225, 210, 0.2) 0,
+      rgba(232, 225, 210, 0.2) 1px,
       transparent 1px,
       transparent 12.4%
     ),
     repeating-linear-gradient(
       0deg,
-      rgba(36, 41, 54, 0.22) 0,
-      rgba(36, 41, 54, 0.22) 1px,
+      rgba(232, 225, 210, 0.2) 0,
+      rgba(232, 225, 210, 0.2) 1px,
       transparent 1px,
       transparent 12.4%
     );
@@ -226,14 +246,14 @@
   mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent 85%);
 }
 
-/* Sand fin: a slab standing perpendicular along the left edge. */
+/* Slab fin standing perpendicular along the left edge. */
 .plane-sand {
   top: 2%;
   left: -10%;
   width: 46%;
   height: 88%;
-  background: linear-gradient(to right, #ded6c3, #cbc2a9);
-  border: 1px solid rgba(36, 41, 54, 0.14);
+  background: linear-gradient(to right, #262b37, #1d212b);
+  border: 1px solid rgba(216, 208, 188, 0.25);
   transform-origin: left center;
   transform: rotateY(56deg) translateZ(calc(-30px * var(--depth, 1))) scale(var(--s, 1));
 }
@@ -244,7 +264,7 @@
   right: -14%;
   width: 62%;
   height: 76%;
-  border: 1px solid #3f8fca;
+  border: 1px solid #58a6dd;
   transform-origin: right center;
   transform: rotateY(-26deg) translateZ(calc(-12px * var(--depth, 1))) scale(var(--s, 1));
 }
@@ -253,13 +273,13 @@
   content: '';
   position: absolute;
   inset: 7% -7% -7% 7%;
-  border: 1px solid rgba(63, 143, 202, 0.45);
+  border: 1px solid rgba(88, 166, 221, 0.4);
 }
 
 .plane-portrait {
   inset: 0;
-  border: 1px solid rgba(36, 41, 54, 0.28);
-  background: #ece7d9;
+  border: 1px solid rgba(232, 225, 210, 0.35);
+  background: #1d212b;
   overflow: hidden;
   transform: translateZ(calc(30px * var(--depth, 1)));
 }
@@ -267,10 +287,10 @@
 /* Clay block: the near mass anchoring the front left corner. */
 .plane-clay {
   bottom: -7%;
-  left: -9%;
+  left: -8%;
   width: 34%;
   height: 23%;
-  background: #8f4938;
+  background: #a35138;
   transform: rotateY(9deg) translateZ(calc(74px * var(--depth, 1))) scale(var(--s, 1));
 }
 
@@ -283,7 +303,7 @@
 }
 
 .scene[data-highlight='dusk'] .plane-dusk {
-  border-color: #2e6d9e;
+  border-color: #a9d5ee;
 }
 
 .scene[data-highlight='lattice'] .plane-lattice {
