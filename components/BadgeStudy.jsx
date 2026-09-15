@@ -2,30 +2,65 @@
 
 import Image from 'next/image';
 import badgePoster from '@/public/assets/badge-study-poster.png';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
+const phrases = ['Physical scan.', 'Detected geometry.', 'Production asset.'];
 const messages = {
   loading: 'Loading the badge study.',
-  ready: '3D ready. Move your pointer to explore, or press Enter to rotate.',
+  ready: '3D ready. A scan reveals the emblem’s contours and lifts the vector asset.',
   unavailable: '3D is unavailable. The static study shows the same layers.',
   interrupted: '3D was interrupted. The static study is still available.',
 };
+const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export default function BadgeStudy() {
   const canvas = useRef(null);
-  const scene = useRef(null);
+  const stageEl = useRef(null);
+  const view = useRef(null);
+  const releaseTimer = useRef(null);
   const [phase, setPhase] = useState('idle');
+  const [stage, setStage] = useState(-1);
   const active = phase === 'loading' || phase === 'ready';
+
+  const leave = useCallback(() => {
+    clearTimeout(releaseTimer.current);
+    if (reduced()) {
+      setPhase('idle');
+      return;
+    }
+    const scene = view.current;
+    if (!scene) {
+      setPhase('idle');
+      return;
+    }
+    scene.retract().then((settled) => {
+      if (settled && view.current === scene) {
+        releaseTimer.current = setTimeout(() => setPhase('idle'), 1500);
+      }
+    });
+  }, []);
+  function start() {
+    clearTimeout(releaseTimer.current);
+    if (!active) setPhase('loading');
+    else if (reduced()) view.current?.showEnd();
+    else view.current?.play();
+  }
 
   useEffect(() => {
     if (!active) return;
     let cancelled = false;
-    let dispose;
     const element = canvas.current;
-    const stage = element.parentElement;
-    // Touch browsers may not focus buttons, so blur alone cannot release the GPU.
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const onMotionChange = () => setPhase('idle');
+    const onVisibilityChange = () => {
+      if (document.hidden) setPhase('idle');
+    };
+    const visibility = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) setPhase('idle');
+    });
+    visibility.observe(stageEl.current);
     const onOutsidePress = (event) => {
-      if (!stage.contains(event.target)) setPhase('idle');
+      if (!stageEl.current.contains(event.target)) leave();
     };
     const onContextLost = (event) => {
       event.preventDefault();
@@ -33,13 +68,19 @@ export default function BadgeStudy() {
     };
     element.addEventListener('webglcontextlost', onContextLost);
     document.addEventListener('pointerdown', onOutsidePress);
+    motion.addEventListener('change', onMotionChange);
+    document.addEventListener('visibilitychange', onVisibilityChange);
     import('@/lib/badgeScene')
       .then(({ createBadgeScene }) => {
         if (cancelled) return;
-        const view = createBadgeScene(element);
-        scene.current = view;
-        dispose = view.dispose;
+        view.current = createBadgeScene(element, {
+          onStage: (next) => {
+            if (!motion.matches) setStage(next);
+          },
+        });
         setPhase('ready');
+        if (reduced()) view.current.showEnd();
+        else view.current.play();
       })
       .catch(() => {
         if (!cancelled) setPhase('unavailable');
@@ -48,72 +89,75 @@ export default function BadgeStudy() {
       cancelled = true;
       element.removeEventListener('webglcontextlost', onContextLost);
       document.removeEventListener('pointerdown', onOutsidePress);
-      dispose?.();
-      scene.current = null;
+      motion.removeEventListener('change', onMotionChange);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      visibility.disconnect();
+      clearTimeout(releaseTimer.current);
+      view.current?.dispose();
+      view.current = null;
+      setStage(-1);
     };
-  }, [active]);
-
-  function explore(event) {
-    if (
-      event.pointerType !== 'mouse' ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    )
-      return;
-    if (!active) setPhase('loading');
-  }
+  }, [active, leave]);
 
   return (
-    <div className="badge-study">
+    <>
       <noscript>
-        <style>{`.study-hint, .study-trigger { display: none; }`}</style>
+        <style>{`.study-trigger, .study-touch-cue { display: none; }`}</style>
       </noscript>
-      <div className="study-stage" data-phase={phase}>
-        <Image
-          src={badgePoster}
-          alt="Conceptual scan board, detected contour, and solid badge in three layers"
-          fill
-          sizes="(max-width: 600px) calc(100vw - 72px), (max-width: 960px) 55vw, 650px"
-        />
-        <button
-          type="button"
-          className="study-trigger"
-          aria-label="Rotate the three-dimensional badge study"
-          aria-describedby="study-description"
-          onPointerEnter={explore}
-          onPointerMove={(event) => {
-            if (
-              event.pointerType !== 'mouse' ||
-              !scene.current ||
-              window.matchMedia('(prefers-reduced-motion: reduce)').matches
-            )
-              return;
-            const bounds = event.currentTarget.getBoundingClientRect();
-            scene.current.point(
-              (event.clientX - bounds.left) / bounds.width,
-              (event.clientY - bounds.top) / bounds.height,
-            );
-          }}
-          onPointerLeave={(event) => {
-            if (event.pointerType === 'mouse') setPhase('idle');
-          }}
-          onBlur={() => setPhase('idle')}
-          onPointerCancel={() => setPhase('idle')}
-          onClick={() => {
-            if (active) scene.current?.rotate();
-            else setPhase('loading');
-          }}
-        />
-        {active && <canvas ref={canvas} aria-hidden="true" />}
+      <div className="badge-study">
+        <div className="study-stage" ref={stageEl} data-phase={phase}>
+          <Image
+            src={badgePoster}
+            alt="Conceptual relief emblem on a scan bed between four marker tags"
+            fill
+            sizes="(max-width: 600px) calc(100vw - 72px), (max-width: 960px) 55vw, 650px"
+          />
+          <button
+            type="button"
+            className="study-trigger"
+            aria-label="Play the badge study: physical scan, detected geometry, production asset"
+            aria-describedby="study-description"
+            onPointerEnter={(event) => {
+              if (event.pointerType !== 'mouse' || reduced()) return;
+              start();
+            }}
+            onPointerMove={(event) => {
+              if (event.pointerType !== 'mouse' || !view.current || reduced()) return;
+              const bounds = event.currentTarget.getBoundingClientRect();
+              view.current.point(
+                (event.clientX - bounds.left) / bounds.width,
+                (event.clientY - bounds.top) / bounds.height,
+              );
+            }}
+            onPointerLeave={(event) => {
+              if (event.pointerType === 'mouse') leave();
+            }}
+            onBlur={leave}
+            onPointerCancel={leave}
+            onClick={start}
+          />
+          <span className="study-touch-cue" aria-hidden="true">
+            Tap to scan
+          </span>
+          {active && <canvas ref={canvas} aria-hidden="true" />}
+        </div>
+        <p id="study-description" className="sr-only">
+          A relief emblem is scanned, its contours are detected, and the vector asset lifts off.
+        </p>
+        <p className="sr-only" role="status">
+          {messages[phase] || ''}
+        </p>
       </div>
-      <p className="study-hint" aria-hidden="true">
-        <span>Hover to explore · </span>Tap or press Enter to rotate
-      </p>
-      <p id="study-description" className="sr-only">
-        Conceptual scan board, detected contour, and solid badge in three layers.
-      </p>
-      <p className="sr-only" role="status">
-        {messages[phase] || ''}
-      </p>
-    </div>
+      <figcaption>
+        <h5 className="study-title">
+          {phrases.map((phrase, i) => (
+            <span key={phrase} data-dim={stage >= 0 && stage !== i ? 'true' : undefined}>
+              {phrase}
+            </span>
+          ))}
+        </h5>
+        <p className="pipeline-caption">Conceptual illustration, not a production scan.</p>
+      </figcaption>
+    </>
   );
 }

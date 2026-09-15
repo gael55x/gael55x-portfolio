@@ -1,0 +1,161 @@
+# Fable 3D and scroll-motion revision
+
+Base: `875ab8b` on `main`, the merge of PR #10. The owner rejected the earlier
+3D treatment and explicitly asked Fable 5.1 to revise it. The prior redesign
+reports describe that earlier handoff; their design-readiness verdict does not
+establish acceptance of this revision.
+
+## Audit and decision
+
+Fresh desktop/mobile screenshots and hover states showed these material issues:
+
+| Priority | Evidence                                                     | Root cause                                              | Revision                                                                            |
+| -------- | ------------------------------------------------------------ | ------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| P1       | Rest and hover look nearly identical                         | Whole-group tilt substitutes for choreography           | Finite scan, detection and lift sequence on hover                                   |
+| P1       | Small pastel board, wire torus and coin inside a large panel | Arbitrary primitives, distant framing and flat lighting | Close scan bed, beveled relief emblem, marker tags and contact shadows              |
+| P1       | Nothing visibly scans or becomes usable geometry             | The diagram does not demonstrate the project's domain   | A clipping plane replaces the relief with matching contours as a light sheet passes |
+| P2       | Scene disappears immediately on mouse leave                  | GPU lifetime and visual exit are the same event         | 450ms retract before disposal; smooth replay through rest                           |
+| P2       | Redundant heading, eyebrow and interaction instructions      | Copy explains controls rather than supporting the scene | Three short stage phrases and one conceptual-illustration note                      |
+| P2       | Motion mostly affects headings and one study                 | No consistent progression through the page              | Fully visible heading/content entrances across every major section                  |
+
+Fable independently compared a scan sweep, exploded assembly, and marker
+rectification. It selected the scan sweep: it communicates the computer-vision
+workflow and offers a visible transformation. Exploded assembly would repeat the
+old stack metaphor; camera-only rectification would flatten the endpoint.
+
+Fable authored the replacement geometry, lighting, timeline and component proposal
+through the owner's approved Claude subscription integration. Implementation review
+retained its concept and corrected camera framing, resource cleanup, motion-preference
+changes, replay resets, and repeated geometry disposal. Fable’s next review found no P0/P1 and scored identity 8 and engineering 8.5,
+but held composition/motion at 7.5 because the source competed with the output.
+The final source-dimming pass implements its recommended correction.
+
+Touch remains deliberately
+activated by tap; Fable's proposed scroll autoplay was rejected to preserve the
+existing opt-in GPU behavior.
+
+## Visual and motion specification
+
+- Slate scan bed, clay relief shield, cream G monogram and dusk-blue detected contours.
+  Four conceptual marker patterns ground the scan; they are not real ArUco IDs.
+- Warm key, cool rim, beveled geometry, one 1024px shadow map and ACES tone mapping.
+- **0–0.25s:** scanner enters; the camera begins a small move.
+- **0.25–1.65s:** the sheet sweeps across the emblem, clipping the physical form
+  and revealing its corresponding contours. Marker frames register as it passes.
+- **1.7–2.5s:** detected geometry lifts while the physical emblem returns below.
+- **2.7s:** the sequence settles. Pointer movement still eases the viewing angle;
+  rendering stops when the view settles.
+- **Exit:** the geometry retracts over 450ms, then holds without rendering for a
+  1.5s grace period so a quick re-entry can reuse the renderer. Replay and rapid re-entry pass through
+  rest instead of hard-resetting the camera or meshes.
+- **Touch/keyboard:** tap, Enter or Space starts/replays the sequence. Touch scrolling
+  does not start it. No drag interaction or scroll interception.
+- **Reduced motion:** hover stays static; deliberate activation shows the fixed
+  endpoint without an animation. Changing the preference releases the active scene.
+
+The G outline comes from the original JetBrains Mono Bold typeface, rather than a
+generic symbol. Its license is retained in `jetbrains-mono-OFL.txt`. Marker frames
+recede after detection; only the outer contour and G remain in the lifted view.
+
+As the contours lift, the physical source dims toward the bed tone. Retraction
+restores its original colors. This makes the two overlapping stages read as source
+and output instead of two equally prominent shapes.
+
+The stage caption follows the three beats without changing layout or adding copy.
+The static poster is rendered from the exact same resting geometry and camera.
+Loading and failed WebGL retain the poster. All explanatory content stays HTML.
+
+### Motion through the page
+
+Hero portrait depth, proof entries, work summaries/dividers, public tools,
+experience rows, writing rows, About and contact use native CSS scroll timelines.
+Headings lead with 24px entrances; content follows with 28px entrances. Text is
+fully opaque throughout. The speaking image moves a small distance within a clipped
+frame. The portrait's wire frame and clay block separate independently on hover,
+echoing the vector lift. Native disclosure transitions and reading progress remain.
+
+Unsupported browsers keep the static layout and native disclosures. Reduced motion
+disables every CSS effect. No scroll listener, animation framework or new runtime
+dependency was added.
+
+## Engineering review
+
+The React island owns activation, readable state and browser lifecycle events.
+The Three module owns geometry, clipping, finite animation and GPU resources.
+Imperative code is confined to those stateful side effects. It schedules at most
+one animation frame, clamps negative frame deltas, cancels replay on disposal,
+and releases shared geometries once. Leaving the viewport, hiding the document,
+context loss and component unmount also release the GPU.
+
+The shadow map and finite sequence cost more during deliberate interaction than
+the old tilt-only scene. They provide contact, depth and an actual transformation.
+DPR remains capped at 1.5; there are no external models, downloaded textures,
+post-processing passes, continuous idle animation or automatic mobile activation.
+Three.js remains dynamically imported. Initial JavaScript remains about 110kB; the optional scene chunks total 144KiB gzip
+(previously about 135KiB). There are no new runtime dependencies.
+
+## Validation and evidence
+
+- `npm run test:scene`: controlled timestamps exercise scan progression, contour
+  lift, finite settling, continuous pointer input, retract/re-entry, reduced-motion
+  endpoint and shared-resource disposal using the real Three geometry.
+- Production Playwright: eight widths from 320px to 1920px, first-screen actions,
+  keyboard navigation, all disclosures/anchors, no-JS reading, 200% text, overflow,
+  axe A/AA, loading/failure fallbacks, real canvas changes, idle frame counts,
+  touch replay and live motion-preference changes.
+- Lint, Prettier, production build, Knip, Snapline, dependency audit and full diff
+  review pass. Knip and Snapline report zero issues; npm reports zero vulnerabilities.
+- `npm run render:study` regenerates the poster and rest/scan/end frames from the
+  production scene with local browser routing. No development route ships.
+
+![Scan transformation](evidence/scan-transformation.png)
+![Completed vector lift](evidence/desktop-3d.png)
+![Mobile scene](evidence/mobile-study.png)
+
+### Final performance run
+
+Local mobile Lighthouse on the final production build: **98 performance / 100
+accessibility / 100 best practices / 100 SEO**. LCP **2.4s**, TBT **20ms**, CLS **0**.
+The preceding run scored 98 with LCP 2.2s and TBT 120ms; lab timing varies. No field
+Core Web Vitals or physical mobile GPU measurements are claimed.
+
+## Limits
+
+The model is a conceptual workflow illustration, not a production result or an
+accuracy claim. Employer metrics and original copy are unchanged. The résumé/site
+Referrin date discrepancy and externally blocked profile checks remain as described
+in the original validation report. Browser emulation and lab performance do not
+certify physical mobile GPUs, screen readers or field Core Web Vitals.
+
+## Final independent verdict
+
+Fable confirmed the source-dimming correction resolves the remaining hierarchy
+problem: **ready to ship**, with composition/materials **8**, identity **8**,
+motion **8**, engineering/lifecycle **8.5**, and overall revision **8/10**.
+Its residual P2 is that deliberate reduced-motion activations recreate the renderer
+after leaving; each activation renders only the static endpoint. A slight muddy
+cast in the dimmed source is a minor art-direction limitation, not another scope item.
+
+### Lead integration review
+
+| Category                | Score |
+| ----------------------- | ----- |
+| First impression        | 8     |
+| Employer friendliness   | 8.5   |
+| Information hierarchy   | 8.5   |
+| Visual design           | 8     |
+| Typography              | 8.5   |
+| Brand distinctiveness   | 8     |
+| Project storytelling    | 8     |
+| Engineering credibility | 8.5   |
+| Mobile UX               | 8     |
+| Accessibility           | 8     |
+| Performance             | 8.5   |
+| Motion design           | 8     |
+| Maintainability         | 8     |
+
+These are design judgments, not measured hiring outcomes or accessibility certification.
+The finite scene is larger than the old rotation-only module because it models the
+scan, clipping, material hierarchy and exit/replay behavior explicitly. All other
+motion uses CSS. The extra complexity is isolated, covered by lifecycle tests, and
+loads only when requested.

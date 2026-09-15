@@ -1,5 +1,8 @@
 # Portfolio redesign audit
 
+Historical report for PR #10. See [the subsequent Fable motion revision](motion-revision.md)
+for the current 3D concept, motion behavior and validation.
+
 Baseline: `44155ffd8229cd5600bb2ce55264c164342e0fab` on `main`, inspected 15 September 2026.
 One branch and one PR. No deployment or merge is part of this delivery.
 

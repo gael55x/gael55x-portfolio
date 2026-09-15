@@ -47,22 +47,7 @@ export default function SelectedWork() {
             </div>
             {item.id === 'badge-guru' && (
               <figure className="pipeline">
-                <div className="pipeline-body">
-                  <BadgeStudy />
-                  <figcaption>
-                    <p className="eyebrow">Badge Guru / A study in three layers</p>
-                    <h5>
-                      Physical scan.
-                      <br />
-                      Detected geometry.
-                      <br />
-                      Production asset.
-                    </h5>
-                    <p className="pipeline-caption">
-                      Conceptual illustration of the workflow, not a production scan.
-                    </p>
-                  </figcaption>
-                </div>
+                <BadgeStudy />
               </figure>
             )}
           </article>

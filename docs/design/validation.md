@@ -1,5 +1,8 @@
 # Final portfolio validation
 
+Historical report for PR #10. See [the subsequent Fable motion revision](motion-revision.md)
+for the current 3D concept, motion behavior and validation.
+
 Reviewed 15 September 2026 against `main` at
 `44155ffd8229cd5600bb2ce55264c164342e0fab`. The branch contains one integrated
 portfolio change. No merge or production deployment was performed.

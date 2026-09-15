@@ -337,8 +337,18 @@ button {
   .portrait-frame {
     transition: transform 450ms ease;
   }
+  .portrait-frame::before,
+  .portrait-frame::after {
+    transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
   .hero-portrait:hover .portrait-frame {
     transform: rotateY(-7deg) rotateX(3deg);
+  }
+  .hero-portrait:hover .portrait-frame::before {
+    transform: translateZ(-32px) rotateY(-22deg);
+  }
+  .hero-portrait:hover .portrait-frame::after {
+    transform: translateZ(38px);
   }
 }
 .proof-band ul {
@@ -508,28 +518,29 @@ button {
   color: var(--muted);
 }
 
-/* One static 3D composition; WebGL is an optional, user-triggered enhancement. */
+/* Fable's scan-to-vector study; WebGL loads only on hover or deliberate activation. */
 .pipeline {
   grid-column: 1 / -1;
-  padding: 28px 36px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 32px;
+  padding: 24px 28px;
   background: var(--dark);
   color: var(--ink);
 }
-.pipeline .eyebrow {
-  color: var(--light-muted);
-}
-.pipeline-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-  align-items: center;
-  gap: 40px;
-}
-.pipeline h5 {
+.study-title {
   font-size: clamp(1.2rem, 2.3vw, 2rem);
   line-height: 1.4;
   font-weight: 400;
   letter-spacing: -0.035em;
-  margin: 22px 0;
+  margin: 0 0 18px;
+}
+.study-title span {
+  display: block;
+}
+.study-title span[data-dim='true'] {
+  color: var(--light-muted);
 }
 .pipeline-caption {
   max-width: 260px;
@@ -572,15 +583,18 @@ button {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
-.study-hint {
+.study-touch-cue {
+  display: none;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font: 0.6875rem var(--mono);
   color: var(--light-muted);
-  font-size: 0.6875rem;
-  text-align: center;
-  padding-top: 12px;
 }
-@media (hover: none), (prefers-reduced-motion: reduce) {
-  .study-hint > span {
-    display: none;
+@media (hover: none) {
+  .study-stage[data-phase='idle'] .study-touch-cue {
+    display: block;
   }
 }
 .case-notes summary,
@@ -828,6 +842,7 @@ button {
   position: relative;
   aspect-ratio: 4 / 3;
   background: var(--line);
+  overflow: clip;
 }
 .speaking-photo img {
   object-fit: cover;
@@ -919,6 +934,12 @@ button {
 
 /* Motion is feedback, never a condition for seeing content. */
 @media (prefers-reduced-motion: no-preference) {
+  .study-title span {
+    transition: color 320ms ease;
+  }
+  .study-stage canvas {
+    transition: opacity 240ms ease;
+  }
   @supports (interpolate-size: allow-keywords) and selector(details::details-content) {
     details::details-content {
       display: flow-root;
@@ -934,10 +955,49 @@ button {
     }
   }
   @supports (animation-timeline: view()) {
-    .section-heading {
+    .section-heading,
+    .contact-heading {
       animation: section-arrival cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: entry 0% cover 30%;
+    }
+    .proof-band,
+    .case-company,
+    .case-content,
+    .tool,
+    .experience-list article,
+    .writing-list article,
+    .about-copy,
+    .contact-bottom {
+      animation: content-arrival cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 22%;
+    }
+    .hero-portrait {
+      animation: portrait-departure linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+    .case-study {
+      position: relative;
+      border-top-color: transparent;
+    }
+    .case-study::before {
+      content: '';
+      position: absolute;
+      inset: -1px 0 auto;
+      height: 1px;
+      background: var(--line);
+      transform-origin: left;
+      animation: reading-progress linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 25%;
+      pointer-events: none;
+    }
+    .speaking-photo img {
+      animation: photo-depth linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
     }
   }
   @supports (animation-timeline: scroll()) {
@@ -1010,6 +1070,30 @@ button {
     transform: none;
   }
 }
+@keyframes photo-depth {
+  from {
+    transform: scale(1.08) translateY(-3%);
+  }
+  to {
+    transform: scale(1.08) translateY(3%);
+  }
+}
+@keyframes content-arrival {
+  from {
+    transform: translateY(28px);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes portrait-departure {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateY(32px);
+  }
+}
 
 @media (max-width: 960px) {
   .container {
@@ -1049,8 +1133,6 @@ button {
   }
   .pipeline {
     padding: 24px;
-  }
-  .pipeline-body {
     gap: 24px;
   }
   .testimonial {
@@ -1204,12 +1286,10 @@ button {
   }
   .pipeline {
     padding: 20px 16px;
-  }
-  .pipeline-body {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-  .pipeline h5 {
+  .study-title {
     margin-block: 14px;
     font-size: 1.25rem;
   }

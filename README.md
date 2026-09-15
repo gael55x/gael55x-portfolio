@@ -63,19 +63,25 @@ updating layout metadata, robots, and sitemap together.
 ### Hover-driven 3D
 
 `components/BadgeStudy.jsx` is the only custom client component. A static poster
-shows the conceptual scan/contour/output composition. Hover loads Three.js and
-pointer movement changes the view. Tap or Enter provides an alternative rotation
-control. Leaving the study with a mouse, moving focus away, or touching outside disposes
-the renderer. Reduced motion never loads WebGL just from hover; deliberate activation changes the view
-immediately. No auto-rotation, idle animation loop, textures, shadows or model downloads.
+shows the relief emblem on its scan bed. Hover loads Three.js and plays Fable's
+2.7-second scan-to-vector sequence; pointer movement changes the view. Tap or
+Enter plays/replays it. Leaving retracts the geometry over 450ms before releasing
+the renderer after a 1.5-second grace period with no rendering. Quick re-entry/replay passes through rest without a hard reset.
 
-`lib/badgeScene.js` owns the imperative WebGL lifecycle: rendering, resizing and
-resource disposal. Pointer movement uses frame-time smoothing, with at most one pending animation
-frame. Rendering stops once settled; tap and Enter still change the view immediately. Device pixel ratio is capped at 1.5.
+Reduced motion keeps the poster on hover and shows a fixed endpoint on deliberate
+activation. Scrolling alone never loads WebGL, including on touch. Leaving the
+viewport, hiding the tab, changing the motion preference, or losing the context
+releases resources. No persistent idle render loop or external model downloads.
 
-The poster is captured from the same scene and imported statically, so its URL is
-content-hashed. Regenerate it with `UPDATE_POSTER=1 npm run test:browser` after a scene
-change, inspect the PNG, and rebuild before the final browser run.
+`lib/badgeScene.js` owns the stateful GPU lifecycle and finite choreography.
+A capped 1.5 DPR and one 1024px shadow map provide contact and depth. The scene uses
+procedural geometry and marker patterns, explicitly conceptual rather than a real
+ArUco dictionary or production scan. No new animation framework.
+
+After changing the scene, run `BROWSER_CHANNEL=chrome npm run render:study` to
+regenerate the content-hashed poster and inspect rest/scan/end frames. This uses
+local browser routing and needs no preview server. Rebuild afterward so the
+page imports the new poster hash. Outputs default to `/tmp/portfolio-study`.
 
 ### Dependencies
 
@@ -84,16 +90,19 @@ version is overridden to a patched range and verified by a clean install.
 All styling and the small native-element reset live in `app/globals.css`. Tailwind,
 its unused theme/build configuration, Framer Motion, and obsolete media were removed.
 
-A native CSS reading-progress line follows the document. Section headings move
-24px into place as they enter the viewport, and the badge study has a small scroll-linked entrance on
-fine-pointer devices. Native disclosures expand and collapse over 240ms; buttons
+Native CSS scroll timelines give each major section a heading/content entrance,
+progressive work dividers, a reading-progress line, and bounded depth in the hero
+and speaking photograph. Portrait layers separate on hover. The badge also enters
+with a small perspective change on fine-pointer devices. Native disclosures expand and collapse over 240ms; buttons
 have slight hover and press feedback. No effect hides text or loads WebGL.
 Unsupported browsers retain native behavior; reduced motion disables these transitions.
 
 ## Review evidence
 
 - [Audit and direction](docs/design/audit.md)
-- [Final validation and screenshots](docs/design/validation.md)
+- [Original redesign validation](docs/design/validation.md)
+- [Fable 3D and motion revision](docs/design/motion-revision.md)
 
-One cohesive PR targets `main`. Do not merge automatically. A hosting integration
+The original redesign was merged as PR #10. Keep this motion revision cohesive
+and target `main`. Do not merge automatically. A hosting integration
 may create its normal PR preview; local tests do not prove a production deployment.
