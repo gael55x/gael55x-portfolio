@@ -1,5 +1,4 @@
-/** Employer-focused case studies (Problem / Action / Result / Business).
- * Dates match the resume PDF. */
+/** Original portfolio messaging. Employer outcomes are self-reported. */
 export const selectedWork = [
   {
     id: 'willed',
@@ -45,8 +44,7 @@ export const selectedWork = [
       'Built the computer vision R&D behind scanner automation: an OpenCV rendering pipeline with ArUco marker detection, glare reduction, and vectorization that turns a physical scan into production-ready assets.',
     result:
       'Emblem processing cut from 10 minutes to 30 seconds (~20x). Automated, repeatable, and no longer the bottleneck on the line.',
-    business:
-      'More units through the manufacturing line per shift without adding headcount.',
+    business: 'More units through the manufacturing line per shift without adding headcount.',
     stack: ['Python', 'OpenCV', 'ArUco', 'FastAPI', 'AWS'],
   },
   {

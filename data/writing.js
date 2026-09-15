@@ -1,7 +1,5 @@
-/** Featured essays. Follower count and syndication verified July 2026. */
+/** Original featured essays and publication dates. */
 export const writing = {
-  intro:
-    'I write about the engineering lessons you only learn after things break: security post-mortems, agent infrastructure, and quant systems. 375+ followers on Medium; the quant series is syndicated in InsiderFinance Wire.',
   profileUrl: 'https://medium.com/@gaille.amolong1',
   articles: [
     {

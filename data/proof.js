@@ -1,7 +1,4 @@
-/**
- * Click-to-verify receipts. Every number links to the public source that
- * proves it. Figures rounded down from July 2026 values so they age safely.
- */
+/** Original activity figures recorded July 2026; employer scale is self-reported. */
 export const proofPoints = [
   {
     value: '4,800+',
