@@ -24,6 +24,7 @@ try {
     ['laptop', 1280, 800],
     ['tablet', 768, 1024],
     ['mobile', 390, 844],
+    ['short-mobile', 375, 667],
     ['small-mobile', 320, 740],
     ['small-tablet', 601, 900],
     ['breakpoint', 961, 900],
@@ -92,15 +93,13 @@ try {
       .getByRole('link', { name: 'work', exact: true })
       .click();
     await page.mouse.move(0, 0);
-    assert(
-      await page
-        .locator('#work')
-        .evaluate(
-          (el) =>
-            el.getBoundingClientRect().top >=
-            document.querySelector('header').getBoundingClientRect().bottom,
-        ),
-      'Anchor heading must clear sticky navigation',
+    // Next's hash navigation completes after the link click resolves.
+    await page.waitForFunction(
+      () =>
+        Math.abs(
+          document.querySelector('#work').getBoundingClientRect().top -
+            document.querySelector('.site-header').getBoundingClientRect().bottom,
+        ) <= 1,
     );
     for (const href of await page
       .locator('a[href^="#"], a[href^="/#"]')
@@ -333,6 +332,17 @@ try {
       photoPose,
       'Speaking photograph has bounded scroll depth',
     );
+    await page.evaluate(() => scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }));
+    await page.waitForFunction(() => {
+      const animations = document
+        .querySelector('.contact-heading')
+        .getAnimations({ subtree: true });
+      return (
+        animations.length >= 2 &&
+        animations.every((animation) => animation.effect.getComputedTiming().progress === 1)
+      );
+    });
+    await page.screenshot({ path: `${output}/desktop-contact-motion.png` });
   }
   await page.locator('.hero-portrait').hover();
   await page.waitForFunction(

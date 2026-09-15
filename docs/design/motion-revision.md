@@ -235,9 +235,58 @@ employer outcomes remain self-reported.
 - Initial JavaScript remains approximately **110kB**; the scene remains a lazy
   optional chunk. The transparent source poster is **73,863 bytes** before Next's
   responsive image optimization. No new runtime dependency was added.
-- Latest checked `main` remains `875ab8b`; no conflicting open PR was found.
+- The initial refinement was checked against `main` at `875ab8b`. The spacing
+  follow-up below also incorporates `4452cc7`, the email-signature logo addition.
 
 ![Final desktop hero](evidence/desktop-hero.png)
 ![Final mobile hero](evidence/mobile-hero.png)
 ![Combined work and employment](evidence/desktop-work.png)
 ![Contact and footer](evidence/desktop-contact.png)
+
+### Spacing refinement in PR #11
+
+The follow-up keeps the original copy, monospace typography, portrait hover and
+scan sequence. Its target is Apple-inspired restraint with an editorial engineering
+identity. The screenshots above now show this spacing pass.
+
+| Finding                                                                                | Priority | Change                                                                                           |
+| -------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------ |
+| Wide project descriptions made the work section read like a specification sheet.       | P1       | Cap descriptions and supporting copy at 62ch; constrain project and essay titles separately.     |
+| Employer headings floated between full-width and partial dividers.                     | P2       | Remove the partial dividers and extra group margins; keep each employer close to its projects.   |
+| Ruled hero rows and boxed statistics competed with the main message.                   | P2       | Keep one hero-proof rule; use open statistics columns, whitespace and a number hover state.      |
+| Section padding and heading gaps varied across separate breakpoint rules.              | P2       | Share fluid 56–104px section spacing, 32–40px heading separation and the editorial rail/offset.  |
+| Anchor navigation exposed a fragment of the preceding section below the sticky header. | P2       | Align scroll padding with the header height and verify the Work section lands directly below it. |
+
+The portrait's extra floor plane and its unused color token were removed. The
+original perspective frame and hover behavior remain. Mobile receives selective
+spacing changes, with no new content, runtime dependency or animation code.
+The browser suite now also covers a short 375 × 667 viewport and asserts that
+the Work anchor aligns with the sticky header.
+
+Fable independently reviewed the new desktop, tablet and short-phone screenshots
+and CSS diff and returned **ship**. Its one cosmetic finding, insufficient space
+between the contact contour and footer, was fixed with 24px of additional clearance.
+The small phone keeps its résumé and contact actions above the fold; the portrait
+continues below them. A pre-existing wrapped separator in tablet employment metadata
+remains a minor typographic limitation.
+
+Normal-motion inspection also found that the closing entrance could remain partly
+complete at the page bottom. Both contact animations now finish when the heading
+fully enters the viewport. Browser coverage verifies their completed endpoint and
+waits for actual anchor navigation before measuring alignment.
+
+The final production suite passes all nine viewports: 320, 375, 390, 601, 768,
+961, 1280, 1440 and 1920px. It reports zero overflow and zero axe A/AA violations,
+and passes keyboard, disclosures, 200% text, no-JS, portrait hover, scan lifecycle,
+reduced-motion, metadata, résumé and 404 coverage. The new anchor-alignment and
+contact-animation completion checks pass. At 390px the page is 8,153px tall,
+up 96px (1.2%) from 8,057px; at 768px it is 36px shorter. Initial JavaScript stays
+at approximately 110kB. Lint, formatting, build, scene tests, Knip and Snapline pass.
+
+![Short-phone first screen](evidence/short-mobile-hero.png)
+![Mobile work hierarchy](evidence/mobile-work.png)
+
+The final spacing build's local mobile Lighthouse run reports **98 performance /
+100 accessibility / 100 best practices / 100 SEO**, LCP **2.5s**, TBT **50ms**,
+and CLS **0**. These are lab results, not field Core Web Vitals. The earlier
+96/100/100/100 result above belongs to the preceding revision.
