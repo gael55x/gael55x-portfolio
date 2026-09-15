@@ -7,7 +7,7 @@ portfolio change. No merge or production deployment was performed.
 ## Runtime and browser checks
 
 - Clean `npm ci --ignore-scripts`; production `npm run build`.
-- `npm run lint` and `npm run format:check`.
+- `npm run lint`, `npm run format:check`, and `npm run test:scene`.
 - Knip: no unused files, exports, or dependencies reported. The existing Snapline
   hook dependency is the only documented exclusion; no application source is ignored.
 - Snapline: zero configured design-system violations.
@@ -35,8 +35,9 @@ The résumé, favicon, share image, robots, sitemap, canonical and 404 recovery 
 
 Interaction checks exercise actual canvas pixels, not just the presence of a button:
 
-- Hover activates the scene; pointer movement rotates it without a click.
-- Leaving releases the renderer and canvas; Enter activates and rotates it.
+- Hover activates the scene; pointer movement eases the view without a click.
+  WebGL frame counts verify multiple settling frames and zero rendering once idle.
+- Leaving during easing releases the renderer and canvas; Enter activates and rotates it.
 - Repeated touch rotates the existing scene instead of recreating it; an outside
   touch releases it without relying on button focus.
 - A deliberately held scene request leaves the poster visible while loading.
@@ -69,7 +70,7 @@ Local mobile Lighthouse 12.8.2, simulated throttling, production builds:
 
 The optional 3D chunks total approximately 135 KiB gzip when activated. No textures,
 model downloads, shadows or continuous animation loop. DPR is capped at 1.5 and
-pointer renders are coalesced into one animation frame. Its cost is opt-in on touch
+pointer movement uses frame-time smoothing with one pending frame and stops once settled. Its cost is opt-in on touch
 and reduced motion; a fine-pointer hover loads it on desktop.
 
 Earlier runs of the refined design scored 97–98, with 30–90ms blocking time. The
@@ -109,6 +110,17 @@ Changed the content pseudo-element to clip vertically only and use a flow-root,
 and added a keyboard-focus screenshot and geometry/transition checks. The follow-up
 confirmed the section-entry and button transitions and the outside-touch release.
 No further visual direction or additional effects were introduced.
+
+The later hover-smoothing review caught a frame-clock ordering bug during continuous
+pointer input. A controlled-clock check reproduced the backward movement, then
+verified the correction: use elapsed frame time without restarting on every input.
+That check now runs against the actual scene module with real Three geometry and a
+renderer spy; it also checks exact settling, one pending frame and cancellation.
+The browser suite exercises a continuous pointer sweep and counts actual WebGL
+frames to verify that rendering stops when idle.
+Fable's follow-up confirmed the corrected motion was ready to include. Its additional
+test suggestion now verifies that the badge follows during the sweep, rather than
+waiting for the pointer to stop.
 
 The fixed mobile hire overlay and live clock were deliberately not restored: the
 visible contact link, normal-flow actions, location and timezone cover their useful

@@ -935,9 +935,9 @@ button {
   }
   @supports (animation-timeline: view()) {
     .section-heading {
-      animation: section-arrival linear both;
+      animation: section-arrival cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
-      animation-range: entry 0% entry 100%;
+      animation-range: entry 0% cover 30%;
     }
   }
   @supports (animation-timeline: scroll()) {
@@ -996,7 +996,7 @@ button {
 }
 @keyframes section-arrival {
   from {
-    transform: translateY(18px);
+    transform: translateY(24px);
   }
   to {
     transform: none;

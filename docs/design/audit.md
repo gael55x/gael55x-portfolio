@@ -183,3 +183,12 @@ native disclosure expansion/collapse, and slight button hover/press feedback.
 Headings remain fully opaque throughout. Feature queries preserve native disclosure
 behavior where intrinsic-size interpolation is unsupported. Reduced motion disables
 all three additions. No new dependency, content, or client state.
+
+### Motion rhythm refinement
+
+A follow-up motion review found that headings finished moving at the viewport edge,
+where visitors were unlikely to notice them. Their 24px entrance now has a longer easing range
+and settles before the reading position. The badge smoothly follows pointer
+movement using the elapsed time between frames; no frame work remains after it settles.
+Tap/Enter stay immediate, and leaving cancels an in-flight transition and releases
+WebGL. All additions preserve the original copy and static reduced-motion behavior.

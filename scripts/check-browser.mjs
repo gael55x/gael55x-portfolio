@@ -155,6 +155,14 @@ try {
     await browser.newContext({ viewport: { width: 1280, height: 900 } })
   ).newPage();
   page.on('pageerror', (error) => errors.push(`3D: ${error.message}`));
+  await page.addInitScript(() => {
+    const clear = WebGL2RenderingContext.prototype.clear;
+    window.studyFrames = 0;
+    WebGL2RenderingContext.prototype.clear = function (...args) {
+      window.studyFrames += 1;
+      return clear.apply(this, args);
+    };
+  });
   await page.goto(baseURL, { waitUntil: 'networkidle' });
   if (
     await page.evaluate(
@@ -221,6 +229,37 @@ try {
     await archive.locator('summary').press('Enter');
   }
   if (await page.evaluate(() => CSS.supports('animation-timeline: scroll()'))) {
+    const heading = page.locator('.section-heading').first();
+    const headingTop = await heading.evaluate(
+      (el) =>
+        el.getBoundingClientRect().top +
+        scrollY -
+        new DOMMatrix(getComputedStyle(el).transform).m42,
+    );
+    await page.evaluate(
+      (top) => scrollTo({ top: top - innerHeight + 60, behavior: 'instant' }),
+      headingTop,
+    );
+    await page.evaluate(
+      () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+    );
+    assert(
+      await heading.evaluate((el) => new DOMMatrix(getComputedStyle(el).transform).m42 > 0.5),
+      'Heading entrance remains visible beyond the bottom edge',
+    );
+    await page.evaluate(
+      (top) => scrollTo({ top: top - innerHeight * 0.55, behavior: 'instant' }),
+      headingTop,
+    );
+    await page.evaluate(
+      () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+    );
+    assert(
+      await heading.evaluate(
+        (el) => Math.abs(new DOMMatrix(getComputedStyle(el).transform).m42) < 0.1,
+      ),
+      'Heading settles before the reading position',
+    );
     const startProgress = await page
       .locator('.site-header')
       .evaluate((el) => getComputedStyle(el, '::after').transform);
@@ -279,15 +318,27 @@ try {
     await canvas.screenshot({ path: 'public/assets/badge-study-poster.png' });
   const initial = await canvas.screenshot();
   const bounds = await trigger.boundingBox();
-  await page.mouse.move(bounds.x + bounds.width * 0.8, bounds.y + bounds.height * 0.4);
-  await page.evaluate(() => new Promise(requestAnimationFrame));
+  const framesBeforeHover = await page.evaluate(() => window.studyFrames);
+  await page.mouse.move(bounds.x + bounds.width * 0.8, bounds.y + bounds.height * 0.4, {
+    steps: 30,
+  });
+  await page.waitForFunction((before) => window.studyFrames > before + 1, framesBeforeHover);
+  await page.waitForTimeout(500);
   assert.notDeepEqual(
     await canvas.screenshot(),
     initial,
     'Hover must change the geometry without a click',
   );
+  const settledFrames = await page.evaluate(() => window.studyFrames);
+  await page.waitForTimeout(250);
+  assert.equal(
+    await page.evaluate(() => window.studyFrames),
+    settledFrames,
+    'Hover easing must stop rendering once settled',
+  );
+  await page.mouse.move(bounds.x + bounds.width * 0.2, bounds.y + bounds.height * 0.7);
   await page.mouse.move(0, 0);
-  assert.equal(await canvas.count(), 0, 'Leaving the study releases WebGL');
+  assert.equal(await canvas.count(), 0, 'Leaving during easing releases WebGL');
   await trigger.focus();
   await page.keyboard.press('Enter');
   await page.getByRole('status').filter({ hasText: '3D ready' }).waitFor();

@@ -17,6 +17,7 @@ npm run dev
 ```sh
 npm run lint
 npm run format:check
+npm run test:scene
 npx knip
 npx --no-install snapline scan
 npm run build
@@ -32,7 +33,8 @@ To use installed Chrome: `BROWSER_CHANNEL=chrome npm run test:browser`.
 They cover eight widths, actual heading fonts, overflow, native disclosures,
 keyboard navigation, disclosure transitions, axe accessibility checks, reduced motion, hover/touch/keyboard
 3D, resource release, WebGL failure, no-JS content, metadata, résumé and 404 routing.
-There is no separate TypeScript or unit-test suite; the repository is JavaScript.
+A focused Node scene check controls frame timestamps to reproduce continuous-input
+timing bugs without a GPU. There is no separate TypeScript suite; this repository is JavaScript.
 
 Knip resolves the same `@/*` alias as Next. The single ignored dependency is
 Snapline, which is invoked by the existing `.claude/settings.json` lifecycle hooks.
@@ -65,11 +67,11 @@ shows the conceptual scan/contour/output composition. Hover loads Three.js and
 pointer movement changes the view. Tap or Enter provides an alternative rotation
 control. Leaving the study with a mouse, moving focus away, or touching outside disposes
 the renderer. Reduced motion never loads WebGL just from hover; deliberate activation changes the view
-immediately. No auto-rotation, animation loop, textures, shadows or model downloads.
+immediately. No auto-rotation, idle animation loop, textures, shadows or model downloads.
 
 `lib/badgeScene.js` owns the imperative WebGL lifecycle: rendering, resizing and
-resource disposal. Pointer events schedule at most one render per animation frame;
-there is no frame work while idle. Device pixel ratio is capped at 1.5.
+resource disposal. Pointer movement uses frame-time smoothing, with at most one pending animation
+frame. Rendering stops once settled; tap and Enter still change the view immediately. Device pixel ratio is capped at 1.5.
 
 The poster is captured from the same scene and imported statically, so its URL is
 content-hashed. Regenerate it with `UPDATE_POSTER=1 npm run test:browser` after a scene
@@ -83,7 +85,7 @@ All styling and the small native-element reset live in `app/globals.css`. Tailwi
 its unused theme/build configuration, Framer Motion, and obsolete media were removed.
 
 A native CSS reading-progress line follows the document. Section headings move
-18px into place, and the badge study has a small scroll-linked entrance on
+24px into place as they enter the viewport, and the badge study has a small scroll-linked entrance on
 fine-pointer devices. Native disclosures expand and collapse over 240ms; buttons
 have slight hover and press feedback. No effect hides text or loads WebGL.
 Unsupported browsers retain native behavior; reduced motion disables these transitions.
