@@ -95,8 +95,8 @@ server components. No second animation framework or React Three Fiber. The origi
   one featured study, four concise project summaries and shared alignment.
 - **Creative director:** original slate identity, warm emphasis, physical-to-digital
   study, real photography and portrait depth. No stock renders or fake dashboard screenshots.
-- **Motion:** user-triggered feedback, no persistent loops or scroll effects. Portrait tilt uses CSS only, enabled
-  on fine-pointer hover with no reduced-motion preference.
+- **Motion:** user-triggered feedback, restrained native scroll transitions, no persistent loops.
+  Portrait tilt uses CSS only, enabled on fine-pointer hover with no reduced-motion preference.
 - **Hiring psychology:** bounded claims and direct evidence; original messaging preserved at owner request, dated activity
   counters, explicit self-reported outcomes, and scoped public benchmarks.
 - **Accessibility/performance:** ordinary links and disclosures, visible focus,
@@ -177,3 +177,9 @@ The owner's final request for scroll creativity adds a thin reading-progress lin
 and a 24px/5-degree entrance on the badge study, using native CSS scroll timelines.
 All text stays visible, scrolling does not load WebGL, and reduced motion and
 unsupported browsers keep the static layout. No additional client component.
+
+The subsequent request for transitions adds 18px section-heading entrances, 240ms
+native disclosure expansion/collapse, and slight button hover/press feedback.
+Headings remain fully opaque throughout. Feature queries preserve native disclosure
+behavior where intrinsic-size interpolation is unsupported. Reduced motion disables
+all three additions. No new dependency, content, or client state.

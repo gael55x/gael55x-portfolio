@@ -919,6 +919,27 @@ button {
 
 /* Motion is feedback, never a condition for seeing content. */
 @media (prefers-reduced-motion: no-preference) {
+  @supports (interpolate-size: allow-keywords) and selector(details::details-content) {
+    details::details-content {
+      display: flow-root;
+      interpolate-size: allow-keywords;
+      block-size: 0;
+      overflow-y: clip;
+      transition:
+        block-size 240ms ease,
+        content-visibility 240ms allow-discrete;
+    }
+    details[open]::details-content {
+      block-size: auto;
+    }
+  }
+  @supports (animation-timeline: view()) {
+    .section-heading {
+      animation: section-arrival linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+  }
   @supports (animation-timeline: scroll()) {
     .site-header::after {
       content: '';
@@ -943,6 +964,17 @@ button {
       background-color 0.18s ease,
       border-color 0.18s ease;
   }
+  .button {
+    transition:
+      background-color 180ms ease,
+      transform 180ms ease;
+  }
+  .button:hover {
+    transform: translateY(-2px);
+  }
+  .button:active {
+    transform: none;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
@@ -960,6 +992,14 @@ button {
   }
   to {
     transform: scaleX(1);
+  }
+}
+@keyframes section-arrival {
+  from {
+    transform: translateY(18px);
+  }
+  to {
+    transform: none;
   }
 }
 @keyframes study-arrival {

@@ -156,6 +156,70 @@ try {
   ).newPage();
   page.on('pageerror', (error) => errors.push(`3D: ${error.message}`));
   await page.goto(baseURL, { waitUntil: 'networkidle' });
+  if (
+    await page.evaluate(
+      () =>
+        CSS.supports('interpolate-size: allow-keywords') &&
+        CSS.supports('selector(details::details-content)'),
+    )
+  ) {
+    const details = page.locator('.case-notes').first();
+    const closedHeight = (await details.boundingBox()).height;
+    assert.equal(
+      await details.evaluate((el) =>
+        getComputedStyle(el, '::details-content').transitionDuration.split(',')[0].trim(),
+      ),
+      '0.24s',
+      'Normal motion enables the disclosure transition',
+    );
+    await details.locator('summary').click();
+    // Chrome does not expose ::details-content transitions through getAnimations().
+    await page.waitForFunction(() => {
+      const el = document.querySelector('.case-notes');
+      return (
+        el.querySelector('dl').getBoundingClientRect().bottom <= el.getBoundingClientRect().bottom
+      );
+    });
+    assert((await details.boundingBox()).height > closedHeight, 'Disclosure content expands fully');
+    await page.screenshot({ path: `${output}/desktop-details-open.png` });
+    await details.locator('summary').click();
+    await page.waitForFunction(
+      (height) =>
+        Math.abs(document.querySelector('.case-notes').getBoundingClientRect().height - height) < 1,
+      closedHeight,
+    );
+    assert(
+      Math.abs((await details.boundingBox()).height - closedHeight) < 1,
+      'Disclosure closes without leftover space',
+    );
+    const archive = page.locator('.project-archive');
+    await archive.locator('summary').focus();
+    await page.keyboard.press('Enter');
+    await page.waitForFunction(() => {
+      const el = document.querySelector('.project-archive');
+      return (
+        el.querySelector('ul').getBoundingClientRect().bottom <= el.getBoundingClientRect().bottom
+      );
+    });
+    await page.keyboard.press('Tab');
+    assert(
+      await archive
+        .locator('a')
+        .first()
+        .evaluate((el) => el.matches(':focus-visible')),
+    );
+    assert.equal(
+      await archive.evaluate((el) => getComputedStyle(el, '::details-content').overflowX),
+      'visible',
+      'Disclosure animation must not clip archive focus rings horizontally',
+    );
+    await archive
+      .locator('a')
+      .first()
+      .evaluate((el) => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+    await page.screenshot({ path: `${output}/desktop-archive-focus.png` });
+    await archive.locator('summary').press('Enter');
+  }
   if (await page.evaluate(() => CSS.supports('animation-timeline: scroll()'))) {
     const startProgress = await page
       .locator('.site-header')
@@ -261,6 +325,22 @@ try {
     })
   ).newPage();
   await reduced.goto(baseURL);
+  assert.equal(
+    await reduced
+      .locator('.section-heading')
+      .first()
+      .evaluate((el) => getComputedStyle(el).animationName),
+    'none',
+    'Reduced motion disables section entry',
+  );
+  assert.equal(
+    await reduced
+      .locator('.case-notes')
+      .first()
+      .evaluate((el) => getComputedStyle(el, '::details-content').transitionDuration),
+    '0s',
+    'Reduced motion disables disclosure transitions',
+  );
   assert.equal(
     await reduced.locator('.badge-study').evaluate((el) => getComputedStyle(el).animationName),
     'none',

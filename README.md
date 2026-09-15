@@ -30,7 +30,7 @@ To use installed Chrome: `BROWSER_CHANNEL=chrome npm run test:browser`.
 `BASE_URL` changes the test origin; `ARTIFACT_DIR` changes the output directory
 (default `/tmp/portfolio-browser-check`). Tests expect a production build.
 They cover eight widths, actual heading fonts, overflow, native disclosures,
-keyboard navigation, axe accessibility checks, reduced motion, hover/touch/keyboard
+keyboard navigation, disclosure transitions, axe accessibility checks, reduced motion, hover/touch/keyboard
 3D, resource release, WebGL failure, no-JS content, metadata, résumé and 404 routing.
 There is no separate TypeScript or unit-test suite; the repository is JavaScript.
 
@@ -64,8 +64,7 @@ updating layout metadata, robots, and sitemap together.
 shows the conceptual scan/contour/output composition. Hover loads Three.js and
 pointer movement changes the view. Tap or Enter provides an alternative rotation
 control. Leaving the study with a mouse, moving focus away, or touching outside disposes
-the renderer. Reduced
-motion never loads WebGL just from hover; deliberate activation changes the view
+the renderer. Reduced motion never loads WebGL just from hover; deliberate activation changes the view
 immediately. No auto-rotation, animation loop, textures, shadows or model downloads.
 
 `lib/badgeScene.js` owns the imperative WebGL lifecycle: rendering, resizing and
@@ -83,9 +82,11 @@ version is overridden to a patched range and verified by a clean install.
 All styling and the small native-element reset live in `app/globals.css`. Tailwind,
 its unused theme/build configuration, Framer Motion, and obsolete media were removed.
 
-A native CSS reading-progress line follows the document, and the badge study has a
-small scroll-linked entrance on fine-pointer devices. Neither effect hides content
-or loads WebGL. Unsupported browsers and reduced motion retain the static layout.
+A native CSS reading-progress line follows the document. Section headings move
+18px into place, and the badge study has a small scroll-linked entrance on
+fine-pointer devices. Native disclosures expand and collapse over 240ms; buttons
+have slight hover and press feedback. No effect hides text or loads WebGL.
+Unsupported browsers retain native behavior; reduced motion disables these transitions.
 
 ## Review evidence
 

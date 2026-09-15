@@ -43,6 +43,9 @@ Interaction checks exercise actual canvas pixels, not just the presence of a but
 - WebGL failure and context loss return to the static illustration.
 - Reduced motion disables portrait tilt, scroll entrance and automatic hover loading.
 - Scrolling changes the native progress line and badge entrance without loading WebGL.
+- Native disclosure opening/closing reaches its full/closed height; reduced motion
+  disables disclosure and section-heading transitions. Archive links retain their full
+  keyboard focus outline during the normal-motion disclosure treatment.
 - The optional scene chunks are absent from initial page requests.
 
 These are desktop-browser emulations, not a physical iPhone/Android or assistive
@@ -54,13 +57,13 @@ Local mobile Lighthouse 12.8.2, simulated throttling, production builds:
 
 | Metric                            | Original main | Final  |
 | --------------------------------- | ------------- | ------ |
-| Performance                       | 94            | 98     |
+| Performance                       | 94            | 97     |
 | Accessibility                     | 96            | 100    |
 | Best practices                    | 96            | 100    |
 | SEO                               | 100           | 100    |
 | First contentful paint            | 0.8 s         | 0.8 s  |
-| Largest contentful paint          | 2.9 s         | 2.4 s  |
-| Total blocking time               | 40 ms         | 30 ms  |
+| Largest contentful paint          | 2.9 s         | 2.5 s  |
+| Total blocking time               | 40 ms         | 90 ms  |
 | Cumulative layout shift           | 0             | 0      |
 | First-load JavaScript, Next build | 138 kB        | 110 kB |
 
@@ -100,6 +103,13 @@ with the slate/clay palette and addressed its Safari observation: an active scen
 now disposes on outside pointer-down or pointer cancellation, without depending
 on a tapped button receiving focus.
 
+A bounded Fable follow-up reviewed the final transition additions. It found horizontal
+clipping of archive focus rings and a possible margin jump in native disclosures.
+Changed the content pseudo-element to clip vertically only and use a flow-root,
+and added a keyboard-focus screenshot and geometry/transition checks. The follow-up
+confirmed the section-entry and button transitions and the outside-touch release.
+No further visual direction or additional effects were introduced.
+
 The fixed mobile hire overlay and live clock were deliberately not restored: the
 visible contact link, normal-flow actions, location and timezone cover their useful
 information without an overlay or recurring timer.
@@ -123,21 +133,21 @@ information without an overlay or recurring timer.
 Lead review scores reflect the rendered result and verified behavior, not a claim
 that a Lighthouse score measures design quality.
 
-| Area                    | Score / 10 | Evidence / ceiling                                                        |
-| ----------------------- | ---------- | ------------------------------------------------------------------------- |
-| First impression        | 8          | Original specific headline, visible role/actions, real portrait           |
-| Employer friendliness   | 8          | Work order matches positioning; compact employment and résumé             |
-| Information hierarchy   | 8.5        | Matching chapters, concise summaries, optional technical depth            |
-| Visual design           | 8          | Consistent slate, clay, blue, grid and section rhythm                     |
-| Typography              | 8          | Original mono identity; controlled headline measure; legible notes        |
-| Brand distinctiveness   | 8          | Owned photography, spatial portrait, custom G badge, Cebu voice           |
-| Project storytelling    | 8          | Problem, approach, impact and evidence without invented details           |
-| Engineering credibility | 8.5        | Public tools, scoped benchmarks, professional ownership                   |
-| Mobile UX               | 8          | Eight widths, repeated tap, no overlay/overflow; long original content    |
-| Accessibility           | 8.5        | Keyboard, contrast, no-JS, 200% text, reduced motion; no AT certification |
-| Performance             | 8          | 98 lab score, zero CLS, 110 kB initial JS; optional WebGL cost remains    |
-| Motion design           | 8          | Hover/touch/keyboard parity and restrained scroll feedback                |
-| Maintainability         | 8.5        | One custom client island, native disclosures/CSS, explicit GPU disposal   |
+| Area                    | Score / 10 | Evidence / ceiling                                                         |
+| ----------------------- | ---------- | -------------------------------------------------------------------------- |
+| First impression        | 8          | Original specific headline, visible role/actions, real portrait            |
+| Employer friendliness   | 8          | Work order matches positioning; compact employment and résumé              |
+| Information hierarchy   | 8.5        | Matching chapters, concise summaries, optional technical depth             |
+| Visual design           | 8          | Consistent slate, clay, blue, grid and section rhythm                      |
+| Typography              | 8          | Original mono identity; controlled headline measure; legible notes         |
+| Brand distinctiveness   | 8          | Owned photography, spatial portrait, custom G badge, Cebu voice            |
+| Project storytelling    | 8          | Problem, approach, impact and evidence without invented details            |
+| Engineering credibility | 8.5        | Public tools, scoped benchmarks, professional ownership                    |
+| Mobile UX               | 8          | Eight widths, repeated tap, no overlay/overflow; long original content     |
+| Accessibility           | 8.5        | Keyboard, contrast, no-JS, 200% text, reduced motion; no AT certification  |
+| Performance             | 8          | 97–98 lab scores, zero CLS, 110 kB initial JS; optional WebGL cost remains |
+| Motion design           | 8          | Hover/touch/keyboard parity and restrained scroll feedback                 |
+| Maintainability         | 8.5        | One custom client island, native disclosures/CSS, explicit GPU disposal    |
 
 ## Visual evidence
 
@@ -153,3 +163,5 @@ reduced motion to make comparison repeatable; the 3D capture exercises normal mo
 ![Mobile introduction](evidence/mobile-hero.png)
 
 ![Compact tablet experience](evidence/tablet-experience.png)
+
+![Keyboard focus inside the expanded archive](evidence/desktop-archive-focus.png)
