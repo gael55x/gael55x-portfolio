@@ -24,6 +24,7 @@ try {
     ['laptop', 1280, 800],
     ['tablet', 768, 1024],
     ['mobile', 390, 844],
+    ['short-mobile', 375, 667],
     ['small-mobile', 320, 740],
     ['small-tablet', 601, 900],
     ['breakpoint', 961, 900],
@@ -41,6 +42,25 @@ try {
     await page.goto(baseURL, { waitUntil: 'networkidle' });
     await page.evaluate(() => document.fonts.ready);
     assert.equal(await page.locator('h1').count(), 1);
+    assert.equal(await page.locator('.employer-heading').count(), 3);
+    assert.equal(await page.locator('.case-study').count(), 4);
+    assert.equal(
+      await page
+        .locator('.employer-heading h3')
+        .allTextContents()
+        .then((names) => names.filter((name) => name === 'BitWork Solutions').length),
+      1,
+      'Employment is shown once per company',
+    );
+    assert.match(
+      await page.locator('.employer-group').last().innerText(),
+      /Aug 2023.*Present[\s\S]*Promoted to lead in May 2025/,
+    );
+    assert.equal(
+      await page.locator('#experience #work').count(),
+      1,
+      'Existing experience bookmarks still reach employment history',
+    );
     assert.match(
       await page.locator('h1').evaluate((el) => getComputedStyle(el).fontFamily),
       /JetBrains/,
@@ -72,15 +92,14 @@ try {
       .getByRole('navigation', { name: 'Main navigation' })
       .getByRole('link', { name: 'work', exact: true })
       .click();
-    assert(
-      await page
-        .locator('#work')
-        .evaluate(
-          (el) =>
-            el.getBoundingClientRect().top >=
-            document.querySelector('header').getBoundingClientRect().bottom,
-        ),
-      'Anchor heading must clear sticky navigation',
+    await page.mouse.move(0, 0);
+    // Next's hash navigation completes after the link click resolves.
+    await page.waitForFunction(
+      () =>
+        Math.abs(
+          document.querySelector('#work').getBoundingClientRect().top -
+            document.querySelector('.site-header').getBoundingClientRect().bottom,
+        ) <= 1,
     );
     for (const href of await page
       .locator('a[href^="#"], a[href^="/#"]')
@@ -92,6 +111,17 @@ try {
       await image.scrollIntoViewIfNeeded();
       await image.evaluate((img) => img.decode());
     }
+    assert.equal(
+      await page.locator('.study-stage img').evaluate((image) => {
+        const sample = document.createElement('canvas');
+        sample.width = sample.height = 1;
+        const context = sample.getContext('2d');
+        context.drawImage(image, 0, 0);
+        return context.getImageData(0, 0, 1, 1).data[3];
+      }),
+      0,
+      'The poster must be transparent so the background does not change on hover',
+    );
     assert.equal(
       await page.evaluate(() => document.documentElement.scrollWidth),
       width,
@@ -127,7 +157,7 @@ try {
     await page.evaluate(() => scrollTo(0, 0));
     await page.screenshot({ path: `${output}/${name}-hero.png` });
     await page.screenshot({ path: `${output}/${name}-full.png`, fullPage: true });
-    for (const id of ['work', 'open-source', 'experience', 'writing', 'about', 'contact']) {
+    for (const id of ['work', 'open-source', 'writing', 'about', 'contact']) {
       await page.evaluate((id) => document.getElementById(id).scrollIntoView(), id);
       assert(
         await page
@@ -266,6 +296,9 @@ try {
     const studyTop = await page
       .locator('.badge-study')
       .evaluate((el) => el.getBoundingClientRect().top + scrollY);
+    const stageBounds = await page.locator('.study-stage').boundingBox();
+    // The second scroll puts the stage under this stationary pointer.
+    await page.mouse.move(stageBounds.x + stageBounds.width / 2, 200);
     await page.evaluate(
       (top) => scrollTo({ top: top - innerHeight * 0.8, behavior: 'instant' }),
       studyTop,
@@ -289,6 +322,27 @@ try {
       'Reading line tracks page progress',
     );
     assert.equal(await page.locator('canvas').count(), 0, 'Scrolling alone must not start WebGL');
+    const photo = page.locator('.speaking-photo img');
+    await photo.scrollIntoViewIfNeeded();
+    const photoPose = await photo.evaluate((el) => getComputedStyle(el).transform);
+    await page.evaluate(() => scrollBy({ top: 160, behavior: 'instant' }));
+    await page.evaluate(() => new Promise(requestAnimationFrame));
+    assert.notEqual(
+      await photo.evaluate((el) => getComputedStyle(el).transform),
+      photoPose,
+      'Speaking photograph has bounded scroll depth',
+    );
+    await page.evaluate(() => scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }));
+    await page.waitForFunction(() => {
+      const animations = document
+        .querySelector('.contact-heading')
+        .getAnimations({ subtree: true });
+      return (
+        animations.length >= 2 &&
+        animations.every((animation) => animation.effect.getComputedTiming().progress === 1)
+      );
+    });
+    await page.screenshot({ path: `${output}/desktop-contact-motion.png` });
   }
   await page.locator('.hero-portrait').hover();
   await page.waitForFunction(
@@ -302,7 +356,9 @@ try {
     await sceneGate;
     await route.continue();
   });
-  const trigger = page.getByRole('button', { name: 'Rotate the three-dimensional badge study' });
+  const trigger = page.getByRole('button', {
+    name: 'Play the badge study: physical scan, detected geometry, production asset',
+  });
   await trigger.hover();
   await page.getByRole('status').filter({ hasText: 'Loading the badge study' }).waitFor();
   assert.equal(
@@ -314,8 +370,18 @@ try {
   releaseScene();
   await page.getByRole('status').filter({ hasText: '3D ready' }).waitFor();
   const canvas = page.locator('canvas');
-  if (process.env.UPDATE_POSTER === '1')
-    await canvas.screenshot({ path: 'public/assets/badge-study-poster.png' });
+  const firstScan = await canvas.screenshot();
+  await page.waitForTimeout(2900);
+  assert.equal(
+    await page.locator('.study-stage img').evaluate((el) => getComputedStyle(el).opacity),
+    '0',
+    'The poster must not remain behind the transparent moving canvas',
+  );
+  assert.notDeepEqual(
+    await canvas.screenshot(),
+    firstScan,
+    'Hover alone plays the scan-to-vector sequence',
+  );
   const initial = await canvas.screenshot();
   const bounds = await trigger.boundingBox();
   const framesBeforeHover = await page.evaluate(() => window.studyFrames);
@@ -337,17 +403,38 @@ try {
     'Hover easing must stop rendering once settled',
   );
   await page.mouse.move(bounds.x + bounds.width * 0.2, bounds.y + bounds.height * 0.7);
+  await canvas.evaluate((el) => {
+    el.dataset.reuseCheck = 'original';
+  });
   await page.mouse.move(0, 0);
-  assert.equal(await canvas.count(), 0, 'Leaving during easing releases WebGL');
+  await page.waitForTimeout(700);
+  const graceFrames = await page.evaluate(() => window.studyFrames);
+  await page.waitForTimeout(250);
+  assert.equal(
+    await page.evaluate(() => window.studyFrames),
+    graceFrames,
+    'No rendering during the re-entry grace period',
+  );
+  await trigger.hover();
+  assert.equal(
+    await canvas.getAttribute('data-reuse-check'),
+    'original',
+    'Quick re-entry reuses the renderer',
+  );
+  await page.mouse.move(0, 0);
+  await canvas.waitFor({ state: 'detached' });
+  assert.equal(await canvas.count(), 0, 'Retraction releases WebGL');
   await trigger.focus();
   await page.keyboard.press('Enter');
   await page.getByRole('status').filter({ hasText: '3D ready' }).waitFor();
+  await page.waitForTimeout(2900);
   const keyboardInitial = await canvas.screenshot();
   await page.keyboard.press('Enter');
+  await page.waitForTimeout(1000);
   assert.notDeepEqual(
     await canvas.screenshot(),
     keyboardInitial,
-    'Keyboard activation rotates the study',
+    'Keyboard activation replays the scan',
   );
   await page.locator('.pipeline').scrollIntoViewIfNeeded();
   await page.screenshot({ path: `${output}/desktop-3d.png` });
@@ -406,12 +493,19 @@ try {
   );
   await reduced.locator('.hero-portrait').hover();
   assert.equal(
+    await reduced
+      .locator('.speaking-photo img')
+      .evaluate((el) => getComputedStyle(el).animationName),
+    'none',
+    'Reduced motion disables photograph depth',
+  );
+  assert.equal(
     await reduced.locator('.portrait-frame').evaluate((el) => getComputedStyle(el).transform),
     'none',
     'Reduced motion keeps portrait static',
   );
   const reducedTrigger = reduced.getByRole('button', {
-    name: 'Rotate the three-dimensional badge study',
+    name: 'Play the badge study: physical scan, detected geometry, production asset',
   });
   await reducedTrigger.hover();
   assert.equal(
@@ -423,10 +517,10 @@ try {
   await reduced.getByRole('status').filter({ hasText: '3D ready' }).waitFor();
   const touchInitial = await reduced.locator('canvas').screenshot();
   await reducedTrigger.tap();
-  assert.notDeepEqual(
+  assert.deepEqual(
     await reduced.locator('canvas').screenshot(),
     touchInitial,
-    'A second touch must rotate the existing scene, not reload it',
+    'Reduced motion keeps a fixed endpoint on repeated taps',
   );
   assert.equal(await reduced.evaluate(() => document.documentElement.scrollWidth), 390);
   assert.equal(
@@ -441,6 +535,36 @@ try {
     'Touching outside the study releases WebGL without relying on focus',
   );
   await reduced.close();
+
+  const touch = await (
+    await browser.newContext({
+      viewport: { width: 390, height: 844 },
+      hasTouch: true,
+      isMobile: true,
+    })
+  ).newPage();
+  await touch.goto(baseURL);
+  const touchTrigger = touch.locator('.study-trigger');
+  await touchTrigger.scrollIntoViewIfNeeded();
+  assert.equal(await touch.locator('canvas').count(), 0, 'Touch scrolling never starts WebGL');
+  await touchTrigger.tap();
+  await touch.locator('.study-stage[data-phase="ready"]').waitFor();
+  const touchStart = await touch.locator('canvas').screenshot();
+  await touch.waitForTimeout(2900);
+  assert.notDeepEqual(
+    await touch.locator('canvas').screenshot(),
+    touchStart,
+    'A tap plays the full transformation',
+  );
+  await touchTrigger.tap();
+  await touch.waitForTimeout(900);
+  await touch.emulateMedia({ reducedMotion: 'reduce' });
+  await touch.locator('canvas').waitFor({ state: 'detached' });
+  await touchTrigger.tap();
+  await touch.locator('.study-stage[data-phase="ready"]').waitFor();
+  await touch.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+  await touch.locator('canvas').waitFor({ state: 'detached' });
+  await touch.close();
 
   const zoom = await (
     await browser.newContext({ viewport: { width: 390, height: 844 } })
@@ -465,7 +589,11 @@ try {
     };
   });
   await noWebGL.goto(baseURL);
-  await noWebGL.getByRole('button', { name: 'Rotate the three-dimensional badge study' }).click();
+  await noWebGL
+    .getByRole('button', {
+      name: 'Play the badge study: physical scan, detected geometry, production asset',
+    })
+    .click();
   await noWebGL.getByRole('status').filter({ hasText: 'unavailable' }).waitFor();
   assert.equal(await noWebGL.locator('canvas').count(), 0);
   await noWebGL.close();
@@ -484,7 +612,9 @@ try {
   );
   assert.equal(
     await noJS
-      .getByRole('button', { name: 'Rotate the three-dimensional badge study' })
+      .getByRole('button', {
+        name: 'Play the badge study: physical scan, detected geometry, production asset',
+      })
       .isVisible(),
     false,
   );
