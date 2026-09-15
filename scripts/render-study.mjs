@@ -34,7 +34,7 @@ try {
   await page.route('**/scene-preview', (route) =>
     route.fulfill({
       contentType: 'text/html',
-      body: `<style>body{margin:0;background:#1f2531}canvas{display:block;width:880px;height:544px}</style>
+      body: `<style>body{margin:0}canvas{display:block;width:880px;height:544px}</style>
       <canvas></canvas><script type="module">
       import {createBadgeScene} from '/scene.js';
       window.study = createBadgeScene(document.querySelector('canvas'));
@@ -44,9 +44,11 @@ try {
   // Every request is fulfilled above; a running localhost server is unnecessary.
   await page.goto('http://127.0.0.1:3000/scene-preview');
   await page.waitForFunction(() => window.study);
-  await page
-    .locator('canvas')
-    .screenshot({ path: new URL('public/assets/badge-study-poster.png', root).pathname });
+  await page.locator('canvas').screenshot({
+    path: new URL('public/assets/badge-study-poster.png', root).pathname,
+    omitBackground: true,
+  });
+  await page.addStyleTag({ content: 'body{background:#161922}' });
   await page.screenshot({ path: `${output}/rest.png` });
   await page.evaluate(() => window.study.play());
   await page.waitForTimeout(1000);

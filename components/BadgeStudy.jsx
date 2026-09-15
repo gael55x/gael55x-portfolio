@@ -18,11 +18,13 @@ export default function BadgeStudy() {
   const stageEl = useRef(null);
   const view = useRef(null);
   const releaseTimer = useRef(null);
+  const pointerInside = useRef(false);
   const [phase, setPhase] = useState('idle');
   const [stage, setStage] = useState(-1);
   const active = phase === 'loading' || phase === 'ready';
 
   const leave = useCallback(() => {
+    pointerInside.current = false;
     clearTimeout(releaseTimer.current);
     if (reduced()) {
       setPhase('idle');
@@ -110,19 +112,20 @@ export default function BadgeStudy() {
             src={badgePoster}
             alt="Conceptual relief emblem on a scan bed between four marker tags"
             fill
-            sizes="(max-width: 600px) calc(100vw - 72px), (max-width: 960px) 55vw, 650px"
+            sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 960px) calc(100vw - 238px), 720px"
           />
           <button
             type="button"
             className="study-trigger"
             aria-label="Play the badge study: physical scan, detected geometry, production asset"
             aria-describedby="study-description"
-            onPointerEnter={(event) => {
-              if (event.pointerType !== 'mouse' || reduced()) return;
-              start();
-            }}
             onPointerMove={(event) => {
-              if (event.pointerType !== 'mouse' || !view.current || reduced()) return;
+              if (event.pointerType !== 'mouse' || reduced()) return;
+              // Scrolling can place the stage under a stationary pointer. Only
+              // actual pointer movement starts a hover session.
+              if (!pointerInside.current || phase === 'idle') start();
+              pointerInside.current = true;
+              if (!view.current) return;
               const bounds = event.currentTarget.getBoundingClientRect();
               view.current.point(
                 (event.clientX - bounds.left) / bounds.width,

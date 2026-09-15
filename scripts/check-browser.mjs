@@ -41,6 +41,25 @@ try {
     await page.goto(baseURL, { waitUntil: 'networkidle' });
     await page.evaluate(() => document.fonts.ready);
     assert.equal(await page.locator('h1').count(), 1);
+    assert.equal(await page.locator('.employer-heading').count(), 3);
+    assert.equal(await page.locator('.case-study').count(), 4);
+    assert.equal(
+      await page
+        .locator('.employer-heading h3')
+        .allTextContents()
+        .then((names) => names.filter((name) => name === 'BitWork Solutions').length),
+      1,
+      'Employment is shown once per company',
+    );
+    assert.match(
+      await page.locator('.employer-group').last().innerText(),
+      /Aug 2023.*Present[\s\S]*Promoted to lead in May 2025/,
+    );
+    assert.equal(
+      await page.locator('#experience #work').count(),
+      1,
+      'Existing experience bookmarks still reach employment history',
+    );
     assert.match(
       await page.locator('h1').evaluate((el) => getComputedStyle(el).fontFamily),
       /JetBrains/,
@@ -72,6 +91,7 @@ try {
       .getByRole('navigation', { name: 'Main navigation' })
       .getByRole('link', { name: 'work', exact: true })
       .click();
+    await page.mouse.move(0, 0);
     assert(
       await page
         .locator('#work')
@@ -92,6 +112,17 @@ try {
       await image.scrollIntoViewIfNeeded();
       await image.evaluate((img) => img.decode());
     }
+    assert.equal(
+      await page.locator('.study-stage img').evaluate((image) => {
+        const sample = document.createElement('canvas');
+        sample.width = sample.height = 1;
+        const context = sample.getContext('2d');
+        context.drawImage(image, 0, 0);
+        return context.getImageData(0, 0, 1, 1).data[3];
+      }),
+      0,
+      'The poster must be transparent so the background does not change on hover',
+    );
     assert.equal(
       await page.evaluate(() => document.documentElement.scrollWidth),
       width,
@@ -127,7 +158,7 @@ try {
     await page.evaluate(() => scrollTo(0, 0));
     await page.screenshot({ path: `${output}/${name}-hero.png` });
     await page.screenshot({ path: `${output}/${name}-full.png`, fullPage: true });
-    for (const id of ['work', 'open-source', 'experience', 'writing', 'about', 'contact']) {
+    for (const id of ['work', 'open-source', 'writing', 'about', 'contact']) {
       await page.evaluate((id) => document.getElementById(id).scrollIntoView(), id);
       assert(
         await page
@@ -266,6 +297,9 @@ try {
     const studyTop = await page
       .locator('.badge-study')
       .evaluate((el) => el.getBoundingClientRect().top + scrollY);
+    const stageBounds = await page.locator('.study-stage').boundingBox();
+    // The second scroll puts the stage under this stationary pointer.
+    await page.mouse.move(stageBounds.x + stageBounds.width / 2, 200);
     await page.evaluate(
       (top) => scrollTo({ top: top - innerHeight * 0.8, behavior: 'instant' }),
       studyTop,
@@ -328,6 +362,11 @@ try {
   const canvas = page.locator('canvas');
   const firstScan = await canvas.screenshot();
   await page.waitForTimeout(2900);
+  assert.equal(
+    await page.locator('.study-stage img').evaluate((el) => getComputedStyle(el).opacity),
+    '0',
+    'The poster must not remain behind the transparent moving canvas',
+  );
   assert.notDeepEqual(
     await canvas.screenshot(),
     firstScan,

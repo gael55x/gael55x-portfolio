@@ -8,9 +8,10 @@
   --dark: #1f2531;
   --light-muted: #b5bac8;
   --mono: var(--font-mono), ui-monospace, monospace;
+  --display-size: clamp(2rem, 3.4vw, 3rem);
   --dusk: #78b7df;
   --clay-deep: #a35138;
-  --link-line: #637084;
+  --bed: #323a4c;
   color-scheme: dark;
 }
 
@@ -211,23 +212,25 @@ button {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-columns: minmax(0, 1fr) 420px;
   align-items: center;
-  gap: 72px;
-  padding-block: 64px 88px;
+  gap: 48px;
+  padding-block: 56px 72px;
 }
 .hero-kicker {
   margin-bottom: 24px;
 }
 .hero h1 {
   max-width: 22ch;
-  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-size: var(--display-size);
   line-height: 1.13;
   letter-spacing: -0.045em;
   font-weight: 700;
   text-wrap: pretty;
 }
 .hero h1 em {
+  display: inline-block;
+  max-width: 100%;
   color: var(--accent);
   font-style: italic;
 }
@@ -276,6 +279,11 @@ button {
   font-size: 0.75rem;
   color: var(--muted);
 }
+.hero-secondary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
 .socials {
   display: flex;
   gap: 1.25rem;
@@ -294,7 +302,7 @@ button {
 }
 .portrait-frame {
   position: relative;
-  height: 460px;
+  height: 500px;
   background: var(--wash);
   transform-style: preserve-3d;
 }
@@ -304,6 +312,7 @@ button {
 }
 /* Original spatial portrait, without global pointer tracking or an idle loop. */
 .hero-portrait {
+  position: relative;
   perspective: 950px;
   padding-inline: 18px;
 }
@@ -326,9 +335,21 @@ button {
   transform: translateZ(28px);
   pointer-events: none;
 }
+.hero-portrait::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -6% -14%;
+  height: 20%;
+  background: var(--bed);
+  opacity: 0.55;
+  border: 1px solid var(--line);
+  transform: rotateX(74deg) translateZ(-10px);
+  pointer-events: none;
+  z-index: -1;
+}
 .portrait-fin {
   position: absolute;
-  inset: 3% 64% 5% -10%;
+  inset: 3% 64% 5% -24%;
   border: 1px solid var(--line);
   background: var(--wash);
   transform: translateZ(-22px) rotateY(45deg);
@@ -463,22 +484,51 @@ button {
   color: var(--muted);
   font-size: 0.9375rem;
 }
+.employer-group + .employer-group {
+  margin-top: 36px;
+}
+.employer-heading,
 .case-study {
   display: grid;
   grid-template-columns: 200px minmax(0, 1fr);
   gap: 28px 40px;
-  padding-block: 36px;
+}
+.employer-heading {
+  padding-block: 40px 24px;
   border-top: 1px solid var(--line);
+}
+.employer-heading h3 {
+  font-size: 1.25rem;
+}
+.employer-heading h3 + p {
+  margin-top: 8px;
+  font-size: 0.9375rem;
+}
+.employer-meta > p + p,
+.employer-note {
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: 0.8125rem;
+}
+.case-study {
+  position: relative;
+  padding-block: 28px;
   scroll-margin-top: 1rem;
 }
-.case-company h3 {
-  font-size: 1.3rem;
-  margin-top: 12px;
+.case-study::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 240px;
+  height: 1px;
+  background: var(--line);
+  opacity: 0.6;
+  pointer-events: none;
 }
-.case-company > p:not(.eyebrow) {
-  color: var(--muted);
-  font-size: 0.8125rem;
-  margin-top: 8px;
+.case-company {
+  grid-column: 1;
+}
+.case-content {
+  grid-column: 2;
 }
 .case-content h4 {
   font-size: 1.5rem;
@@ -486,6 +536,7 @@ button {
   letter-spacing: -0.025em;
 }
 .case-result {
+  max-width: 780px;
   color: var(--muted);
   margin-top: 16px;
   font-size: 0.9375rem;
@@ -511,8 +562,15 @@ button {
   font: 0.6875rem/1.8 var(--mono);
   color: var(--muted);
 }
-.source-note {
+.work-footnote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
   margin-top: 20px;
+}
+.source-note {
   max-width: 730px;
   font-size: 0.75rem;
   color: var(--muted);
@@ -522,15 +580,24 @@ button {
 .pipeline {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  grid-template-columns: 200px minmax(0, 1fr);
   align-items: center;
-  gap: 32px;
-  padding: 24px 28px;
-  background: var(--dark);
+  gap: 40px;
+  margin-top: 8px;
   color: var(--ink);
 }
+.badge-study {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  max-width: 720px;
+}
+.pipeline figcaption {
+  grid-column: 1;
+  grid-row: 1;
+}
 .study-title {
-  font-size: clamp(1.2rem, 2.3vw, 2rem);
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
   line-height: 1.4;
   font-weight: 400;
   letter-spacing: -0.035em;
@@ -563,12 +630,14 @@ button {
   display: block;
   width: 100%;
   height: 100%;
-  background: var(--dark);
   pointer-events: none;
   opacity: 0;
 }
 .study-stage[data-phase='ready'] canvas {
   opacity: 1;
+}
+.study-stage[data-phase='ready'] img {
+  opacity: 0;
 }
 .study-trigger {
   position: absolute;
@@ -652,7 +721,7 @@ button {
   padding-top: 22px;
 }
 .tool h3 {
-  font-size: 3rem;
+  font-size: 2.25rem;
   letter-spacing: -0.07em;
   margin: 24px 0 20px;
 }
@@ -770,36 +839,6 @@ button {
   color: var(--muted);
 }
 
-.experience-list article {
-  display: grid;
-  grid-template-columns: 200px minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: 40px;
-  border-top: 1px solid var(--line);
-  padding-block: 24px;
-}
-.experience-list h3 {
-  font-size: 1.25rem;
-}
-.job-location {
-  font-size: 0.75rem;
-  color: var(--muted);
-  margin-top: 8px;
-}
-.experience-list h4 {
-  font-size: 1rem;
-  line-height: 1.5;
-}
-.experience-list article > div:last-child > p {
-  font-size: 0.9375rem;
-  margin-top: 12px;
-  color: var(--muted);
-}
-.experience-list + .text-link {
-  margin-top: 12px;
-}
-#writing {
-  border-top: 1px solid var(--line);
-}
 .writing-list article {
   display: grid;
   grid-template-columns: 200px minmax(0, 1fr);
@@ -863,50 +902,57 @@ button {
   line-height: 1.5;
   letter-spacing: -0.025em;
 }
-.contact-section {
+.contact-section,
+.site-footer {
   background: var(--dark);
-  color: var(--ink);
-  padding-block: 64px;
+}
+.contact-section {
+  padding-block: 80px 64px;
+  overflow: clip;
 }
 .contact-heading {
+  position: relative;
+  isolation: isolate;
   margin-top: 24px;
 }
+.contact-heading::before {
+  content: '';
+  position: absolute;
+  inset: -24px 0 -24px 48%;
+  border-top: 1px solid var(--dusk);
+  border-right: 1px solid var(--dusk);
+  transform: translate(20px, 20px);
+  z-index: -1;
+  pointer-events: none;
+}
 .contact-heading h2 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: var(--display-size);
 }
 .contact-heading p {
   color: var(--muted);
-  margin-top: 16px;
-}
-.contact-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 24px;
-  padding-top: 32px;
-  margin-top: 44px;
-  border-top: 1px solid var(--line);
+  margin-top: 20px;
+  font-size: 0.9375rem;
 }
 .contact-email {
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  letter-spacing: -0.025em;
-  text-decoration: underline;
-  text-decoration-color: var(--link-line);
-  text-underline-offset: 6px;
-  min-height: 44px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  min-height: 44px;
+  max-width: 100%;
+  margin-top: 24px;
+  padding-bottom: 8px;
+  font: 500 clamp(1.125rem, 2.8vw, 2.5rem)/1.4 var(--mono);
+  letter-spacing: -0.05em;
   overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-color: var(--dusk);
+  text-underline-offset: 10px;
+  background: var(--dark);
 }
-.contact-section .text-link:hover,
 .contact-email:hover {
   color: var(--accent);
 }
-.contact-section a:focus-visible {
-  outline-color: var(--ink);
-}
 .site-footer > div {
+  border-top: 1px solid var(--line);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -937,7 +983,8 @@ button {
   .study-title span {
     transition: color 320ms ease;
   }
-  .study-stage canvas {
+  .study-stage canvas,
+  .study-stage[data-phase='ready'] img {
     transition: opacity 240ms ease;
   }
   @supports (interpolate-size: allow-keywords) and selector(details::details-content) {
@@ -962,13 +1009,10 @@ button {
       animation-range: entry 0% cover 30%;
     }
     .proof-band,
-    .case-company,
-    .case-content,
+    .employer-heading,
     .tool,
-    .experience-list article,
     .writing-list article,
-    .about-copy,
-    .contact-bottom {
+    .about-copy {
       animation: content-arrival cubic-bezier(0.22, 1, 0.36, 1) both;
       animation-timeline: view();
       animation-range: entry 0% cover 22%;
@@ -978,14 +1022,14 @@ button {
       animation-timeline: view();
       animation-range: exit 0% exit 100%;
     }
-    .case-study {
-      position: relative;
+    .employer-heading {
       border-top-color: transparent;
+      position: relative;
     }
-    .case-study::before {
+    .employer-heading::before {
       content: '';
       position: absolute;
-      inset: -1px 0 auto;
+      inset: 0 0 auto;
       height: 1px;
       background: var(--line);
       transform-origin: left;
@@ -993,6 +1037,11 @@ button {
       animation-timeline: view();
       animation-range: entry 0% cover 25%;
       pointer-events: none;
+    }
+    .contact-heading::before {
+      animation: contour-arrival linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 45%;
     }
     .speaking-photo img {
       animation: photo-depth linear both;
@@ -1046,6 +1095,14 @@ button {
     }
   }
 }
+@keyframes contour-arrival {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
 @keyframes reading-progress {
   from {
     transform: scaleX(0);
@@ -1096,6 +1153,9 @@ button {
 }
 
 @media (max-width: 960px) {
+  :root {
+    --display-size: clamp(2rem, 4.5vw, 2.75rem);
+  }
   .container {
     width: calc(100% - 64px);
   }
@@ -1113,9 +1173,6 @@ button {
     gap: 32px;
     padding-block: 48px;
   }
-  .hero h1 {
-    font-size: clamp(2rem, 4.5vw, 2.75rem);
-  }
   .portrait-frame {
     height: 330px;
   }
@@ -1127,26 +1184,29 @@ button {
     gap: 24px;
     margin-bottom: 32px;
   }
+  .employer-heading,
   .case-study {
     grid-template-columns: 150px minmax(0, 1fr);
     gap: 24px;
   }
   .pipeline {
-    padding: 24px;
+    grid-template-columns: 150px minmax(0, 1fr);
     gap: 24px;
+  }
+  .case-study::before {
+    left: 174px;
+  }
+  .hero-portrait::after {
+    display: none;
+  }
+  .portrait-fin {
+    left: -10%;
   }
   .testimonial {
     margin-left: 174px;
   }
   .tools-grid {
     gap: 32px;
-  }
-  .experience-list article {
-    grid-template-columns: 150px minmax(0, 1fr);
-    gap: 12px 24px;
-  }
-  .experience-list article > .eyebrow {
-    grid-row: span 2;
   }
   .writing-list article {
     grid-template-columns: 150px minmax(0, 1fr);
@@ -1192,6 +1252,9 @@ button {
   }
 }
 @media (max-width: 600px) {
+  :root {
+    --display-size: clamp(1.75rem, 7.6vw, 2.25rem);
+  }
   .container {
     width: calc(100% - 40px);
   }
@@ -1203,9 +1266,6 @@ button {
   .hero-kicker {
     font-size: 0.6875rem;
     margin-bottom: 20px;
-  }
-  .hero h1 {
-    font-size: clamp(1.75rem, 7.6vw, 2.25rem);
   }
   .hero-proof {
     margin-top: 24px;
@@ -1269,13 +1329,20 @@ button {
     font-size: 0.875rem;
     margin-top: 12px;
   }
+  .employer-heading,
   .case-study {
     grid-template-columns: 1fr;
     gap: 20px;
     padding-block: 28px;
   }
-  .case-company h3 {
-    margin-top: 8px;
+  .employer-heading {
+    padding-block: 36px 8px;
+  }
+  .case-content {
+    grid-column: 1;
+  }
+  .case-study::before {
+    display: none;
   }
   .case-content h4 {
     font-size: 1.375rem;
@@ -1285,13 +1352,22 @@ button {
     margin-top: 12px;
   }
   .pipeline {
-    padding: 20px 16px;
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 16px;
+  }
+  .badge-study {
+    grid-column: 1;
+  }
+  .pipeline figcaption {
+    grid-row: 2;
   }
   .study-title {
-    margin-block: 14px;
-    font-size: 1.25rem;
+    margin-block: 0 12px;
+    font-size: 0.875rem;
+  }
+  .study-title span {
+    display: inline-block;
+    margin-right: 0.5em;
   }
   .pipeline-caption {
     max-width: 100%;
@@ -1301,7 +1377,7 @@ button {
     gap: 36px;
   }
   .tool h3 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-block: 18px;
   }
   .tool h4 {
@@ -1320,21 +1396,6 @@ button {
   .project-archive li {
     grid-template-columns: 1fr;
     gap: 8px;
-  }
-  .experience-list article {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding-block: 24px;
-  }
-  .experience-list article > .eyebrow {
-    grid-row: auto;
-  }
-  .experience-list article > div:last-child > p {
-    font-size: 0.875rem;
-    margin-top: 8px;
-  }
-  .experience-list h4 {
-    font-size: 0.9375rem;
   }
   .writing-list article {
     grid-template-columns: 1fr;
@@ -1362,16 +1423,12 @@ button {
   .contact-section {
     padding-block: 44px 32px;
   }
-  .contact-bottom {
-    display: block;
-    margin-top: 24px;
-    padding-top: 18px;
-  }
   .contact-email {
-    font-size: 1rem;
+    font-size: clamp(1rem, 5.6vw, 1.375rem);
   }
-  .contact-bottom .text-link {
-    margin-top: 8px;
+  .contact-heading::before {
+    inset: -8px 12px -12px 62%;
+    transform: translate(8px, 8px);
   }
   .site-footer > div {
     padding-block: 20px;

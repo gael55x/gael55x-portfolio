@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import Section from '@/components/Section';
+import Section, { SectionLabel } from '@/components/Section';
 import SelectedWork from '@/components/SelectedWork';
 import OpenSourceShowcase from '@/components/OpenSourceShowcase';
 import Writing from '@/components/Writing';
 import ProofBand from '@/components/ProofBand';
 import Socials from '@/components/Socials';
-import { emailHref, experience, credentials, resumeHref } from '@/data/resume';
+import { email, emailHref, credentials, resumeHref } from '@/data/resume';
 
 export default function Home() {
   return (
@@ -35,12 +35,14 @@ export default function Home() {
               <a className="button" href={resumeHref} target="_blank" rel="noopener noreferrer">
                 Download résumé
               </a>
-              <a className="text-link" href={emailHref}>
-                Email me
-              </a>
-              <a className="text-link" href="#work">
-                Selected work
-              </a>
+              <div className="hero-secondary-actions">
+                <a className="text-link" href={emailHref}>
+                  Email me
+                </a>
+                <a className="text-link" href="#work">
+                  Selected work
+                </a>
+              </div>
             </div>
             <div className="hero-context">
               <Socials />
@@ -55,7 +57,7 @@ export default function Home() {
                 alt="Gaille Amolong outdoors in Cebu"
                 fill
                 priority
-                sizes="(max-width: 960px) 240px, 360px"
+                sizes="(max-width: 960px) 240px, 420px"
               />
             </div>
           </figure>
@@ -65,30 +67,9 @@ export default function Home() {
         <SelectedWork />
         <OpenSourceShowcase />
 
-        <Section id="experience" index="03" label="Experience" title="Experience">
-          <div className="experience-list">
-            {experience.map((job) => (
-              <article key={job.company}>
-                <p className="eyebrow">{job.dates}</p>
-                <div>
-                  <h3>{job.company}</h3>
-                  <p className="job-location">{job.location}</p>
-                </div>
-                <div>
-                  <h4>{job.role}</h4>
-                  {job.note && <p>{job.note}</p>}
-                </div>
-              </article>
-            ))}
-          </div>
-          <a className="text-link" href={resumeHref} target="_blank" rel="noopener noreferrer">
-            Full experience & education <span className="link-note">PDF</span>{' '}
-          </a>
-        </Section>
-
         <Writing />
 
-        <Section id="about" index="05" label="About" title="About" className="about-section">
+        <Section id="about" title="About" className="about-section">
           <div className="about-grid">
             <figure className="speaking-photo">
               <div>
@@ -131,20 +112,13 @@ export default function Home() {
 
         <section id="contact" className="contact-section" aria-labelledby="contact-title">
           <div className="container">
-            <p className="eyebrow">
-              <span>06</span> / Contact
-            </p>
+            <SectionLabel id="contact" />
             <div className="contact-heading">
               <h2 id="contact-title">Email is fastest.</h2>
-              <p>I typically reply within one business day.</p>
-            </div>
-            <div className="contact-bottom">
               <a className="contact-email" href={emailHref}>
-                gaille.amolong1@gmail.com
+                {email}
               </a>
-              <a className="text-link" href={resumeHref} target="_blank" rel="noopener noreferrer">
-                Get my résumé
-              </a>
+              <p>I typically reply within one business day.</p>
             </div>
           </div>
         </section>
@@ -155,6 +129,9 @@ export default function Home() {
             © {new Date().getFullYear()} Gaille Amolong <span aria-hidden="true">/</span> Designed
             and built in Cebu
           </p>
+          <a className="text-link" href={resumeHref} target="_blank" rel="noopener noreferrer">
+            Get my résumé
+          </a>
           <Socials />
           <a href="#home" className="back-top">
             Back to top

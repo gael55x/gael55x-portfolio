@@ -1,27 +1,6 @@
 export const resumeHref = '/assets/resume/Amolong_Gaille_Resume.pdf';
-export const emailHref = 'mailto:gaille.amolong1@gmail.com';
-
-export const experience = [
-  {
-    company: 'Willed',
-    location: 'Australia · Remote',
-    dates: 'Sep 2025 – Present',
-    role: 'Software Engineer, AI & Security Platform',
-  },
-  {
-    company: 'BitWork Solutions',
-    location: 'United States · Remote',
-    dates: 'Aug 2023 – Present',
-    role: 'Lead Software Engineer',
-    note: 'Promoted to lead in May 2025.',
-  },
-  {
-    company: 'Referrin Health',
-    location: 'United States · Remote · Contract',
-    dates: 'Nov 2025 – Aug 2026',
-    role: 'Software Engineer, Platform & AI Product',
-  },
-];
+export const email = 'gaille.amolong1@gmail.com';
+export const emailHref = `mailto:${email}`;
 
 export const credentials = [
   {

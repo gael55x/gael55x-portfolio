@@ -5,8 +5,6 @@ export default function OpenSourceShowcase() {
   return (
     <Section
       id="open-source"
-      index="02"
-      label="Open source"
       title="Infrastructure I build in public"
       intro="Shipped tools with commits, releases, benchmarks, and packages you can inspect, not weekend demos."
       className="tools-section"

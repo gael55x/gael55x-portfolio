@@ -3,7 +3,7 @@ import { writing } from '@/data/writing';
 
 export default function Writing() {
   return (
-    <Section id="writing" index="04" label="Writing" title="Engineering lessons, written down">
+    <Section id="writing" title="Engineering lessons, written down">
       <div className="writing-list">
         {writing.articles.map((article) => (
           <article key={article.url}>

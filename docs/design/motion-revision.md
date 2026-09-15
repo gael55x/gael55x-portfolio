@@ -112,7 +112,7 @@ Three.js remains dynamically imported. Initial JavaScript remains about 110kB; t
 ![Completed vector lift](evidence/desktop-3d.png)
 ![Mobile scene](evidence/mobile-study.png)
 
-### Final performance run
+### Scene-revision performance snapshot
 
 Local mobile Lighthouse on the final production build: **98 performance / 100
 accessibility / 100 best practices / 100 SEO**. LCP **2.4s**, TBT **20ms**, CLS **0**.
@@ -127,35 +127,117 @@ Referrin date discrepancy and externally blocked profile checks remain as descri
 in the original validation report. Browser emulation and lab performance do not
 certify physical mobile GPUs, screen readers or field Core Web Vitals.
 
-## Final independent verdict
+## Follow-up: Apple-inspired art direction
 
-Fable confirmed the source-dimming correction resolves the remaining hierarchy
-problem: **ready to ship**, with composition/materials **8**, identity **8**,
-motion **8**, engineering/lifecycle **8.5**, and overall revision **8/10**.
-Its residual P2 is that deliberate reduced-motion activations recreate the renderer
-after leaving; each activation renders only the static endpoint. A slight muddy
-cast in the dimmed source is a minor art-direction limitation, not another scope item.
+The owner asked to push the complete page further and explicitly referenced Apple's
+design principles. Fable reviewed original and current desktop/mobile captures,
+then refined the plan against clarity, hierarchy, consistency and purposeful motion.
+The guiding references are Apple's [Layout](https://developer.apple.com/design/human-interface-guidelines/layout)
+and [Motion](https://developer.apple.com/design/human-interface-guidelines/motion) guidance.
+This applies those principles to the existing identity; it does not copy Apple branding.
 
-### Lead integration review
+### Findings and changes
 
-| Category                | Score |
-| ----------------------- | ----- |
-| First impression        | 8     |
-| Employer friendliness   | 8.5   |
-| Information hierarchy   | 8.5   |
-| Visual design           | 8     |
-| Typography              | 8.5   |
-| Brand distinctiveness   | 8     |
-| Project storytelling    | 8     |
-| Engineering credibility | 8.5   |
-| Mobile UX               | 8     |
-| Accessibility           | 8     |
-| Performance             | 8.5   |
-| Motion design           | 8     |
-| Maintainability         | 8     |
+| Priority | Finding                                                                            | Implemented correction                                                                                      |
+| -------- | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| P1       | BitWork employer/role appeared twice in Work and again in Experience               | One employer group with two projects; employment dates, location and promotion history live beside the work |
+| P1       | Study box interrupted the metadata grid and separated the spatial objects visually | Transparent poster and canvas; scan bed sits directly on the page, aligned with the project content         |
+| P1       | Work, Experience and Writing repeated the same long ruled structure                | Folded employment into Work; five numbered sections; mobile uses space within each employer group           |
+| P2       | Portrait had lost presence relative to the original                                | Wider portrait, closer framing elements and one shallow base plane; no grid or animation framework          |
+| P2       | Large tool/company labels competed with the actual work                            | Product titles outrank employers; public-tool names sit below section headings in scale                     |
+| P2       | Email was visually secondary and footer broke the closing surface                  | Larger email, restrained open contour and one continuous contact/footer surface                             |
 
-These are design judgments, not measured hiring outcomes or accessibility certification.
-The finite scene is larger than the old rotation-only module because it models the
-scan, clipping, material hierarchy and exit/replay behavior explicitly. All other
-motion uses CSS. The extra complexity is isolated, covered by lifecycle tests, and
-loads only when requested.
+The same dusk outline connects the portrait, detected geometry and contact corner.
+The clay accent and original fonts remain. There is no new visitor-facing explanation
+or invented evidence. All four original project records were reconstructed from the
+new employer/project data and compared with the committed records: descriptions,
+claims, roles, dates and links match exactly. The fuller original contract role is
+retained. The old `#experience` bookmark resolves to the combined work/history section.
+
+The project data is an explicit nested structure in `data/selectedWork.js`, not a
+runtime join by company-name strings. The duplicate experience dataset, old row CSS,
+unused contact wrapper/styles and superseded color token were removed. The study
+caption remains smaller than a case title so the narrow metadata column stays readable.
+
+Motion marks section/group boundaries. Individual work paragraphs no longer enter
+separately. The new contact contour draws on entry and is static under reduced motion.
+The existing optional scan choreography is unchanged. A browser regression exposed
+that pointer-enter can fire when scrolling moves the stage beneath a stationary mouse;
+activation now starts on actual pointer movement, with a per-entry ref preventing
+replay on every move. Tap and keyboard activation still work.
+
+### Integration fixes and validation
+
+The first rendered pass exposed a 1px laptop overflow from the projected portrait
+base. Its extent was reduced at the source, rather than hiding overflow on the page.
+A closed contact rectangle looked like an empty panel, so only its top/right contour
+remains. A browser assertion checks the poster's alpha channel to prevent the static
+background reappearing on future regenerations. The active canvas crossfades with
+the poster; once ready the poster is hidden, preventing a doubled scan bed as the
+camera moves. Failure and exit restore the poster immediately. This was caught
+through rendered hover inspection and now has a browser regression assertion.
+
+The first independent scene review scored that bounded revision 8/10. The subsequent
+whole-page review identified composition and repetition as separate issues. Final
+scores and the production validation results below refer to the integrated refinement.
+
+### Final refinement and independent verdict
+
+Fable's whole-page pass rated the result 8.8 and identified four P2 refinements.
+The original italic phrase now stays together at ordinary sizes but remains able
+to wrap with enlarged text. Secondary hero links wrap as one group. One responsive
+display-size token keeps the closing heading subordinate to the bold hero.
+Section order/labels/numbering and contact display/href now derive from shared data.
+
+Fable independently confirmed these changes and the transparent-canvas handoff:
+**9.0/10, ready to ship, no P0/P1 remaining**. The lead accepts that assessment;
+10/10 is not claimed. These are design judgments, not measured hiring outcomes.
+
+| Category                | Final score |
+| ----------------------- | ----------- |
+| First impression        | 9           |
+| Employer friendliness   | 9           |
+| Information hierarchy   | 9           |
+| Visual design           | 9           |
+| Typography              | 9           |
+| Brand distinctiveness   | 9           |
+| Project storytelling    | 9           |
+| Engineering credibility | 9           |
+| Mobile UX               | 9           |
+| Accessibility           | 9           |
+| Performance             | 9           |
+| Motion design           | 9           |
+| Maintainability         | 8.5         |
+
+Residual P3: Header keeps the three mobile-primary ids locally; an unknown section
+id fails at build time with an ordinary property error; the contact contour is
+slightly more prominent on desktop. These do not affect the validated visitor paths.
+The earlier résumé date discrepancy and the lack of physical-device/field-CWV
+measurements remain. The model remains an explicitly conceptual artifact, and
+employer outcomes remain self-reported.
+
+### Final production validation
+
+- Build, lint, Prettier and deterministic scene checks pass.
+- Final Playwright run passes at 320, 390, 601, 768, 961, 1280, 1440 and 1920px:
+  zero horizontal overflow and zero axe A/AA violations. Keyboard, all disclosures,
+  anchors, PDF, metadata, no-JS, 200% text, reduced motion, normal/touch/keyboard 3D,
+  replay, idle frame counts, context loss and unavailable-WebGL fallbacks pass.
+- Stationary-pointer coverage explicitly parks the pointer where the stage lands
+  before scrolling. Scrolling alone creates no canvas; ordinary hover still plays.
+- Poster alpha is zero outside the object and its ready-state opacity is zero;
+  both now have regression checks.
+- Knip and Snapline report zero issues; npm audit reports zero vulnerabilities.
+- Final local mobile Lighthouse: **96 performance / 100 accessibility / 100 best
+  practices / 100 SEO**, LCP **2.6s**, TBT **110ms**, CLS **0**. This is a lab run;
+  the earlier 98 was the preceding revision, not a field result. The LCP element
+  is the HTML hero heading; the report identifies no image-optimization savings.
+- Initial JavaScript remains approximately **110kB**; the scene remains a lazy
+  optional chunk. The transparent source poster is **73,863 bytes** before Next's
+  responsive image optimization. No new runtime dependency was added.
+- Latest checked `main` remains `875ab8b`; no conflicting open PR was found.
+
+![Final desktop hero](evidence/desktop-hero.png)
+![Final mobile hero](evidence/mobile-hero.png)
+![Combined work and employment](evidence/desktop-work.png)
+![Contact and footer](evidence/desktop-contact.png)

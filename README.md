@@ -47,7 +47,9 @@ This is a refinement of the original dark portfolio: JetBrains Mono headings,
 Inter reading text, slate background, warm emphasis, blue evidence figures,
 numbered navigation, original headline and project messaging, and spatial portrait.
 Longer project explanations use native disclosures. Four case studies follow the original hero order and lead into
-public tools, a compact project archive, employment chronology, writing and About.
+public tools, a compact project archive, writing and About. Employment dates, locations,
+and progression are grouped with the projects in `data/selectedWork.js`; each employer
+appears once. The existing `#experience` bookmark leads to this combined history.
 
 Essential content is server rendered. The portrait's depth uses CSS with no global
 pointer listeners; hover tilt is disabled on touch and under reduced motion.
@@ -57,7 +59,8 @@ by Next. The share card is static; robots and sitemap use the verified live doma
 Professional outcomes are self-reported. Original activity figures are explicitly
 dated July 2026. Public benchmark claims link to their methodology and retain the
 measurement date, fixture scope, and tradeoffs. Keep that context when updating copy.
-Contact/résumé paths live in `data/resume.js`. Changing the primary domain requires
+Contact/résumé paths live in `data/resume.js`; section order and labels live in
+`data/sections.js`. Changing the primary domain requires
 updating layout metadata, robots, and sitemap together.
 
 ### Hover-driven 3D
@@ -81,7 +84,8 @@ ArUco dictionary or production scan. No new animation framework.
 After changing the scene, run `BROWSER_CHANNEL=chrome npm run render:study` to
 regenerate the content-hashed poster and inspect rest/scan/end frames. This uses
 local browser routing and needs no preview server. Rebuild afterward so the
-page imports the new poster hash. Outputs default to `/tmp/portfolio-study`.
+page imports the new poster hash. Keep the poster transparent: the model sits directly
+on the page background, and the browser suite checks its alpha channel. Outputs default to `/tmp/portfolio-study`.
 
 ### Dependencies
 
@@ -91,7 +95,7 @@ All styling and the small native-element reset live in `app/globals.css`. Tailwi
 its unused theme/build configuration, Framer Motion, and obsolete media were removed.
 
 Native CSS scroll timelines give each major section a heading/content entrance,
-progressive work dividers, a reading-progress line, and bounded depth in the hero
+progressive employer dividers, a reading-progress line, and bounded depth in the hero
 and speaking photograph. Portrait layers separate on hover. The badge also enters
 with a small perspective change on fine-pointer devices. Native disclosures expand and collapse over 240ms; buttons
 have slight hover and press feedback. No effect hides text or loads WebGL.
