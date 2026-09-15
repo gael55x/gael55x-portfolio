@@ -1,9 +1,28 @@
-export const about = {
-  title: 'About',
-  lead: "Self-taught engineer from Cebu, shipping production software since I was 17. I was the youngest engineer hired at BitWork Solutions and later led the team. Today I work across two continents: security platform engineering for Willed in Australia and healthcare platform work for Referrin Health in the US. I care about systems that hold up under scrutiny: SIEM pipelines, sandboxed code execution, agent tooling with published benchmarks. I write about what breaks along the way.",
-};
+export const resumeHref = '/assets/resume/Amolong_Gaille_Resume.pdf';
+export const emailHref = 'mailto:gaille.amolong1@gmail.com';
 
-/** Resume-verified credentials; each links to its public evidence. */
+export const experience = [
+  {
+    company: 'Willed',
+    location: 'Australia · Remote',
+    dates: 'Sep 2025 – Present',
+    role: 'Software Engineer, AI & Security Platform',
+  },
+  {
+    company: 'BitWork Solutions',
+    location: 'United States · Remote',
+    dates: 'Aug 2023 – Present',
+    role: 'Lead Software Engineer',
+    note: 'Promoted to lead in May 2025.',
+  },
+  {
+    company: 'Referrin Health',
+    location: 'United States · Remote · Contract',
+    dates: 'Nov 2025 – Aug 2026',
+    role: 'Software Engineer, Platform & AI Product',
+  },
+];
+
 export const credentials = [
   {
     label: 'AWS Cloud Solutions Architect',
@@ -25,20 +44,4 @@ export const credentials = [
     detail: '1,000+ problems · top 10% contest rating',
     href: 'https://leetcode.com/u/gael55x34/',
   },
-];
-
-export const skillNames = [
-  'Python',
-  'TypeScript',
-  'React / Next.js',
-  'React Native',
-  'FastAPI',
-  'Django',
-  'PostgreSQL',
-  'AWS',
-  'Docker',
-  'TensorFlow',
-  'OpenCV',
-  'OAuth2/OIDC & SIEM',
-  'CI/CD',
 ];

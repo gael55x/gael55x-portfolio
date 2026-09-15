@@ -1,50 +1,13 @@
 version: 1
-
 stack:
   framework: next
-  styling: tailwind
-
-# This portfolio's design language: the night register of the palette sampled
-# from the hero photograph. Tokens live in tailwind.config.js.
-tokens:
-  colors:
-    semanticOnly: true
-    allowed:
-      - bg-night
-      - bg-panel
-      - bg-clay
-      - bg-sand
-      - bg-dusk
-      - bg-ink
-      - bg-dusk-pale
-      - text-night
-      - text-bone
-      - text-bone-dim
-      - text-bone-faint
-      - text-clay
-      - text-dusk
-      - text-dusk-pale
-      - text-paper
-      - border-bone
-      - border-clay
-      - border-sand
-      - border-dusk
-      - decoration-clay
-      - decoration-dusk
-      - decoration-dusk-pale
-      - ring-clay
-
+# Semantic CSS classes and custom properties live in app/globals.css.
 rules:
   noRawHex: error
   noInlineStyle: warn
   noArbitraryTailwind: warn
   noRawPaletteColor: warn
   noDuplicateComponents: warn
-
 fix:
   safeAutofix: false
   preferAgentRepair: true
-
-benchmark:
-  enabled: true
-  scorer: ui-drift-score-v1

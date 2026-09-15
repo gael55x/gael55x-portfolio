@@ -1,61 +1,47 @@
-import { JetBrains_Mono, Inter } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
+import Header from '@/components/Header';
 import './globals.css';
 
-import Header from '@/components/Header';
-
-const jetbrainsMono = JetBrains_Mono({
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
+const mono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
-  variable: '--font-jetbrainsMono',
+  variable: '--font-mono',
+  display: 'swap',
 });
+const title = 'Gaille Amolong, AI Platform & Security Engineer';
+const description =
+  'I ship production AI and security systems and publish the proof. Selected engineering work at Willed, BitWork Solutions, and Referrin Health, plus open-source developer tools.';
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
-
-export const viewport = {
-  themeColor: '#161922',
-};
-
+export const viewport = { themeColor: '#161922' };
 export const metadata = {
-  title: {
-    default: 'Gaille Amolong, AI Platform & Security Engineer',
-    template: '%s | Gaille Amolong',
-  },
-  description:
-    'Production AI and security systems with public proof: enterprise SIEM for 170k+ users, healthcare platform for 5,000+ providers, a 20x computer-vision pipeline speedup, and open-source agent tooling on npm.',
+  metadataBase: new URL('https://gailleamolong.vercel.app'),
+  title: { default: title, template: '%s | Gaille Amolong' },
+  description,
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'Gaille Amolong, AI Platform & Security Engineer',
-    description:
-      'Enterprise SIEM for 170k+ users, healthcare infrastructure for 5,000+ providers, 20x CV pipeline speedup, open-source agent tooling on npm.',
+    title,
+    description,
     type: 'website',
+    url: '/',
+    locale: 'en_US',
+    siteName: 'Gaille Amolong',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Gaille Amolong, AI Platform & Security Engineer',
-    description:
-      'Production AI and security systems with public proof. SIEM at 170k+ users and agent devtools on npm.',
-  },
-  icons: {
-    icon: '/favicon.svg',
-  },
+  twitter: { card: 'summary_large_image', title, description },
+  icons: { icon: '/favicon.svg' },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${jetbrainsMono.variable} ${inter.variable} font-mono antialiased`}>
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-night focus:px-3 focus:py-2 focus:text-sm"
-        >
+    <html lang="en" className={`${inter.variable} ${mono.variable}`}>
+      <body>
+        <a href="#main" className="skip-link">
           Skip to content
         </a>
         <Header />
         {children}
-        <Analytics />
+        {process.env.VERCEL === '1' && <Analytics />}
       </body>
     </html>
   );
