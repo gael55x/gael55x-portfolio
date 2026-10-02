@@ -5,63 +5,90 @@ import OpenSourceShowcase from '@/components/OpenSourceShowcase';
 import Writing from '@/components/Writing';
 import ProofBand from '@/components/ProofBand';
 import Socials from '@/components/Socials';
+import SpaceHero from '@/components/SpaceHero';
 import { email, emailHref, credentials, resumeHref } from '@/data/resume';
 
 export default function Home() {
   return (
     <>
       <main id="main">
-        <section id="home" className="hero container" aria-labelledby="hero-title">
-          <div className="hero-copy">
-            <p className="eyebrow hero-kicker">Gaille Amolong · Software engineer · Cebu, PH</p>
-            <h1 id="hero-title">
-              I ship production AI and security systems and <em>publish the proof</em>.
-            </h1>
-            <ul className="hero-proof">
-              <li>
-                <a href="#willed">SIEM for 170k+ users at Willed</a>
-              </li>
-              <li>
-                <a href="#referrin">5,000+ provider health platform at Referrin</a>
-              </li>
-              <li>
-                <a href="#badge-guru">20× CV pipeline speedup at BitWork</a>
-              </li>
-              <li>
-                <a href="#open-source">agent devtools on npm</a>
-              </li>
-            </ul>
-            <div className="hero-actions">
-              <a className="button" href={resumeHref} target="_blank" rel="noopener noreferrer">
-                Download résumé
-              </a>
-              <div className="hero-secondary-actions">
-                <a className="text-link" href={emailHref}>
-                  Email me
+        <SpaceHero>
+          <div className="hero-backdrop" aria-hidden="true">
+            <Image
+              src="/assets/space/galaxy.webp"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              quality={85}
+            />
+          </div>
+          <div className="hero container">
+            <div className="hero-copy">
+              <p className="eyebrow hero-kicker">Gaille Amolong · Software engineer · Cebu, PH</p>
+              <h1 id="hero-title">
+                I ship production AI and security systems and <em>publish the proof</em>.
+              </h1>
+              <div className="hero-actions">
+                <a className="button" href={resumeHref} target="_blank" rel="noopener noreferrer">
+                  Download résumé
                 </a>
-                <a className="text-link" href="#work">
-                  Selected work
-                </a>
+                <div className="hero-secondary-actions">
+                  <a className="text-link" href={emailHref}>
+                    Email me
+                  </a>
+                  <a className="text-link" href="#work">
+                    Selected work
+                  </a>
+                </div>
+              </div>
+              <div className="hero-context">
+                <Socials />
+                <span>Remote · UTC+8</span>
               </div>
             </div>
-            <div className="hero-context">
-              <Socials />
-              <span>Remote · UTC+8</span>
+            <div className="hero-universe">
+              <svg
+                className="constellation-paths"
+                viewBox="0 0 500 550"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path d="M165 40 C105 115 150 180 250 220 S470 140 420 190" />
+                <path d="M250 220 C335 310 235 430 95 385 M250 220 C200 370 420 350 360 500" />
+                <circle cx="165" cy="40" r="4" />
+                <circle cx="420" cy="190" r="4" />
+                <circle cx="95" cy="385" r="4" />
+                <circle cx="360" cy="500" r="4" />
+              </svg>
+              <figure className="hero-portrait">
+                <div className="portrait-frame">
+                  <Image
+                    src="/assets/space/portrait-cutout.webp"
+                    alt="Gaille Amolong outdoors in Cebu"
+                    fill
+                    priority
+                    sizes="(max-width: 600px) 158px, (max-width: 960px) 200px, 240px"
+                  />
+                </div>
+              </figure>
+              <ul className="hero-proof">
+                <li>
+                  <a href="#willed">SIEM for 170k+ users at Willed</a>
+                </li>
+                <li>
+                  <a href="#referrin">5,000+ provider health platform at Referrin</a>
+                </li>
+                <li>
+                  <a href="#badge-guru">20× CV pipeline speedup at BitWork</a>
+                </li>
+                <li>
+                  <a href="#open-source">agent devtools on npm</a>
+                </li>
+              </ul>
             </div>
           </div>
-          <figure className="hero-portrait">
-            <div className="portrait-frame">
-              <span className="portrait-fin" aria-hidden="true" />
-              <Image
-                src="/assets/portrait.jpg"
-                alt="Gaille Amolong outdoors in Cebu"
-                fill
-                priority
-                sizes="(max-width: 960px) 240px, 420px"
-              />
-            </div>
-          </figure>
-        </section>
+        </SpaceHero>
 
         <ProofBand />
         <SelectedWork />

@@ -1,5 +1,7 @@
 import Section from '@/components/Section';
 import BadgeStudy from '@/components/BadgeStudy';
+import SpatialSurface from '@/components/SpatialSurface';
+import WorkSignal from '@/components/WorkSignal';
 import { selectedWork } from '@/data/selectedWork';
 import { resumeHref } from '@/data/resume';
 
@@ -8,9 +10,10 @@ export default function SelectedWork() {
     <div id="experience">
       <Section id="work" title="Impact at scale">
         <div className="case-studies">
-          {selectedWork.map((employer) => (
-            <div className="employer-group" key={employer.company}>
+          {selectedWork.map((employer, index) => (
+            <SpatialSurface className="employer-group" key={employer.company} data-sector={index}>
               <header className="employer-heading">
+                <WorkSignal sector={index} />
                 <div className="employer-meta">
                   <p className="eyebrow">{employer.dates}</p>
                   <p>{employer.location}</p>
@@ -21,53 +24,55 @@ export default function SelectedWork() {
                   {employer.note && <p className="employer-note">{employer.note}</p>}
                 </div>
               </header>
-              {employer.projects.map((item) => (
-                <article
-                  key={item.id}
-                  id={item.id}
-                  className="case-study"
-                  aria-labelledby={`${item.id}-title`}
-                >
-                  {(item.dates || item.link) && (
-                    <div className="case-company">
-                      {item.dates && <p className="eyebrow">{item.dates}</p>}
-                      {item.link && (
-                        <a className="text-link" href={item.link.href}>
-                          {item.link.label}
-                        </a>
-                      )}
+              <div className="employer-projects">
+                {employer.projects.map((item) => (
+                  <article
+                    key={item.id}
+                    id={item.id}
+                    className="case-study"
+                    aria-labelledby={`${item.id}-title`}
+                  >
+                    {(item.dates || item.link) && (
+                      <div className="case-company">
+                        {item.dates && <p className="eyebrow">{item.dates}</p>}
+                        {item.link && (
+                          <a className="text-link" href={item.link.href}>
+                            {item.link.label}
+                          </a>
+                        )}
+                      </div>
+                    )}
+                    <div className="case-content">
+                      <h4 id={`${item.id}-title`}>{item.title}</h4>
+                      <p className="case-result">{item.result}</p>
+                      <details className="case-notes">
+                        <summary>Problem, approach & business impact</summary>
+                        <dl>
+                          <div>
+                            <dt>Problem</dt>
+                            <dd>{item.problem}</dd>
+                          </div>
+                          <div>
+                            <dt>Approach</dt>
+                            <dd>{item.action}</dd>
+                          </div>
+                          <div>
+                            <dt>Business impact</dt>
+                            <dd>{item.business}</dd>
+                          </div>
+                        </dl>
+                      </details>
+                      <p className="stack">{item.stack.join(' / ')}</p>
                     </div>
-                  )}
-                  <div className="case-content">
-                    <h4 id={`${item.id}-title`}>{item.title}</h4>
-                    <p className="case-result">{item.result}</p>
-                    <details className="case-notes">
-                      <summary>Problem, approach & business impact</summary>
-                      <dl>
-                        <div>
-                          <dt>Problem</dt>
-                          <dd>{item.problem}</dd>
-                        </div>
-                        <div>
-                          <dt>Approach</dt>
-                          <dd>{item.action}</dd>
-                        </div>
-                        <div>
-                          <dt>Business impact</dt>
-                          <dd>{item.business}</dd>
-                        </div>
-                      </dl>
-                    </details>
-                    <p className="stack">{item.stack.join(' / ')}</p>
-                  </div>
-                  {item.id === 'badge-guru' && (
-                    <figure className="pipeline">
-                      <BadgeStudy />
-                    </figure>
-                  )}
-                </article>
-              ))}
-            </div>
+                    {item.id === 'badge-guru' && (
+                      <figure className="pipeline">
+                        <BadgeStudy />
+                      </figure>
+                    )}
+                  </article>
+                ))}
+              </div>
+            </SpatialSurface>
           ))}
         </div>
         <blockquote className="testimonial">

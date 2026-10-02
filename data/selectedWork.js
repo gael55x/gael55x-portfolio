@@ -82,4 +82,29 @@ export const selectedWork = [
       },
     ],
   },
+  {
+    company: 'Brandinghaven / Superfast3D',
+    location: 'United Kingdom · Remote · Independent client engagement',
+    dates: '2025',
+    role: 'Project Lead, 3D Rendering & Automation',
+    projects: [
+      {
+        id: 'superfast3d',
+        title: 'Superfast3D, automated 3D logo rendering',
+        problem:
+          'A 3D logo-rendering product needed a dependable path from a flat logo to a finished 3D render while keeping compute costs sustainable.',
+        action:
+          'Led the team and delivery of the logo-rendering project with Blender scripting, and directed the move toward browser-based previews and a Next.js standard rendering flow, with Blender retained for premium exports.',
+        result:
+          'Delivered the 3D logo-rendering project and saved the client $1,000 USD per month in compute costs.',
+        business:
+          'A delivered rendering product with $1,000 USD less in recurring monthly compute spend.',
+        stack: ['Blender', 'Python', 'Next.js', '3D rendering'],
+        link: {
+          href: 'https://www.superfast3d.com/',
+          label: 'superfast3d.com',
+        },
+      },
+    ],
+  },
 ];

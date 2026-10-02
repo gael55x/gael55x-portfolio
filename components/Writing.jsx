@@ -1,4 +1,5 @@
 import Section from '@/components/Section';
+import SpatialSurface from '@/components/SpatialSurface';
 import { writing } from '@/data/writing';
 
 export default function Writing() {
@@ -6,7 +7,7 @@ export default function Writing() {
     <Section id="writing" title="Engineering lessons, written down">
       <div className="writing-list">
         {writing.articles.map((article) => (
-          <article key={article.url}>
+          <SpatialSurface as="article" key={article.url}>
             <p className="eyebrow">{article.meta}</p>
             <div>
               <h3>
@@ -14,7 +15,7 @@ export default function Writing() {
               </h3>
               <p>{article.description}</p>
             </div>
-          </article>
+          </SpatialSurface>
         ))}
       </div>
       <a href={writing.profileUrl} className="text-link writing-more">

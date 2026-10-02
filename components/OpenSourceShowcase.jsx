@@ -1,4 +1,6 @@
 import Section from '@/components/Section';
+import SpatialSurface from '@/components/SpatialSurface';
+import ToolSculpture from '@/components/ToolSculpture';
 import { openSource, projects } from '@/data/projects';
 
 export default function OpenSourceShowcase() {
@@ -11,29 +13,37 @@ export default function OpenSourceShowcase() {
     >
       <div className="tools-grid">
         {openSource.map((repo) => (
-          <article className="tool" key={repo.id} aria-labelledby={`${repo.id}-title`}>
-            <p className="eyebrow">{repo.category}</p>
-            <h3 id={`${repo.id}-title`}>{repo.name}</h3>
-            <h4>{repo.title}</h4>
-            <p>{repo.description}</p>
+          <SpatialSurface
+            as="article"
+            className="tool"
+            key={repo.id}
+            aria-labelledby={`${repo.id}-title`}
+          >
+            <ToolSculpture kind={repo.id} />
+            <div className="tool-copy">
+              <p className="eyebrow">{repo.category}</p>
+              <h3 id={`${repo.id}-title`}>{repo.name}</h3>
+              <h4>{repo.title}</h4>
+              <p>{repo.description}</p>
 
-            <details className="benchmark-notes">
-              <summary>Benchmark & tradeoffs</summary>
-              <p>{repo.benchmark}</p>
-            </details>
-            <p className="stack">{repo.stack}</p>
-            <div className="tool-links">
-              <a href={repo.github} aria-label={`${repo.name} source on GitHub`}>
-                Source
-              </a>
-              <a href={repo.evidence} aria-label={`${repo.name} benchmark methodology`}>
-                Benchmark
-              </a>
-              <a href={repo.npm} aria-label={`${repo.name} package on npm`}>
-                npm
-              </a>
+              <details className="benchmark-notes">
+                <summary>Benchmark & tradeoffs</summary>
+                <p>{repo.benchmark}</p>
+              </details>
+              <p className="stack">{repo.stack}</p>
+              <div className="tool-links">
+                <a href={repo.github} aria-label={`${repo.name} source on GitHub`}>
+                  Source
+                </a>
+                <a href={repo.evidence} aria-label={`${repo.name} benchmark methodology`}>
+                  Benchmark
+                </a>
+                <a href={repo.npm} aria-label={`${repo.name} package on npm`}>
+                  npm
+                </a>
+              </div>
             </div>
-          </article>
+          </SpatialSurface>
         ))}
       </div>
       <details id="projects" className="project-archive">

@@ -25,12 +25,13 @@ npm start
 # In another terminal:
 npx playwright install chromium
 npm run test:browser
+npm run test:space
 ```
 
 To use installed Chrome: `BROWSER_CHANNEL=chrome npm run test:browser`.
 `BASE_URL` changes the test origin; `ARTIFACT_DIR` changes the output directory
 (default `/tmp/portfolio-browser-check`). Tests expect a production build.
-They cover eight widths, actual heading fonts, overflow, native disclosures,
+They cover nine widths, actual heading fonts, overflow, native disclosures,
 keyboard navigation, disclosure transitions, axe accessibility checks, reduced motion, hover/touch/keyboard
 3D, resource release, WebGL failure, no-JS content, metadata, résumé and 404 routing.
 A focused Node scene check controls frame timestamps to reproduce continuous-input
@@ -43,10 +44,11 @@ the authority for dynamically loaded scene behavior.
 
 ## Design and content
 
-This is a refinement of the original dark portfolio: JetBrains Mono headings,
-Inter reading text, slate background, warm emphasis, blue evidence figures,
-numbered navigation, original headline and project messaging, and spatial portrait.
-Longer project explanations use native disclosures. Four case studies follow the original hero order and lead into
+This galaxy redesign keeps the original wording, with large Inter typography,
+near-black space, a real Three.js spiral galaxy, a floating portrait cutout, and
+constellation links to the work. Open employment layouts and individual engineering
+illustrations lead into a pearl-colored open-source section with layered 3D sculptures.
+Longer project explanations use native disclosures. Five case studies follow the original hero order and lead into
 public tools, a compact project archive, writing and About. Employment dates, locations,
 and progression are grouped with the projects in `data/selectedWork.js`; each employer
 appears once. The existing `#experience` bookmark leads to this combined history.
@@ -65,7 +67,7 @@ updating layout metadata, robots, and sitemap together.
 
 ### Hover-driven 3D
 
-`components/BadgeStudy.jsx` is the only custom client component. A static poster
+`components/BadgeStudy.jsx` controls the interactive badge demonstration. A static poster
 shows the relief emblem on its scan bed. Hover loads Three.js and plays Fable's
 2.7-second scan-to-vector sequence; pointer movement changes the view. Tap or
 Enter plays/replays it. Leaving retracts the geometry over 450ms before releasing
@@ -75,6 +77,16 @@ Reduced motion keeps the poster on hover and shows a fixed endpoint on deliberat
 activation. Scrolling alone never loads WebGL, including on touch. Leaving the
 viewport, hiding the tab, changing the motion preference, or losing the context
 releases resources. No persistent idle render loop or external model downloads.
+
+`components/SpaceHero.jsx` loads the procedural Three.js galaxy only while the
+hero is visible and reduced motion is off. Pointer and scroll input produce
+finite easing sequences, then GPU rendering stops. Stars scatter from the pointer
+and settle back on exit. `components/SpaceBackdrop.jsx` provides the same bounded
+repulsion for decorative stars throughout the page. It releases resources outside
+the viewport or when the tab is hidden. `components/SpatialSurface.jsx` adds
+bounded mouse perspective to work, tools, and writing, with static touch and
+reduced-motion behavior. See [the space redesign notes](docs/design/outer-space.md)
+for the generated asset prompt, content preservation, and Superfast3D sources.
 
 `lib/badgeScene.js` owns the stateful GPU lifecycle and finite choreography.
 A capped 1.5 DPR and one 1024px shadow map provide contact and depth. The scene uses
@@ -95,10 +107,10 @@ All styling and the small native-element reset live in `app/globals.css`. Tailwi
 its unused theme/build configuration, Framer Motion, and obsolete media were removed.
 
 Native CSS scroll timelines give each major section a heading/content entrance,
-progressive employer dividers, a reading-progress line, and bounded depth in the hero
-and speaking photograph. Portrait layers separate on hover. The badge also enters
+a reading-progress line, and bounded depth in the hero
+and speaking photograph. The portrait tilts on hover; tool sculpture layers separate on hover. The badge also enters
 with a small perspective change on fine-pointer devices. Native disclosures expand and collapse over 240ms; buttons
-have slight hover and press feedback. No effect hides text or loads WebGL.
+have slight hover and press feedback. Scroll entrances never hide text or trigger the badge WebGL study.
 Unsupported browsers retain native behavior; reduced motion disables these transitions.
 
 ## Review evidence
@@ -106,6 +118,7 @@ Unsupported browsers retain native behavior; reduced motion disables these trans
 - [Audit and direction](docs/design/audit.md)
 - [Original redesign validation](docs/design/validation.md)
 - [Fable 3D and motion revision](docs/design/motion-revision.md)
+- [Outer-space redesign](docs/design/outer-space.md)
 
 The original redesign was merged as PR #10. Keep this motion revision cohesive
 and target `main`. Do not merge automatically. A hosting integration

@@ -16,7 +16,12 @@ const manifest = JSON.parse(await readFile('.next/react-loadable-manifest.json',
 const sceneFiles = Object.entries(manifest)
   .filter(([key]) => key.includes('badgeScene'))
   .flatMap(([, value]) => value.files);
+const spaceFiles = Object.entries(manifest)
+  .filter(([key]) => key.includes('spaceScene'))
+  .flatMap(([, value]) => value.files);
+const badgeEntryFile = sceneFiles.find((file) => !spaceFiles.includes(file));
 assert(sceneFiles.length > 0, 'The optional 3D scene must be split into its own chunk');
+assert(badgeEntryFile, 'The badge study must retain an independent lazy entry');
 
 try {
   for (const [name, width, height] of [
@@ -42,8 +47,8 @@ try {
     await page.goto(baseURL, { waitUntil: 'networkidle' });
     await page.evaluate(() => document.fonts.ready);
     assert.equal(await page.locator('h1').count(), 1);
-    assert.equal(await page.locator('.employer-heading').count(), 3);
-    assert.equal(await page.locator('.case-study').count(), 4);
+    assert.equal(await page.locator('.employer-heading').count(), 4);
+    assert.equal(await page.locator('.case-study').count(), 5);
     assert.equal(
       await page
         .locator('.employer-heading h3')
@@ -53,8 +58,13 @@ try {
       'Employment is shown once per company',
     );
     assert.match(
-      await page.locator('.employer-group').last().innerText(),
+      await page.locator('.employer-group').filter({ hasText: 'BitWork Solutions' }).innerText(),
       /Aug 2023.*Present[\s\S]*Promoted to lead in May 2025/,
+    );
+    assert.match(await page.locator('#superfast3d').innerText(), /\$1,000 USD per month/);
+    assert.equal(
+      await page.locator('#superfast3d a').getAttribute('href'),
+      'https://www.superfast3d.com/',
     );
     assert.equal(
       await page.locator('#experience #work').count(),
@@ -63,18 +73,14 @@ try {
     );
     assert.match(
       await page.locator('h1').evaluate((el) => getComputedStyle(el).fontFamily),
-      /JetBrains/,
-      'The original mono heading must actually render',
+      /Inter/,
+      'The redesigned display heading renders in Inter',
     );
     assert.equal(
       await page.locator('#hero-title').innerText(),
       'I ship production AI and security systems and publish the proof.',
     );
-    assert.equal(
-      await page.locator('canvas').count(),
-      0,
-      'No WebGL canvas before explicit activation',
-    );
+    assert.equal(await page.locator('canvas').count(), 0, 'Reduced motion avoids automatic WebGL');
     assert(
       !requests.some((url) => sceneFiles.some((file) => url.includes(file))),
       'Three.js must not load initially',
@@ -202,7 +208,8 @@ try {
     )
   ) {
     const details = page.locator('.case-notes').first();
-    const closedHeight = (await details.boundingBox()).height;
+    // Layout height excludes the visual projection of the new 3D work panels.
+    const closedHeight = await details.evaluate((element) => element.offsetHeight);
     assert.equal(
       await details.evaluate((el) =>
         getComputedStyle(el, '::details-content').transitionDuration.split(',')[0].trim(),
@@ -218,16 +225,18 @@ try {
         el.querySelector('dl').getBoundingClientRect().bottom <= el.getBoundingClientRect().bottom
       );
     });
-    assert((await details.boundingBox()).height > closedHeight, 'Disclosure content expands fully');
+    assert(
+      (await details.evaluate((element) => element.offsetHeight)) > closedHeight,
+      'Disclosure content expands fully',
+    );
     await page.screenshot({ path: `${output}/desktop-details-open.png` });
     await details.locator('summary').click();
     await page.waitForFunction(
-      (height) =>
-        Math.abs(document.querySelector('.case-notes').getBoundingClientRect().height - height) < 1,
+      (height) => Math.abs(document.querySelector('.case-notes').offsetHeight - height) < 1,
       closedHeight,
     );
     assert(
-      Math.abs((await details.boundingBox()).height - closedHeight) < 1,
+      Math.abs((await details.evaluate((element) => element.offsetHeight)) - closedHeight) < 1,
       'Disclosure closes without leftover space',
     );
     const archive = page.locator('.project-archive');
@@ -321,7 +330,11 @@ try {
       startProgress,
       'Reading line tracks page progress',
     );
-    assert.equal(await page.locator('canvas').count(), 0, 'Scrolling alone must not start WebGL');
+    assert.equal(
+      await page.locator('.study-stage canvas').count(),
+      0,
+      'Scrolling alone must not start the badge study',
+    );
     const photo = page.locator('.speaking-photo img');
     await photo.scrollIntoViewIfNeeded();
     const photoPose = await photo.evaluate((el) => getComputedStyle(el).transform);
@@ -352,7 +365,7 @@ try {
   const sceneGate = new Promise((resolve) => {
     releaseScene = resolve;
   });
-  await page.route(`**/${sceneFiles[0]}`, async (route) => {
+  await page.route(`**/${badgeEntryFile}`, async (route) => {
     await sceneGate;
     await route.continue();
   });
@@ -362,14 +375,14 @@ try {
   await trigger.hover();
   await page.getByRole('status').filter({ hasText: 'Loading the badge study' }).waitFor();
   assert.equal(
-    await page.locator('canvas').evaluate((el) => getComputedStyle(el).opacity),
+    await page.locator('.study-stage canvas').evaluate((el) => getComputedStyle(el).opacity),
     '0',
     'Slow 3D loading must leave the static poster visible',
   );
   assert(await page.locator('.study-stage img').isVisible());
   releaseScene();
   await page.getByRole('status').filter({ hasText: '3D ready' }).waitFor();
-  const canvas = page.locator('canvas');
+  const canvas = page.locator('.study-stage canvas');
   const firstScan = await canvas.screenshot();
   await page.waitForTimeout(2900);
   assert.equal(
@@ -446,7 +459,7 @@ try {
     [],
   );
   await page
-    .locator('canvas')
+    .locator('.study-stage canvas')
     .evaluate((canvas) =>
       canvas.dispatchEvent(new Event('webglcontextlost', { cancelable: true })),
     );
@@ -509,16 +522,16 @@ try {
   });
   await reducedTrigger.hover();
   assert.equal(
-    await reduced.locator('canvas').count(),
+    await reduced.locator('.study-stage canvas').count(),
     0,
     'Reduced motion does not activate 3D on hover',
   );
   await reducedTrigger.tap();
   await reduced.getByRole('status').filter({ hasText: '3D ready' }).waitFor();
-  const touchInitial = await reduced.locator('canvas').screenshot();
+  const touchInitial = await reduced.locator('.study-stage canvas').screenshot();
   await reducedTrigger.tap();
   assert.deepEqual(
-    await reduced.locator('canvas').screenshot(),
+    await reduced.locator('.study-stage canvas').screenshot(),
     touchInitial,
     'Reduced motion keeps a fixed endpoint on repeated taps',
   );
@@ -530,7 +543,7 @@ try {
   await reduced.screenshot({ path: `${output}/mobile-3d.png` });
   await reduced.locator('.pipeline-caption').tap();
   assert.equal(
-    await reduced.locator('canvas').count(),
+    await reduced.locator('.study-stage canvas').count(),
     0,
     'Touching outside the study releases WebGL without relying on focus',
   );
@@ -546,24 +559,28 @@ try {
   await touch.goto(baseURL);
   const touchTrigger = touch.locator('.study-trigger');
   await touchTrigger.scrollIntoViewIfNeeded();
-  assert.equal(await touch.locator('canvas').count(), 0, 'Touch scrolling never starts WebGL');
+  assert.equal(
+    await touch.locator('.study-stage canvas').count(),
+    0,
+    'Touch scrolling never starts the badge study',
+  );
   await touchTrigger.tap();
   await touch.locator('.study-stage[data-phase="ready"]').waitFor();
-  const touchStart = await touch.locator('canvas').screenshot();
+  const touchStart = await touch.locator('.study-stage canvas').screenshot();
   await touch.waitForTimeout(2900);
   assert.notDeepEqual(
-    await touch.locator('canvas').screenshot(),
+    await touch.locator('.study-stage canvas').screenshot(),
     touchStart,
     'A tap plays the full transformation',
   );
   await touchTrigger.tap();
   await touch.waitForTimeout(900);
   await touch.emulateMedia({ reducedMotion: 'reduce' });
-  await touch.locator('canvas').waitFor({ state: 'detached' });
+  await touch.locator('.study-stage canvas').waitFor({ state: 'detached' });
   await touchTrigger.tap();
   await touch.locator('.study-stage[data-phase="ready"]').waitFor();
   await touch.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-  await touch.locator('canvas').waitFor({ state: 'detached' });
+  await touch.locator('.study-stage canvas').waitFor({ state: 'detached' });
   await touch.close();
 
   const zoom = await (
@@ -595,7 +612,7 @@ try {
     })
     .click();
   await noWebGL.getByRole('status').filter({ hasText: 'unavailable' }).waitFor();
-  assert.equal(await noWebGL.locator('canvas').count(), 0);
+  assert.equal(await noWebGL.locator('.study-stage canvas').count(), 0);
   await noWebGL.close();
 
   const noJS = await (

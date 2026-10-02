@@ -1,6 +1,7 @@
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import Header from '@/components/Header';
+import SpaceBackdrop from '@/components/SpaceBackdrop';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
@@ -14,7 +15,7 @@ const title = 'Gaille Amolong, AI Platform & Security Engineer';
 const description =
   'I ship production AI and security systems and publish the proof. Selected engineering work at Willed, BitWork Solutions, and Referrin Health, plus open-source developer tools.';
 
-export const viewport = { themeColor: '#161922' };
+export const viewport = { themeColor: '#08090b' };
 export const metadata = {
   metadataBase: new URL('https://gailleamolong.vercel.app'),
   title: { default: title, template: '%s | Gaille Amolong' },
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <body>
+        <SpaceBackdrop />
         <a href="#main" className="skip-link">
           Skip to content
         </a>
