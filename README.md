@@ -5,7 +5,8 @@ Live site: [gailleamolong.vercel.app](https://gailleamolong.vercel.app).
 
 ## Development
 
-Node.js 22 or newer.
+Node.js 24.x, matching the Vercel build runtime. The version is pinned in
+`package.json` and `.nvmrc`.
 
 ```sh
 npm ci
