@@ -8,6 +8,11 @@ engineering illustration. The tools use layered CSS 3D sculptures; writing uses
 one lead essay and two supporting essays. The portrait floats inside the galaxy
 rather than sitting in a boxed card.
 
+The portrait is 340px wide on desktop, 280px on tablets, and 220px on phones.
+Cool monochrome lighting and a soft blue halo match the galaxy. Intersecting
+elliptical and vertical masks feather the shoulder edges and dissolve the torso
+while keeping the face opaque; the image asset itself remains unchanged.
+
 All original portfolio wording, links, dates, and existing project data are
 preserved. The separately requested Superfast3D engagement is appended, with the
 United Kingdom location confirmed by the user.

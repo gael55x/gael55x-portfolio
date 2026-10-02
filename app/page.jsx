@@ -68,7 +68,7 @@ export default function Home() {
                     alt="Gaille Amolong outdoors in Cebu"
                     fill
                     priority
-                    sizes="(max-width: 600px) 158px, (max-width: 960px) 200px, 240px"
+                    sizes="(max-width: 600px) 220px, (max-width: 960px) 280px, 340px"
                   />
                 </div>
               </figure>
