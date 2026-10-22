@@ -157,7 +157,7 @@ export default function Home() {
                   src="/assets/bir/bir-registration-seal-badge.png"
                   alt="Official BIR Registration Seal Badge with verification QR code and RSN 083RC20250000004138, full size"
                   width={1504}
-                  height={512}
+                  height={510}
                   unoptimized
                 />
               </a>

@@ -1288,12 +1288,12 @@ button {
 }
 /* Official artwork: scaled only, never recolored or distorted, so the QR stays scannable. */
 .registration-badge {
-  max-width: 560px;
   margin-top: 56px;
 }
 .registration-badge img {
   display: block;
   width: 100%;
+  max-width: 400px;
   height: auto;
   border-radius: 8px;
 }
