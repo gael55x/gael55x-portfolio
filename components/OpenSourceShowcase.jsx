@@ -1,6 +1,7 @@
 import Section from '@/components/Section';
 import SpatialSurface from '@/components/SpatialSurface';
 import ToolSculpture from '@/components/ToolSculpture';
+import ToolVideo from '@/components/ToolVideo';
 import { openSource, projects } from '@/data/projects';
 
 export default function OpenSourceShowcase() {
@@ -20,18 +21,12 @@ export default function OpenSourceShowcase() {
             aria-labelledby={`${repo.id}-title`}
           >
             {repo.video ? (
-              <div className="tool-sculpture">
-                <video
-                  controls
-                  playsInline
-                  preload="metadata"
-                  poster={repo.poster}
-                  aria-label={`${repo.name} launch video`}
-                >
-                  <source src={repo.video} type="video/mp4" />
-                  <a href={repo.launchVideo}>Watch the {repo.name} launch video</a>
-                </video>
-              </div>
+              <ToolVideo
+                name={repo.name}
+                src={repo.video}
+                poster={repo.poster}
+                href={repo.launchVideo}
+              />
             ) : (
               <ToolSculpture kind={repo.id} />
             )}
