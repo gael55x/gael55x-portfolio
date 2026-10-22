@@ -1,6 +1,20 @@
 /** Benchmark claims link to the methodology, with the original date and scope. */
 export const openSource = [
   {
+    id: 'codemm',
+    name: 'Codemm',
+    category: 'Learning × Agent tooling',
+    title: 'Supercharge your learning with Codemm.',
+    description:
+      'An open-source app for self-learners. Your own coding agent turns what you want to learn into a roadmap, personalized lessons, and hands-on coding exercises, with hints and guided practice when you get stuck. Codemm checks every exercise against its tests and grades your code in an offline Docker sandbox.',
+    github: 'https://github.com/iignaite/Codemm',
+    website: 'https://codemm.vercel.app/',
+    launchVideo: 'https://www.facebook.com/share/v/17iA4UsfcP/',
+    video: '/assets/codemm/codemm-launch.mp4',
+    poster: '/assets/codemm/codemm-launch-poster.jpg',
+    stack: 'TypeScript / MCP / Docker sandbox / Coding agents',
+  },
+  {
     id: 'snapline',
     name: 'Snapline',
     category: 'Design systems × Agent tooling',
@@ -31,12 +45,6 @@ export const openSource = [
 ];
 
 export const projects = [
-  {
-    name: 'Codemm',
-    type: 'AI education',
-    description: 'Generated programming exercises graded by tests in isolated Docker sandboxes.',
-    href: 'https://github.com/iignaite/Codemm',
-  },
   {
     name: 'LayeredMemoryTrader',
     type: 'Research',

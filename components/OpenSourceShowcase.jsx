@@ -19,28 +19,59 @@ export default function OpenSourceShowcase() {
             key={repo.id}
             aria-labelledby={`${repo.id}-title`}
           >
-            <ToolSculpture kind={repo.id} />
+            {repo.video ? (
+              <div className="tool-sculpture">
+                <video
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={repo.poster}
+                  aria-label={`${repo.name} launch video`}
+                >
+                  <source src={repo.video} type="video/mp4" />
+                  <a href={repo.launchVideo}>Watch the {repo.name} launch video</a>
+                </video>
+              </div>
+            ) : (
+              <ToolSculpture kind={repo.id} />
+            )}
             <div className="tool-copy">
               <p className="eyebrow">{repo.category}</p>
               <h3 id={`${repo.id}-title`}>{repo.name}</h3>
               <h4>{repo.title}</h4>
               <p>{repo.description}</p>
 
-              <details className="benchmark-notes">
-                <summary>Benchmark & tradeoffs</summary>
-                <p>{repo.benchmark}</p>
-              </details>
+              {repo.benchmark && (
+                <details className="benchmark-notes">
+                  <summary>Benchmark & tradeoffs</summary>
+                  <p>{repo.benchmark}</p>
+                </details>
+              )}
               <p className="stack">{repo.stack}</p>
               <div className="tool-links">
                 <a href={repo.github} aria-label={`${repo.name} source on GitHub`}>
                   Source
                 </a>
-                <a href={repo.evidence} aria-label={`${repo.name} benchmark methodology`}>
-                  Benchmark
-                </a>
-                <a href={repo.npm} aria-label={`${repo.name} package on npm`}>
-                  npm
-                </a>
+                {repo.website && (
+                  <a href={repo.website} aria-label={`${repo.name} website`}>
+                    Website
+                  </a>
+                )}
+                {repo.launchVideo && (
+                  <a href={repo.launchVideo} aria-label={`${repo.name} launch video on Facebook`}>
+                    Launch video
+                  </a>
+                )}
+                {repo.evidence && (
+                  <a href={repo.evidence} aria-label={`${repo.name} benchmark methodology`}>
+                    Benchmark
+                  </a>
+                )}
+                {repo.npm && (
+                  <a href={repo.npm} aria-label={`${repo.name} package on npm`}>
+                    npm
+                  </a>
+                )}
               </div>
             </div>
           </SpatialSurface>
